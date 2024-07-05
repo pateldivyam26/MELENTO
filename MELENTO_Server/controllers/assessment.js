@@ -1,58 +1,117 @@
-const Assessments = require('../service/assessmentService')
+const assessment_service = require('../service/assessmentService')
+const util = require('../utility/util')
 
-module.exports = {
-    listAssessment, getAssessment, updateAssessment, addAssessment, deleteAssessment
+function getAssessment(req,res){
+    res.setHeader('Content-Type', 'application/json')
+    assessment_service.findAssessment().then(
+        (items)=>{
+            const objArr = items;
+            objArr.forEach((obj)=>{
+                util.renameKey(obj,"_id","id");
+            });
+            const updateItems = JSON.stringify(objArr);
+            res.send(updateItems);
+        },
+        (err)=>{
+            console.log('Promise Rejected')
+            console.log(err)
+        }
+    )
 }
 
-async function listAssessment(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    try {
-        res.json(await Assessments.list())
-    }
-    catch (err) {
-        res.status(500).json({ error: err.message })
-    }
+function addAssessment(req,res){
+    res.setHeader('Content-Type', 'application/json')
+    console.log("Add called")
+    var id = req.body.id
+    var assessmentName = req.body.assessmentName
+    var assessmentDate = req.body.assessmentDate
+    var assessmentTime = req.body.assessmentTime
+    var assessmentImage = req.body.assessmentImage
+    var assessmentDescription = req.body.assessmentDescription
+    var questions = req.body.questions
+    var facultyId = req.body.facultyId
+    var totalMarks = req.body.totalMarks
+    var price = req.body.price
+    var active = req.body.active
+    assessment_service.add(id,assessmentName,assessmentDate,assessmentTime,assessmentImage,assessmentDescription,questions,facultyId,totalMarks,price,active).then(
+        res.send(JSON.stringify({data_submitted: id}))
+    )
 }
 
-async function getAssessment(req, res, next) {
-    // console.log("called")
-    const { id } = req.params
-    const assessments = await Assessments.get(id)
-    if (!assessments) return next()
-    res.json(assessments)
+function updateAssessment(req,res){
+    res.setHeader('Content-Type', 'application/json');
+    console.log("Update called");
+
+    var id = req.params.id;
+    var assessmentName = req.body.assessmentName;
+    var assessmentDate = req.body.assessmentDate;
+    var assessmentTime = req.body.assessmentTime;
+    var assessmentImage = req.body.assessmentImage;
+    var assessmentDescription = req.body.assessmentDescription;
+    var questions = req.body.questions;
+    var facultyId = req.body.facultyId;
+    var totalMarks = req.body.totalMarks;
+    var price = req.body.price;
+    var active = req.body.active;
+
+    assessment_service.update(id, assessmentName, assessmentDate, assessmentTime, assessmentImage, assessmentDescription, questions, facultyId, totalMarks, price, active);
+        res.send(JSON.stringify({ data_updated: id }));
 }
 
-async function updateAssessment(req, res) {
-    console.log("called update")
-    const { id } = req.params;
-    const updatedAssessment = req.body;
-    try {
-        const assessment = await Assessments.update(id, updatedAssessment);
-        if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
-        res.json(assessment);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
+// async function listAssessment(req, res) {
+//     res.setHeader('Access-Control-Allow-Origin', '*')
+//     try {
+//         res.json(await assessment_service.list())
+//     }
+//     catch (err) {
+//         res.status(500).json({ error: err.message })
+//     }
+// }
 
-async function addAssessment(req, res) {
-    console.log("called add")
-    const newAssessment = req.body;
-    try {
-        const assessment = await Assessments.add(newAssessment);
-        res.status(201).json(assessment);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
+// async function getAssessment(req, res, next) {
+//     // console.log("called")
+//     const { id } = req.params
+//     const assessments = await Assessments.get(id)
+//     if (!assessments) return next()
+//     res.json(assessments)
+// }
+
+// async function updateAssessment(req, res) {
+//     console.log("called update")
+//     const { id } = req.params;
+//     const updatedAssessment = req.body;
+//     try {
+//         const assessment = await assessment_service.update(id, updatedAssessment);
+//         if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
+//         res.json(assessment);
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// }
+
+// async function addAssessment(req, res) {
+//     console.log("called add")
+//     const newAssessment = req.body;
+//     try {
+//         const assessment = await assessment_service.add(newAssessment);
+//         res.status(201).json(assessment);
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// }
 
 async function deleteAssessment(req, res) {
     const { id } = req.params;
     try {
-        const assessment = await Assessments.remove(id);
+        const assessment = await assessment_service.remove(id);
         if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
         res.json({ message: 'Assessment deleted successfully', assessment });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
+}
+
+
+module.exports = {
+    getAssessment, updateAssessment, addAssessment, deleteAssessment
 }
