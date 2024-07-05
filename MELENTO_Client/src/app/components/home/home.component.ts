@@ -5,12 +5,10 @@ import { Router } from '@angular/router';
 import { Assessment } from '../../models/assessment';
 import { CartService } from '../../services/cart.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { typewriterAnimation } from '../../animations/typewriter-animation';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrl: './home.component.scss',
-    animations: [typewriterAnimation]
+    styleUrl: './home.component.scss'
 })
 
 export class HomeComponent {
