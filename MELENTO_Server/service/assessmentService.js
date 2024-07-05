@@ -2,7 +2,6 @@ const fs = require('fs').promises
 const path = require('path')
 const util = require('../utility/util')
 const assessmentFile = path.join(__dirname, '../data/assessment.json')
-const { rejects } = require('assert')
 
 var findAssessment = function () {
     return new Promise((resolve, reject) => {
@@ -12,60 +11,23 @@ var findAssessment = function () {
     })
 }
 
-function addObject(collection, object) {
-    collection.insertOne(object, function (err, result) {
-        if (!err) {
-            console.log('Inserted: ')
-            console.log(result)
-        }
-    })
-}
 
-function add(id,assessmentName,assessmentDate,assessmentTime,assessmentImage,assessmentDescription,questions,facultyId,totalMarks,price,active) {
+
+function add(assessment) {
     return new Promise((resolve, reject) => {
         var coll = util.connect('assessment')
-        resolve(addObject(coll,{
-            _id:id,
-            assessmentName:assessmentName,
-            assessmentDate:assessmentDate,
-            assessmentTime:assessmentTime,
-            assessmentImage:assessmentImage,
-            assessmentDescription:assessmentDescription,
-            questions:questions,
-            facultyId:facultyId,
-            totalMarks:totalMarks,
-            price:price,
-            active:active
-        }));
+        util.renameKey(assessment,'id','_id');
+        resolve(util.addObject(coll, assessment));
     })
 }
 
-function updateObject(collection, id, updatedObject) {
-    return collection.updateOne({ _id: id }, { $set: updatedObject }, function (err, result) {
-        if (!err) {
-            console.log('Updated: ')
-            console.log(result)
-        } else {
-            console.error('Error updating object: ', err);
-        }
-    });
-}
 
-function update(id, assessmentName, assessmentDate, assessmentTime, assessmentImage, assessmentDescription, questions, facultyId, totalMarks, price, active) {
+
+function update(id,updatedAssessment) {
     return new Promise((resolve, reject) => {
         var coll = util.connect('assessment');
-        resolve(updateObject(coll, id, {
-            assessmentName: assessmentName,
-            assessmentDate: assessmentDate,
-            assessmentTime: assessmentTime,
-            assessmentImage: assessmentImage,
-            assessmentDescription: assessmentDescription,
-            questions: questions,
-            facultyId: facultyId,
-            totalMarks: totalMarks,
-            price: price,
-            active: active
-        }));
+        util.renameKey(updatedAssessment,'id','_id');
+        resolve(util.updateObject(coll, id,updatedAssessment));
     });
 }
 

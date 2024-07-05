@@ -23,17 +23,8 @@ function addAssessment(req,res){
     res.setHeader('Content-Type', 'application/json')
     console.log("Add called")
     var id = req.body.id
-    var assessmentName = req.body.assessmentName
-    var assessmentDate = req.body.assessmentDate
-    var assessmentTime = req.body.assessmentTime
-    var assessmentImage = req.body.assessmentImage
-    var assessmentDescription = req.body.assessmentDescription
-    var questions = req.body.questions
-    var facultyId = req.body.facultyId
-    var totalMarks = req.body.totalMarks
-    var price = req.body.price
-    var active = req.body.active
-    assessment_service.add(id,assessmentName,assessmentDate,assessmentTime,assessmentImage,assessmentDescription,questions,facultyId,totalMarks,price,active).then(
+    var assessment=req.body
+    assessment_service.add(assessment).then(
         res.send(JSON.stringify({data_submitted: id}))
     )
 }
@@ -43,19 +34,10 @@ function updateAssessment(req,res){
     console.log("Update called");
 
     var id = req.params.id;
-    var assessmentName = req.body.assessmentName;
-    var assessmentDate = req.body.assessmentDate;
-    var assessmentTime = req.body.assessmentTime;
-    var assessmentImage = req.body.assessmentImage;
-    var assessmentDescription = req.body.assessmentDescription;
-    var questions = req.body.questions;
-    var facultyId = req.body.facultyId;
-    var totalMarks = req.body.totalMarks;
-    var price = req.body.price;
-    var active = req.body.active;
+    var assessment=req.body;
 
-    assessment_service.update(id, assessmentName, assessmentDate, assessmentTime, assessmentImage, assessmentDescription, questions, facultyId, totalMarks, price, active);
-        res.send(JSON.stringify({ data_updated: id }));
+    assessment_service.update(id,assessment);
+    res.send(JSON.stringify({ data_updated: id }));
 }
 
 // async function listAssessment(req, res) {
