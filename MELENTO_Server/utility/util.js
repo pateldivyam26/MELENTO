@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
-
+require('dotenv').config();
 function connect(collection_name) {
-    var conn = new MongoClient("mongodb://localhost:27017/assessment");
+    var conn = new MongoClient(process.env.mongoDbURL);
     console.log("Connected to MongoDB")
     var myDB = conn.db();
     var coll = myDB.collection(collection_name);
