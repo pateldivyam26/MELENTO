@@ -1,0 +1,27 @@
+<div class="container card-body card shadow mt-5 table-responsive mt-3">
+    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
+        <thead>
+            <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Assessment ID</th>
+                <!-- <th scope="col">Assessment Name</th> -->
+                <th scope="col">Trainee ID</th>
+                <th scope="col">Faculty ID</th>
+                <th scope="col">Score</th>
+                <th scope="col">Result</th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+            <tr div *ngFor="let scores of arrAssessmentScores">
+                <td scope="col">{{scores.id}}</td>
+                <td scope="col">{{scores.assessmentId}}</td>
+                <!-- <td scope="col">{{assessment.assessmentName}}</td> -->
+                <td scope="col">{{scores.traineeId}}</td>
+                <td scope="col">{{scores.facultyId}}</td>
+                <td scope="col">{{scores.score}}</td>
+                <td scope="col">{{scores.result}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

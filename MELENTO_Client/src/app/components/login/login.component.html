@@ -1,0 +1,29 @@
+<div class="container-fluid my-2">
+<form [formGroup]="myForm" (ngSubmit)="verify_login(myForm.value)" class="form">
+    <div class="form-row">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control " formControlName="email">
+        <div *ngIf="f['email'].touched && f['email'].errors">
+          <div *ngIf="f['email'].errors['required']" style="color: red;">*Email is required</div>
+          <div *ngIf="f['email'].errors['email']" style="color: red;">*Please follow the correct format</div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Password</label>
+        <div class="password-container">
+            <input type="password" id="password" class="form-control" formControlName="password">
+            <i class="fa fa-light fa-eye float-right" id="togglePassword" (click)="togglepassword()"></i>
+        </div>
+        <div *ngIf="f['password'].touched && f['password'].errors">
+          <div *ngIf="f['password'].errors['required']" style="color: red;">*Password is mandatory</div>
+        </div>
+      </div>
+    </div>
+    <div class="my-2" *ngIf="f['email'].value && f['password'].value  && submitted">
+        <div *ngIf="userExists">Kindly enter the corrrect Password</div>
+        <div *ngIf="!userExists">Kindly register</div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Login</button>
+</form>
+</div>

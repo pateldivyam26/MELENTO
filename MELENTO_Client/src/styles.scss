@@ -1,0 +1,131 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$first-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($first-theme);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($first-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($first-theme);
+// /* You can add global styles to this file, and also import other style files */
+.content {
+    background-color: #CADCFC;
+    min-height: 80vh;
+    
+}
+#footer{
+    background-color: #00246B;
+    color: white;
+    padding: 14px 0;
+    text-align: center;
+    
+}
+
+#footer .container a {
+    color: white;
+    font-size: 18px;
+}
+
+#footer .container a:hover {
+    color: #8AB6F9;
+    font-size: 18px;
+}
+
+.navbar {
+    background-color: #8AB6F9;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #140ec5;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-body{
+    // background-color: rgb(196, 249, 250);
+    background-color: #8AB6F9;
+}
+.inactive-card{
+    background-color: #58595a;
+}
+
+.card-body .btn {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.modal .form-control {
+    margin-bottom: 10px;
+}
+
+.row.mb-4 {
+    margin-bottom: 2rem !important;
+}
+
+.card-header .btn-link {
+    text-decoration: none;
+    color: #00246B;
+}
+
+.card-header .btn-link:hover {
+    color: #8AB6F9;
+}
+
+.card-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.accordion-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordion-body img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

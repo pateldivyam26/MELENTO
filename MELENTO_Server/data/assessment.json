@@ -1,0 +1,2407 @@
+[
+  {
+    "id": "1",
+    "assessmentName": "Android Studio",
+    "assessmentDate": "2022-01-01",
+    "assessmentTime": 120,
+    "assessmentImage": "assets/images/android.svg",
+    "assessmentDescription": "Android Studio is the official integrated development environment (IDE) for Android app development. It provides tools for designing, coding, and debugging Android apps. Learn Android Studio to develop mobile applications, use the Android SDK, and publish your apps on the Google Play Store.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which of the following are essential components of Android Studio for app development? (Select all that apply)",
+        "options": [
+          "Layout Editor",
+          "Debugger",
+          "Logcat",
+          "Gradle"
+        ],
+        "answer": "abcd"
+      },
+      {
+        "id": 2,
+        "type": "TOF",
+        "questionText": "Android Studio is primarily used for web development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "What is the primary programming language used in Android Studio?",
+        "options": [
+          "Java",
+          "Python",
+          "C#",
+          "Swift"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "TOF",
+        "questionText": "Android apps can only be developed using Android Studio.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 5,
+        "type": "MCQ",
+        "questionText": "Which tool is used for designing user interfaces in Android Studio?",
+        "options": [
+          "XML Layout Editor",
+          "Gradle",
+          "Logcat",
+          "Debugger"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Android Studio is compatible with Windows, macOS, and Linux operating systems.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "MCQ",
+        "questionText": "Which component is essential for building layouts in Android Studio?",
+        "options": [
+          "ConstraintLayout",
+          "RecyclerView",
+          "ScrollView",
+          "LinearLayout"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Android Studio provides tools for coding, testing, and debugging Android applications.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "MCQ",
+        "questionText": "What is the minimum Android SDK version required to develop apps in Android Studio?",
+        "options": [
+          "API Level 14",
+          "API Level 16",
+          "API Level 19",
+          "API Level 21"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 10,
+        "type": "TOF",
+        "questionText": "Android Studio is an open-source IDE.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 100,
+    "active": true
+  },
+  {
+    "id": "2",
+    "assessmentName": "Angular",
+    "assessmentDate": "2022-01-02",
+    "assessmentTime": 120,
+    "assessmentImage": "assets/images/angular.svg",
+    "assessmentDescription": "Angular is a robust framework for building dynamic web applications. Developed by Google, it provides tools for creating single-page applications with a modular architecture. Learn Angular to enhance your front-end development skills, manage application state, and create efficient, maintainable code.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which of the following is not a valid Angular component lifecycle hook?",
+        "options": [
+          "ngOnInit",
+          "ngDoCheck",
+          "ngOnChanges",
+          "ngRender"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Select the correct TypeScript data types:",
+        "options": [
+          "number",
+          "string",
+          "boolean",
+          "any"
+        ],
+        "answer": "abcd"
+      },
+      {
+        "id": 3,
+        "type": "TOF",
+        "questionText": "Angular uses native JavaScript for component development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "What is the purpose of Angular CLI?",
+        "options": [
+          "To generate Angular components",
+          "To build and test Angular apps",
+          "To manage Angular project dependencies",
+          "All of the above"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Angular applications are mobile-only.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "MCQ",
+        "questionText": "What is Angular Ivy?",
+        "options": [
+          "A new component lifecycle in Angular",
+          "A compiler for Angular applications",
+          "A rendering engine for Angular applications",
+          "None of the above"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 7,
+        "type": "MCQ",
+        "questionText": "Which of the following are Angular decorators?",
+        "options": [
+          "@Component",
+          "@Injectable",
+          "@Service",
+          "@NgModule"
+        ],
+        "answer": "abcd"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Angular applications use TypeScript as the primary language for development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "MCQ",
+        "questionText": "What is Angular RxJS?",
+        "options": [
+          "A library for reactive programming",
+          "A testing framework for Angular",
+          "An Angular extension for REST APIs",
+          "None of the above"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Select the Angular CLI commands:",
+        "options": [
+          "ng generate",
+          "ng start",
+          "ng serve",
+          "ng build"
+        ],
+        "answer": "abcd"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 450,
+    "active": true
+  },
+  {
+    "id": "3",
+    "assessmentName": "C++",
+    "assessmentDate": "2022-01-03",
+    "assessmentTime": 120,
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which of the following is not a valid C++ data type?",
+        "options": [
+          "int",
+          "float",
+          "string",
+          "char[]"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "What is the correct way to declare a pointer in C++?",
+        "options": [
+          "int* ptr;",
+          "ptr int;",
+          "int ptr();",
+          "ptr int();"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which operator is used to allocate memory in C++?",
+        "options": [
+          "new",
+          "malloc",
+          "allocate",
+          "reserve"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "What does the 'friend' keyword signify in C++?",
+        "options": [
+          "A function that is a member of a class",
+          "A function that is a friend of a class",
+          "A function that is a friend of another function",
+          "A function that is not accessible"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 5,
+        "type": "MCQ",
+        "questionText": "What does the 'static' keyword do in C++?",
+        "options": [
+          "Defines a local variable",
+          "Allocates memory for a variable",
+          "Specifies that a member variable or function is shared among all instances of a class",
+          "Declares a constant"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 6,
+        "type": "MCQ",
+        "questionText": "What is the output of the following code?\nint x = 5;\nint y = x++;\ncout << x << y;",
+        "options": [
+          "55",
+          "56",
+          "65",
+          "66"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 7,
+        "type": "MCQ",
+        "questionText": "What is the correct syntax to define a class in C++?",
+        "options": [
+          "class MyClass { };",
+          "MyClass class { };",
+          "define class MyClass { };",
+          "class { MyClass };"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 8,
+        "type": "MCQ",
+        "questionText": "What does 'inheritance' mean in C++?",
+        "options": [
+          "Creating multiple objects of a class",
+          "Passing arguments to a function",
+          "Extending the properties of a class",
+          "Implementing a function in another class"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 9,
+        "type": "MCQ",
+        "questionText": "What is the correct way to include a header file in C++?",
+        "options": [
+          "#include <iostream>",
+          "import <iostream>",
+          "<iostream.h>",
+          "header iostream"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "What does the 'virtual' keyword signify in C++?",
+        "options": [
+          "A function that cannot be overridden",
+          "A function that must be overridden",
+          "A function that may be overridden in a derived class",
+          "A function that is private"
+        ],
+        "answer": "c"
+      }
+    ],
+    "assessmentImage": "assets/images/cpp.svg",
+    "assessmentDescription": "C++ is a powerful programming language known for its performance and efficiency. It's widely used in system/software development, game development, and real-time simulations. Learn C++ to understand object-oriented programming, develop high-performance applications, and gain a solid foundation in computer science.",
+    "facultyId": 3,
+    "totalMarks": 100,
+    "price": 200,
+    "active": false
+  },
+  {
+    "id": "4",
+    "assessmentName": "HTML 5",
+    "assessmentDate": "2022-01-04",
+    "assessmentTime": 100,
+    "assessmentImage": "assets/images/html5.svg",
+    "assessmentDescription": "HTML5 is the latest version of the Hypertext Markup Language used to create web pages. It introduces new elements and attributes that enhance web content and multimedia. Learn about semantic elements, canvas, SVG, and more to build modern, interactive, and responsive web pages.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used to draw graphics on a web page?",
+        "options": [
+          "canvas",
+          "svg",
+          "div",
+          "image"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used to play audio files?",
+        "options": [
+          "audio",
+          "sound",
+          "media",
+          "music"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used for forms?",
+        "options": [
+          "form",
+          "input",
+          "submit",
+          "button"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which HTML5 attribute specifies the URL of the media file?",
+        "options": [
+          "src",
+          "url",
+          "link",
+          "href"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used for video files?",
+        "options": [
+          "video",
+          "media",
+          "film",
+          "clip"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 6,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used for navigation links?",
+        "options": [
+          "nav",
+          "link",
+          "menu",
+          "navbar"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 7,
+        "type": "MCQ",
+        "questionText": "Which HTML5 attribute specifies an alternate text for an image, if the image cannot be displayed?",
+        "options": [
+          "alt",
+          "title",
+          "src",
+          "href"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 8,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used for the main content of the document?",
+        "options": [
+          "main",
+          "content",
+          "section",
+          "article"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 9,
+        "type": "MCQ",
+        "questionText": "Which HTML5 element is used to define a clickable button?",
+        "options": [
+          "button",
+          "click",
+          "input",
+          "submit"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which HTML5 attribute specifies the number of columns in a table?",
+        "options": [
+          "cols",
+          "columns",
+          "colspan",
+          "col"
+        ],
+        "answer": "c"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 500,
+    "active": true
+  },
+  {
+    "id": "5",
+    "assessmentName": "CSS",
+    "assessmentDate": "2022-01-05",
+    "assessmentTime": 100,
+    "assessmentImage": "assets/images/css.svg",
+    "assessmentDescription": "CSS (Cascading Style Sheets) is used to style and layout web pages. It allows you to apply styles, such as colors, fonts, and spacing, to HTML elements. Mastering CSS is essential for creating visually appealing websites with responsive design and advanced animations.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to change the text color of an element?",
+        "options": [
+          "color",
+          "text-color",
+          "font-color",
+          "style-color"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to control the spacing between lines of text?",
+        "options": [
+          "line-spacing",
+          "text-spacing",
+          "line-height",
+          "spacing"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to set the background color of an element?",
+        "options": [
+          "bgcolor",
+          "background-color",
+          "color-background",
+          "bg-color"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to make text bold?",
+        "options": [
+          "font-style",
+          "text-weight",
+          "font-weight",
+          "bold"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 5,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to change the left margin of an element?",
+        "options": [
+          "margin-left",
+          "left-margin",
+          "element-margin",
+          "margin"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 6,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to change the size of an element's font?",
+        "options": [
+          "font-size",
+          "text-size",
+          "size-font",
+          "font"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 7,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to change the alignment of text in an element?",
+        "options": [
+          "align-text",
+          "text-align",
+          "alignment",
+          "align"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 8,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to underline text?",
+        "options": [
+          "text-decoration",
+          "underline",
+          "decoration",
+          "line"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 9,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to change the width of an element?",
+        "options": [
+          "width",
+          "element-width",
+          "size",
+          "change-width"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which CSS property is used to specify the stack order of an element?",
+        "options": [
+          "z-index",
+          "order",
+          "stack",
+          "position"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 350,
+    "active": true
+  },
+  {
+    "id": "6",
+    "assessmentName": "JavaScript",
+    "assessmentDate": "2022-01-06",
+    "assessmentTime": 100,
+    "assessmentImage": "assets/images/javascript.svg",
+    "assessmentDescription": "JavaScript is a versatile programming language that adds interactivity to web pages. It enables dynamic content, form validation, and event handling. By learning JavaScript, you can create engaging user experiences, build web applications, and work with popular frameworks like React and Angular.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which keyword is used to declare variables in JavaScript?",
+        "options": [
+          "var",
+          "let",
+          "const",
+          "int"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which operator is used for strict equality comparison in JavaScript?",
+        "options": [
+          "==",
+          "===",
+          "!=",
+          "!=="
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which function is used to print output in the browser console?",
+        "options": [
+          "console.log()",
+          "print()",
+          "echo()",
+          "write()"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which event is triggered when a user clicks an HTML element?",
+        "options": [
+          "onmouseover",
+          "onchange",
+          "onclick",
+          "onload"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 5,
+        "type": "MCQ",
+        "questionText": "Which data type is used for true or false values in JavaScript?",
+        "options": [
+          "boolean",
+          "string",
+          "number",
+          "null"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "JavaScript is a statically typed language.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "JavaScript can be used to create dynamic web pages.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "JavaScript code can only run in browsers.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "JavaScript is the same as Java.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which JavaScript method is used to remove whitespace from both ends of a string?",
+        "options": [
+          "trim()",
+          "strip()",
+          "clear()",
+          "clean()"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 3,
+    "totalMarks": 100,
+    "price": 400,
+    "active": true
+  },
+  {
+    "id": "7",
+    "assessmentName": "Firebase",
+    "assessmentDate": "2022-01-07",
+    "assessmentTime": 11,
+    "assessmentImage": "assets/images/firebase.svg",
+    "assessmentDescription": "Firebase is a comprehensive platform for building web and mobile applications. It offers services like real-time databases, authentication, cloud storage, and hosting. Learn Firebase to streamline your app development process, implement scalable back-end services, and enhance user engagement with analytics.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Firebase provides which of the following services?",
+        "options": [
+          "Real-time databases",
+          "Authentication",
+          "Cloud storage",
+          "All of the above"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Firebase is owned by which company?",
+        "options": [
+          "Google",
+          "Microsoft",
+          "Apple",
+          "Facebook"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which feature of Firebase allows users to authenticate using email and password?",
+        "options": [
+          "Firebase Storage",
+          "Firebase Auth",
+          "Firebase Functions",
+          "Firebase Hosting"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Firebase Realtime Database stores data in which format?",
+        "options": [
+          "NoSQL",
+          "SQL",
+          "XML",
+          "JSON"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Firebase provides authentication services only.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Firebase is a relational database management system.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Firebase Hosting is used for deploying web apps.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Firebase provides cloud computing services.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Firebase Analytics provides insights into app usage.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which Firebase service is used for cloud messaging?",
+        "options": [
+          "Firebase Cloud Messaging (FCM)",
+          "Firebase Functions",
+          "Firebase Hosting",
+          "Firebase Analytics"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 150,
+    "active": true
+  },
+  {
+    "id": "8",
+    "assessmentName": "Django",
+    "assessmentDate": "2022-01-08",
+    "assessmentTime": 80,
+    "assessmentImage": "assets/images/django.svg",
+    "assessmentDescription": "Django is a high-level Python web framework that promotes rapid development and clean, pragmatic design. It includes an ORM, authentication, and admin interface out of the box. Learn Django to build robust web applications, follow the DRY principle, and manage databases efficiently.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which programming language is used for Django development?",
+        "options": [
+          "Java",
+          "Python",
+          "JavaScript",
+          "C++"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Django uses which template engine by default?",
+        "options": [
+          "Jinja",
+          "Twig",
+          "Django Template Language (DTL)",
+          "Handlebars"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which Django command is used to start a new project?",
+        "options": [
+          "startproject",
+          "newproject",
+          "initproject",
+          "createproject"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which Django command is used to create a new app within a project?",
+        "options": [
+          "newapp",
+          "startapp",
+          "createapp",
+          "initapp"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Django is a PHP framework.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Django is based on the MVC (Model-View-Controller) architectural pattern.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Django includes an ORM (Object-Relational Mapping) system.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Django admin interface is provided by default.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Django is primarily used for front-end development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which Django command is used to run development server?",
+        "options": [
+          "runserver",
+          "startserver",
+          "devserver",
+          "launchserver"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 150,
+    "active": true
+  },
+  {
+    "id": "9",
+    "assessmentName": "Golang",
+    "assessmentDate": "2022-01-09",
+    "assessmentTime": 100,
+    "assessmentImage": "assets/images/golang.svg",
+    "assessmentDescription": "Go (Golang) is a statically typed programming language designed for simplicity and performance. It’s ideal for building concurrent and scalable applications. Learn Go to develop high-performance server-side applications, work with microservices architecture, and leverage its robust standard library.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which company developed the Go programming language?",
+        "options": [
+          "Google",
+          "Microsoft",
+          "Apple",
+          "Facebook"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Go is known for its support of which programming paradigm?",
+        "options": [
+          "Functional programming",
+          "Imperative programming",
+          "Object-oriented programming",
+          "Procedural programming"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which tool is commonly used for dependency management in Go?",
+        "options": [
+          "npm",
+          "pip",
+          "go get",
+          "composer"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "What is the main purpose of goroutines in Go?",
+        "options": [
+          "Handling network requests",
+          "Executing parallel tasks",
+          "Handling database connections",
+          "Processing HTTP requests"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Go is a dynamically typed language.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Go was designed to improve the development speed of large-scale applications.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Go programs can be compiled into a single binary file.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Go supports object-oriented programming.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Go has built-in support for Unicode.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which command is used to compile a Go program?",
+        "options": [
+          "build",
+          "compile",
+          "make",
+          "run"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 3,
+    "totalMarks": 100,
+    "price": 200,
+    "active": true
+  },
+  {
+    "id": "10",
+    "assessmentName": "Python",
+    "assessmentDate": "2022-01-10",
+    "assessmentTime": 120,
+    "assessmentImage": "assets/images/python.svg",
+    "assessmentDescription": "Python is a high-level programming language known for its simplicity and readability. It's widely used in web development, data analysis, artificial intelligence, and scientific computing. Learn Python to automate tasks, analyze data, and develop web applications with frameworks like Django and Flask.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which of the following is not a core data type in Python?",
+        "options": [
+          "List",
+          "Tuple",
+          "Dictionary",
+          "Class"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which statement is used to exit from a loop in Python?",
+        "options": [
+          "break",
+          "exit",
+          "continue",
+          "return"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which of the following frameworks is used for web development in Python?",
+        "options": [
+          "Flask",
+          "Angular",
+          "Vue.js",
+          "React"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which keyword is used to define a function in Python?",
+        "options": [
+          "define",
+          "function",
+          "def",
+          "fun"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Python is a statically typed language.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Python allows multiple inheritance.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Python uses indentation to indicate blocks of code.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Python is suitable for web development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Python is primarily used for scientific computing only.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which Python library is used for data manipulation and analysis?",
+        "options": [
+          "NumPy",
+          "matplotlib",
+          "Pandas",
+          "Scikit-learn"
+        ],
+        "answer": "c"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 250,
+    "active": true
+  },
+  {
+    "id": "11",
+    "assessmentName": "React",
+    "assessmentDate": "2022-01-11",
+    "assessmentTime": 180,
+    "assessmentImage": "assets/images/react.svg",
+    "assessmentDescription": "React is a JavaScript library for building user interfaces, particularly single-page applications. It allows developers to create reusable UI components and manage the state efficiently. Learn React to develop dynamic web applications with a component-based architecture and improve user experiences.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which lifecycle method is invoked immediately after a component is inserted into the DOM?",
+        "options": [
+          "componentDidMount()",
+          "componentWillUnmount()",
+          "componentDidUpdate()",
+          "componentWillReceiveProps()"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which hook is used for adding state to a functional component in React?",
+        "options": [
+          "useState",
+          "useEffect",
+          "useContext",
+          "useReducer"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which method is used to render multiple elements in React?",
+        "options": [
+          "renderMultiple()",
+          "renderElements()",
+          "map()",
+          "forEach()"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which syntax is used to create components in React?",
+        "options": [
+          "<Component />",
+          "createComponent()",
+          "component.create()",
+          "Component()"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "React is a framework developed by Facebook.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "React components must always be classes.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "React uses Virtual DOM for efficient rendering.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "React supports server-side rendering.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "React components are reusable.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which React method is used to update the component's state?",
+        "options": [
+          "updateState()",
+          "setState()",
+          "changeState()",
+          "modifyState()"
+        ],
+        "answer": "b"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 300,
+    "active": true
+  },
+  {
+    "id": "12",
+    "assessmentName": "NodeJS",
+    "assessmentDate": "2022-01-12",
+    "assessmentTime": 2,
+    "assessmentImage": "assets/images/nodejs.svg",
+    "assessmentDescription": "Node.js is a JavaScript runtime built on Chrome's V8 engine. It allows you to run JavaScript on the server-side, enabling full-stack development. Learn Node.js to build scalable network applications, RESTful APIs, and use frameworks like Express for streamlined development.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which command is used to initialize a Node.js project?",
+        "options": [
+          "node init",
+          "npm init",
+          "node start",
+          "npm start"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which module is used for handling HTTP requests in Node.js?",
+        "options": [
+          "fs",
+          "http",
+          "url",
+          "querystring"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which framework is commonly used with Node.js for building web applications?",
+        "options": [
+          "Flask",
+          "Django",
+          "Express",
+          "Ruby on Rails"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which npm command is used to install dependencies listed in package.json?",
+        "options": [
+          "npm install",
+          "npm add",
+          "npm get",
+          "npm update"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Node.js is a runtime environment for Python.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Node.js applications are single-threaded.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Node.js uses event-driven architecture.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Node.js applications can only run on Windows.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Node.js can be used for building server-side applications only.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which module in Node.js is used for file system operations?",
+        "options": [
+          "fs",
+          "http",
+          "path",
+          "url"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 3,
+    "totalMarks": 100,
+    "price": 350,
+    "active": true
+  },
+  {
+    "id": "13",
+    "assessmentName": "MongoDB",
+    "assessmentDate": "2022-01-13",
+    "assessmentTime": 80,
+    "assessmentImage": "assets/images/mongodb.svg",
+    "assessmentDescription": "MongoDB is a NoSQL database designed for handling large volumes of unstructured data. It uses a flexible document model, making it easy to store and query JSON-like data. Learn MongoDB to build scalable, high-performance applications and work seamlessly with JavaScript in full-stack development.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which query language is used in MongoDB?",
+        "options": [
+          "SQL",
+          "JSON",
+          "MongoQL",
+          "No query language"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "What does BSON stand for in MongoDB?",
+        "options": [
+          "Binary-serialized Object Notation",
+          "Binary JSON",
+          "Binary-SQL Object Notation",
+          "Basic Serialized Object Notation"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which command is used to create a collection in MongoDB?",
+        "options": [
+          "createCollection()",
+          "newCollection()",
+          "addCollection()",
+          "collection.create()"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "What does ACID stand for in database transactions?",
+        "options": [
+          "Atomicity, Consistency, Isolation, Durability",
+          "All Conditions In Data",
+          "Automatic Collection of Information Data",
+          "None of the above"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "MongoDB is a SQL database.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "MongoDB stores data in JSON-like documents.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "MongoDB supports ACID transactions.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "MongoDB requires a schema to define the structure of data.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "MongoDB allows embedded documents and arrays for data modeling.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which command is used to update documents in MongoDB?",
+        "options": [
+          "update()",
+          "save()",
+          "set()",
+          "updateMany()"
+        ],
+        "answer": "d"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 400,
+    "active": true
+  },
+  {
+    "id": "14",
+    "assessmentName": "Ruby on Rails",
+    "assessmentDate": "2022-01-14",
+    "assessmentTime": 100,
+    "assessmentImage": "assets/images/rails.svg",
+    "assessmentDescription": "Ruby on Rails is a web application framework written in Ruby. It follows the MVC (Model-View-Controller) architecture and emphasizes convention over configuration. Learn Ruby on Rails to develop web applications quickly, leverage built-in conventions, and integrate easily with front-end technologies.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "What is the default database used in Ruby on Rails?",
+        "options": [
+          "SQLite",
+          "MySQL",
+          "PostgreSQL",
+          "No default database"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which command is used to create a new Rails application?",
+        "options": [
+          "rails new",
+          "rails create",
+          "rails generate",
+          "rails app"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "What is the Rails convention for naming the controller file for a resource named 'Article'?",
+        "options": [
+          "ArticlesController.rb",
+          "ArticleController.rb",
+          "article_controller.rb",
+          "controller.rb"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which Rails command is used to create a new migration file?",
+        "options": [
+          "rails migration",
+          "rails migrate",
+          "rails new migration",
+          "rails generate migration"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Ruby on Rails follows the MVC architecture.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Rails applications use a 'Gemfile' to manage dependencies.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Rails provides built-in support for testing with RSpec.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Rails applications require explicit configuration for routing.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Rails provides a scaffolding feature for rapid prototyping.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which command is used to start the Rails server?",
+        "options": [
+          "rails start",
+          "rails server",
+          "rails run",
+          "rails go"
+        ],
+        "answer": "b"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 450,
+    "active": true
+  },
+  {
+    "id": "15",
+    "assessmentName": "Flask",
+    "assessmentDate": "2022-01-15",
+    "assessmentTime": 1,
+    "assessmentImage": "assets/images/flask.svg",
+    "assessmentDescription": "Flask is a lightweight web framework for Python. It’s designed for simplicity and flexibility, allowing developers to create web applications with minimal boilerplate code. Learn Flask to build small to medium-sized web applications, RESTful APIs, and understand the fundamentals of web development in Python.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which module is used to create a Flask application instance?",
+        "options": [
+          "flask.app",
+          "flask.run",
+          "flask.main",
+          "flask.Flask"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which function is used to define a route in Flask?",
+        "options": [
+          "app.route()",
+          "app.run()",
+          "app.route",
+          "app.define()"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which HTTP method is used to send form data in Flask?",
+        "options": [
+          "POST",
+          "GET",
+          "PUT",
+          "DELETE"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which command is used to run a Flask application?",
+        "options": [
+          "flask run",
+          "python run",
+          "run flask",
+          "start flask"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Flask supports Jinja templating engine.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Flask applications use decorators for URL routing.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Flask applications require a complex directory structure.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Flask provides built-in support for database operations.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Flask allows integration with third-party libraries.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which module is used to render templates in Flask?",
+        "options": [
+          "flask.render",
+          "flask.templates",
+          "flask.render_template",
+          "flask.template"
+        ],
+        "answer": "c"
+      }
+    ],
+    "facultyId": 3,
+    "totalMarks": 100,
+    "price": 500,
+    "active": true
+  },
+  {
+    "id": "16",
+    "assessmentName": "Git",
+    "assessmentDate": "2022-01-16",
+    "assessmentTime": 60,
+    "assessmentImage": "assets/images/git.svg",
+    "assessmentDescription": "Git is a distributed version control system that tracks changes in source code during software development. It allows multiple developers to collaborate on a project. Learn Git to manage code versions, resolve conflicts, and understand workflows like branching and merging in a collaborative environment.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which command is used to clone a Git repository?",
+        "options": [
+          "git checkout",
+          "git clone",
+          "git pull",
+          "git push"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which command is used to create a new branch in Git?",
+        "options": [
+          "git branch",
+          "git create",
+          "git new",
+          "git checkout -b"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which command is used to stage files for a commit in Git?",
+        "options": [
+          "git add",
+          "git stage",
+          "git commit",
+          "git push"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which command is used to view the commit history in Git?",
+        "options": [
+          "git log",
+          "git history",
+          "git status",
+          "git diff"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Git is a centralized version control system.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Git allows branching and merging of code changes.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Git can only be used for tracking text files.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Git works locally without needing a connection to a central server.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Git allows for collaborative development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which command is used to discard changes in a specific file in Git?",
+        "options": [
+          "git reset",
+          "git discard",
+          "git revert",
+          "git checkout"
+        ],
+        "answer": "d"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 500,
+    "active": true
+  },
+  {
+    "id": "17",
+    "assessmentName": "GitHub",
+    "assessmentDate": "2022-01-17",
+    "assessmentTime": 60,
+    "assessmentImage": "assets/images/github.svg",
+    "assessmentDescription": "GitHub is a platform for hosting and collaborating on Git repositories. It provides tools for version control, issue tracking, and continuous integration. Learn GitHub to manage your projects, contribute to open source, and showcase your code to potential employers or collaborators.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which feature of GitHub is used to propose changes to a repository?",
+        "options": [
+          "Fork",
+          "Pull request",
+          "Branch",
+          "Commit"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which action is used to synchronize changes from a remote repository to a local repository in Git?",
+        "options": [
+          "push",
+          "pull",
+          "sync",
+          "fetch"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which feature of GitHub is used to track issues and bugs?",
+        "options": [
+          "Pull request",
+          "Fork",
+          "Issue tracker",
+          "Commit"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which command is used to update a local repository with changes from GitHub?",
+        "options": [
+          "git update",
+          "git pull",
+          "git fetch",
+          "git sync"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "GitHub is a version control system.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "GitHub repositories can be made private.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "GitHub provides tools for continuous integration.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "GitHub is primarily used for graphic design.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "GitHub can be used for collaborative software development.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which feature of GitHub is used to copy a repository from one user's account to another?",
+        "options": [
+          "Fork",
+          "Clone",
+          "Duplicate",
+          "Copy"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 500,
+    "active": false
+  },
+  {
+    "id": "18",
+    "assessmentName": "PostgreSQL",
+    "assessmentDate": "2022-01-18",
+    "assessmentTime": 60,
+    "assessmentImage": "assets/images/postgresql.svg",
+    "assessmentDescription": "PostgreSQL is an advanced open-source relational database management system. It supports complex queries, transactions, and a wide range of data types. Learn PostgreSQL to manage large datasets, ensure data integrity, and implement advanced features like indexing, partitioning, and full-text search.",
+    "questions": [],
+    "facultyId": 3,
+    "totalMarks": 100,
+    "price": 500,
+    "active": true
+  },
+  {
+    "id": "19",
+    "assessmentName": "Flutter",
+    "assessmentDate": "2022-01-19",
+    "assessmentTime": 120,
+    "assessmentImage": "assets/images/flutter.svg",
+    "assessmentDescription": "Flutter is an open-source UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase. It uses the Dart programming language. Learn Flutter to create beautiful, high-performance applications with a rich set of pre-designed widgets and smooth animations.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which programming language is used to develop Flutter applications?",
+        "options": [
+          "JavaScript",
+          "Java",
+          "Dart",
+          "Swift"
+        ],
+        "answer": "c"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "Which widget is used to create a material design button in Flutter?",
+        "options": [
+          "RaisedButton",
+          "MaterialButton",
+          "FlatButton",
+          "Button"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "What is the entry point of a Flutter application?",
+        "options": [
+          "main()",
+          "start()",
+          "run()",
+          "app()"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which command is used to create a new Flutter project?",
+        "options": [
+          "flutter new",
+          "flutter create",
+          "new flutter",
+          "create flutter"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "Flutter allows building applications for multiple platforms from a single codebase.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "Flutter uses native components for rendering UI on each platform.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "Flutter provides a rich set of pre-designed widgets for common UI elements.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "Flutter applications are compiled to native ARM code for performance.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "Flutter apps can be developed using either Dart or JavaScript.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which command is used to run a Flutter application?",
+        "options": [
+          "flutter run",
+          "flutter start",
+          "run flutter",
+          "start flutter"
+        ],
+        "answer": "a"
+      }
+    ],
+    "facultyId": 1,
+    "totalMarks": 100,
+    "price": 500,
+    "active": true
+  },
+  {
+    "id": "20",
+    "assessmentName": "Typescript",
+    "assessmentDate": "2022-01-20",
+    "assessmentTime": 60,
+    "assessmentImage": "assets/images/typescript.svg",
+    "assessmentDescription": "TypeScript is a superset of JavaScript that adds static types. It helps developers catch errors early and write more maintainable code. Learn TypeScript to enhance your JavaScript development experience, work with modern frameworks like Angular, and build robust, scalable applications.",
+    "questions": [
+      {
+        "id": 1,
+        "type": "MCQ",
+        "questionText": "Which tool is used to transpile TypeScript code to JavaScript?",
+        "options": [
+          "tsc",
+          "typescript",
+          "jscompiler",
+          "babel"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 2,
+        "type": "MCQ",
+        "questionText": "What does 'TS' stand for in TypeScript?",
+        "options": [
+          "Type Safety",
+          "TypeScript",
+          "Type Script",
+          "Type Standard"
+        ],
+        "answer": "b"
+      },
+      {
+        "id": 3,
+        "type": "MCQ",
+        "questionText": "Which keyword is used to define a type in TypeScript?",
+        "options": [
+          "type",
+          "var",
+          "let",
+          "interface"
+        ],
+        "answer": "d"
+      },
+      {
+        "id": 4,
+        "type": "MCQ",
+        "questionText": "Which feature of TypeScript helps catch errors during development?",
+        "options": [
+          "Static typing",
+          "Dynamic typing",
+          "Loose typing",
+          "Flexible typing"
+        ],
+        "answer": "a"
+      },
+      {
+        "id": 5,
+        "type": "TOF",
+        "questionText": "TypeScript is a strict superset of JavaScript.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 6,
+        "type": "TOF",
+        "questionText": "TypeScript allows optional static typing.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 7,
+        "type": "TOF",
+        "questionText": "TypeScript can be directly executed in a web browser.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "False"
+      },
+      {
+        "id": 8,
+        "type": "TOF",
+        "questionText": "TypeScript supports modern JavaScript features.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 9,
+        "type": "TOF",
+        "questionText": "TypeScript allows developers to define custom types using interfaces.",
+        "options": [
+          "True",
+          "False"
+        ],
+        "answer": "True"
+      },
+      {
+        "id": 10,
+        "type": "MCQ",
+        "questionText": "Which command is used to install TypeScript globally via npm?",
+        "options": [
+          "npm install typescript -g",
+          "npm install -g typescript",
+          "npm typescript install -g",
+          "install typescript npm -g"
+        ],
+        "answer": "b"
+      }
+    ],
+    "facultyId": 2,
+    "totalMarks": 100,
+    "price": 500,
+    "active": true
+  }
+]

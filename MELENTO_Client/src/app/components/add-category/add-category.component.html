@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center">Add Category</h3>
+        </div>
+      </div>
+      <form [formGroup]="categoryAddForm" (ngSubmit)="onSubmit(categoryAddForm.value)" class="form">
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="categoryName" class="form-label">Category Name</label>
+            <input type="text" id="categoryName" placeholder="Category Name" class="form-control"
+              formControlName="categoryName">
+            <div *ngIf="f['categoryName'].errors">
+              <div class="text-danger"
+                *ngIf="f['categoryName'].errors['required'] && f['categoryName'].touched">*Required
+                Category Name</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <label for="categoryDescription" class="form-label">Category Description</label>
+            <input type="text" id="categoryDescription" placeholder="Category Description" class="form-control"
+              formControlName="categoryDescription">
+            <div *ngIf="f['categoryDescription'].errors">
+              <div class="text-danger"
+                *ngIf="f['categoryDescription'].errors['required'] && f['categoryDescription'].touched">*Required
+                Category Description</div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <button type="submit" class="btn btn-primary justify-content-center" [disabled]="!categoryAddForm.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

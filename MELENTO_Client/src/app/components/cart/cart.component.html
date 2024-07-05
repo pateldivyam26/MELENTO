@@ -1,0 +1,61 @@
+<div class="container">
+    <div *ngIf="cartExists">
+    <div  class="row justify-content-center" *ngFor="let item of cart.arrAssessments; let i = index">
+        <div class="card mx-1 col-12 col-sm-10 col-lg-8 gy-3 my-3">
+            <div class=" card-body row ">
+                <div class="col-12 col-sm-4 col-lg-4 mb-2">
+                    <img class="img-fluid img-thumbnail rounded img-cart" [src]="item.assessmentImage"
+                    [alt]="item.assessmentName" width="300px" height="200px">
+                </div>
+                <div class=" col-12 col-sm-8 col-lg-8">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col fs-3 move-up "><b>{{item.assessmentName}}</b></div>
+                        <div class="col-12 col-md-6 col fs-5"><b>Price: {{item.price | currency}}{{item.price}}</b></div>
+                    </div>
+                    <div class="row mt-3 my-2">
+                        <div class="col-12 col-md-6">Date: {{item.assessmentDate}}</div>
+                        <div class="col-12 col-md-6">Time: {{item.assessmentTime}}</div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-12 col-md-6">Total marks: {{item.totalMarks}}</div>
+                        <div class="col-12 col-md-6">Total Questions: {{item.questions.length}}</div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col-8 col-sm-12 col-lg-6 d-flex">
+                            <p>Quantity: {{cart.quantity[i]}}</p>
+                            <div style="margin-top: -5px;">
+                                <button class="btn"><i class="fas fa-plus fa-2xs" (click)="increasequantity(i)"></i></button>
+                                <button class="btn border-0" [disabled]="checkquantity(i)"><i class="fas fa-minus fa-2xs"(click)="decreasequantity(i)"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-4 col-sm-12 col-lg-6">
+                            <button class="btn btn-outline-danger text-small" (click)="removeFromCart(i)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="mx-1 col-12 col-sm-10 col-lg-8 gy-3 my-3">
+            <div class="card my-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4>Total Amount: {{cart.total | currency}}{{cart.total}}</h4>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-primary float-right" (click)="checkout()">Proceed to Pay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div *ngIf="!cartExists" class="col-12 col-sm-10 col-md-8 col-lg-6 alert alert-primary text-center my-5">
+            Add something to your cart first!
+        </div>
+    </div>
+</div>

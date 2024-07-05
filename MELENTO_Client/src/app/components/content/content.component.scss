@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+.contents {
+    background-color: #CADCFC;
+}
+
+.navbar {
+    background-color: #8AB6F9;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #EB563B;
+}
+
+.footer {
+    background-color: #00246B;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.footer .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-body{
+    // background-color: rgb(196, 249, 250);
+    background-color: #8AB6F9;
+}
+
+.card-body .btn {
+    margin: 5px 0;
+    text-align: center;
+}
+
+.modal .form-control {
+    margin-bottom: 10px;
+}
+
+.row.mb-4 {
+    margin-bottom: 2rem !important;
+}
+
+.card-header .btn-link {
+    text-decoration: none;
+    color: #00246B;
+}
+
+.card-header .btn-link:hover {
+    color: #8AB6F9;
+}
+
+.card-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.accordion-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.accordion-body img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+}

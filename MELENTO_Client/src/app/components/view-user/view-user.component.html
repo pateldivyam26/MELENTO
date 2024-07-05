@@ -1,0 +1,26 @@
+<div class="container card-body card shadow mt-5 table-responsive mt-3">
+    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">DOB</th>
+                <th scope="col">Mobile No.</th>
+                <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+            <tr div *ngFor="let user of arrUsers">
+                <td scope="col">{{user.id}}</td>
+                <td scope="col">{{user.firstName}} {{user.lastName}}</td>
+                <td scope="col">{{user.email}}</td>
+                <td scope="col">{{user.dob}}</td>
+                <td scope="col">{{user.mobileNo}}</td>
+                <td scope="col">{{user.address.houseNo}}, {{user.address.street}}, {{user.address.area}},
+                    {{user.address.city}}, {{user.address.state}}, {{user.address.country}}, {{user.address.pincode}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

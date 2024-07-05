@@ -1,0 +1,168 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body" style="text-align: center;">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center mb-2">Add Assessment</h3>
+        </div>
+        <mat-stepper #stepper>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup" (ngSubmit)="saveFirstFormData(firstFormGroup)">
+              <ng-template matStepLabel>Assessment Details</ng-template>
+              <div class="row mb-3">
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Assessment Name</mat-label>
+                  <input type="text" matInput placeholder="Assessment Name" formControlName="assessmentNameCtrl"
+                    required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Assessment Date</mat-label>
+                  <input type="date" matInput placeholder="Assessment Date" formControlName="assessmentDateCtrl"
+                    required>
+                </mat-form-field>
+              </div>
+              <div class="row mb-3">
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Assessment Time</mat-label>
+                  <input type="number" class="no-spinners" matInput placeholder="Assessment Time(in Minutes)" formControlName="assessmentTimeCtrl"
+                    required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Assessment Image</mat-label>
+                  <input type="text" matInput placeholder="Assessment Image" formControlName="assessmentImageCtrl"
+                    required>
+                </mat-form-field>
+              </div>
+              <div class="row mb-3">
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Total Marks</mat-label>
+                  <input type="number" class="no-spinners" matInput placeholder="Total Marks"
+                    formControlName="totalMarksCtrl" required>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Price </mat-label>
+                  <input type="number" class="no-spinners" matInput placeholder="Write down the price of the assessment"
+                    formControlName="priceCtrl" required>
+                </mat-form-field>
+              </div>
+              <div class="row mb-3"> 
+                <mat-form-field *ngIf="role=='faculty'" class="col-md-6" appearance="fill">
+                  <mat-label>Faculty ID</mat-label>
+                  <input type="number" class="no-spinners" matInput placeholder="Faculty ID" formControlName="facultyIdCtrl" required [readonly]="checkrole()">
+                </mat-form-field>
+                <mat-form-field *ngIf="role=='admin'" class="col-md-6" appearance="fill">
+                  <mat-label>Faculty ID</mat-label>
+                  <mat-select formControlName="facultyIdCtrl" placeholder="Faculty ID" required>
+                    <mat-option *ngFor="let faculty of arrFaculty" [value]="faculty.id">{{faculty.id}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" appearance="fill">
+                  <mat-label>Assessment Description</mat-label>
+                  <input type="text" matInput placeholder="Assessment Description" formControlName="assessmentDescriptionCtrl" required>
+                </mat-form-field>
+              </div>
+              <div class="row mb-3"> <mat-form-field class="col-md-6" appearance="fill">
+                <mat-label>Assessment Visibility</mat-label>
+                <mat-select placeholder="Assessment Visibility" formControlName="activeCtrl">
+                  <mat-option value="true">Visible</mat-option>
+                  <mat-option value="false">Not Visible</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+              <button class="btn btn-outline-primary" matStepperNext type="submit"
+                style="margin-right: 20px;">Save</button>
+              <button class="btn btn-outline-secondary" matStepperNext>Next</button>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="questionForm">
+            <form [formGroup]="questionForm" (ngSubmit)="saveSecondStepData(questionForm)">
+              <ng-template matStepLabel>Enter Questions</ng-template>
+              <div formArrayName="questions">
+                <div *ngFor="let questionGroup of questionsArray.controls; let i = index" [formGroupName]="i">
+                  <div class="row">
+                    <div class="row mx-2">Q.No:{{i+1}}</div>
+                    <mat-form-field class="col-md-5">
+                      <mat-label>Select the type of question</mat-label>
+                      <mat-select formControlName="qType" placeholder="select either of one type">
+                        <mat-option value="MCQ">MCQ</mat-option>
+                        <mat-option value="TOF">True False</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div *ngIf="validTypeOfQ(questionGroup.get('qType')?.value)">
+                    <div [ngSwitch]="typeofQ(questionGroup.get('qType')?.value)">
+                      <div *ngSwitchCase="'MCQ'" class="row">
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Question</mat-label>
+                          <input matInput placeholder="Type your Question Here" formControlName="qText" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Option 1</mat-label>
+                          <input matInput placeholder="Type your Option Here" formControlName="qOption1" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Option 2</mat-label>
+                          <input matInput placeholder="Type your Option Here" formControlName="qOption2" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Option 3</mat-label>
+                          <input matInput placeholder="Type your Option Here" formControlName="qOption3" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Option 4</mat-label>
+                          <input matInput placeholder="Type your Option Here" formControlName="qOption4" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Answer</mat-label>
+                          <input matInput placeholder="Enter the correct answer" formControlName="answer" required>
+                        </mat-form-field>
+                      </div>
+                      <div *ngSwitchCase="'TOF'" class="row">
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Question</mat-label>
+                          <input matInput placeholder="Type your Question Here" formControlName="qText" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
+                          <mat-label>Enter Answer (True/False)</mat-label>
+                          <mat-select formControlName="answer" placeholder="Select True or False" required>
+                            <mat-option value="True">True</mat-option>
+                            <mat-option value="False">False</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <button class="btn btn-outline-primary mx-2" (click)="removeQuestion(i)">Remove
+                      Question</button>
+                    <button *ngIf="lastquestion(i)" class="btn btn-outline-secondary" (click)="addQuestion()">Add
+                      Another
+                      Question</button>
+                  </div>
+                </div>
+                <button class="btn btn-outline-secondary mx-2" matStepperPrevious>Back</button>
+                <button class="btn btn-outline-primary mx-2" type='submit' matStepperNext>Save</button>
+                <button class="btn btn-outline-primary mx-2" type='submit' matStepperNext>Next</button>
+              </div>
+              <div>
+              </div>
+              <div>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button class="btn btn-outline-primary" matStepperPrevious style="margin-right: 20px;">Back</button>
+              <button class="btn btn-outline-secondary" (click)="reset()">Reset</button>
+            </div>
+          </mat-step>
+        </mat-stepper>
+      </div>
+    </div>
+  </div>
+</div>

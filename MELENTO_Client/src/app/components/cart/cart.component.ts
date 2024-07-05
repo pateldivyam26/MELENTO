@@ -1,0 +1,125 @@
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Cart } from '../../models/cart';
+import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
+import { TraineeService } from '../../services/trainee.service';
+import { Trainee, TraineeAssessment } from '../../models/trainee';
+
+
+@Component({
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrl: './cart.component.scss'
+})
+export class CartComponent {
+  cart: Cart = new Cart(0, [], [], 0);
+  cartExists: boolean = false;
+  trainee: Trainee = new Trainee(0, 0, [new TraineeAssessment(0, 0)]);
+  arrTrainees: Trainee[] = [];
+  traineeexists: boolean = false;
+  traineeId: number = 0;
+  tempId: string = '';
+  constructor(private cartService: CartService, private router: Router, private traineeService: TraineeService) {
+    var tId = localStorage.getItem('id');
+    if (tId != null) this.tempId = tId.toString();
+    if (this.tempId !== null) {
+      console.log(this.tempId);
+      this.cartService.getCartById(this.tempId.toString()).subscribe((data) => {
+        this.cart = data;
+        if (this.cart.arrAssessments.length > 0) {
+          this.cartExists = true;
+        }
+      });
+      this.traineeService.getTrainee().subscribe(data => {
+        this.arrTrainees = data;
+        console.log(data);
+        for (var i = 0; i < this.arrTrainees.length; i++) {
+          if (this.tempId === (this.arrTrainees[i].userId).toString()) {
+            this.traineeexists = true;
+            this.traineeId = this.arrTrainees[i].id;
+          }
+        }
+        if (this.traineeexists) {
+          this.traineeService.getTraineeById(this.traineeId).subscribe(data => {
+            this.trainee = data;
+            console.log(data);
+          })
+        }
+      })
+    }
+  }
+  checkquantity(i: number): boolean {
+    if (this.cart.quantity[i] > 1) {
+      return false;
+    }
+    return true;
+  }
+  increasequantity(i: number): void {
+    this.cart.quantity[i] += 1;
+    this.cart.total += this.cart.arrAssessments[i].price;
+    this.cartService.UpdateCart(this.cart).subscribe();
+  }
+  decreasequantity(i: number): void {
+    if (this.cart.quantity[i] > 0) {
+      this.cart.quantity[i] -= 1;
+      this.cart.total -= this.cart.arrAssessments[i].price;
+    }
+    this.cartService.UpdateCart(this.cart).subscribe();
+  }
+  checkout() {
+    console.log(this.cart.arrAssessments);
+    if (this.traineeexists) {
+      this.updateTrainee();
+    }
+    else {
+      this.addTrainee();
+    }
+    this.cartService.checkout(this.cart.arrAssessments.length);
+    this.cart.arrAssessments = [];
+    this.cart.quantity = [];
+    this.cart.total = 0;
+    this.cartService.UpdateCart(this.cart).subscribe();
+    this.router.navigate(['/home']);
+    //redirect to dashboard and clear cart fuctionalities left
+
+  }
+
+  removeFromCart(i: number): void {
+    this.cart.total -= this.cart.arrAssessments[i].price * this.cart.quantity[i];
+    this.cart.arrAssessments.splice(i, 1);
+    this.cart.quantity.splice(i, 1);
+    this.cartService.UpdateCart(this.cart).subscribe();
+
+  }
+  addTrainee() {
+    // console.log(this.arrTrainees.length-1);
+    if (this.arrTrainees.length == 0) {
+      this.trainee.id = 1;
+    }
+    else { this.trainee.id = Number(this.arrTrainees[this.arrTrainees.length - 1].id) + 1; }
+    this.trainee.userId = Number(this.tempId);
+    this.trainee.arrAssessments = [];
+    for (var i = 0; i < this.cart.arrAssessments.length; i++) {
+      var traineeAssmnt = new TraineeAssessment(this.cart.arrAssessments[i].id, this.cart.quantity[i]);
+      this.trainee.arrAssessments.push(traineeAssmnt);
+    }
+    this.traineeService.addTrainee(this.trainee).subscribe();
+  }
+  updateTrainee() {
+    for (var i = 0; i < this.cart.arrAssessments.length; i++) {
+      var temp = false;
+      for (var j = 0; j < this.trainee.arrAssessments.length; j++) {
+        if (this.trainee.arrAssessments[j].id == this.cart.arrAssessments[i].id) {
+          this.trainee.arrAssessments[j].quantity += this.cart.quantity[i];
+          temp = true;
+        }
+      }
+      if (!temp) {
+        var traineeAssmnt = new TraineeAssessment(this.cart.arrAssessments[i].id, this.cart.quantity[i]);
+        this.trainee.arrAssessments.push(traineeAssmnt);
+      }
+    }
+    this.traineeService.updateTrainee(this.trainee).subscribe();
+  }
+}
+

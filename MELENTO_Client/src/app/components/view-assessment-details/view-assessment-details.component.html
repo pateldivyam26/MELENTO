@@ -1,0 +1,23 @@
+<div class="container flex-grow-1">
+    <div class="row">
+        <div class="col-12 text-center my-4">
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6" *ngIf="assessment">
+            <div class="card mb-4 shadow text-center">
+                <img [src]="assessment.assessmentImage" class="card-img-top" alt="{{assessment.assessmentName}}"
+                    width="350px" height="250px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ assessment.assessmentName }}</h5>
+                    <p class="card-text">
+                        {{assessment.assessmentDescription}}
+                    </p>
+                    <h5 class="card-title">Assessment Date: {{ assessment.assessmentDate }}</h5>
+                    <h5 class="card-title">Assessment Time: {{ assessment.assessmentTime }}</h5>
+                    <h5 class="card-title">Price: {{assessment.price | currency}}{{ assessment.price }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container card-body card shadow mt-5 table-responsive mt-3">
+    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Course Description</th>
+                <th scope="col">Category Name</th>
+            </tr>
+        </thead>
+        <tbody id="user-table-body">
+            <tr div *ngFor="let course of arrCourse">
+                <td scope="col">{{course.id}}</td>
+                <td scope="col">{{course.cName}}</td>
+                <td scope="col">{{course.cDescription}}</td>
+                <td scope="col">{{categoryMap[course.categoryId]}}</td>
+            </tr> 
+        </tbody>
+    </table>
+</div>

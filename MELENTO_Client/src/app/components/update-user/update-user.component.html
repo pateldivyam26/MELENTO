@@ -1,0 +1,190 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center">Update User</h3>
+                </div>
+            </div>
+            <div class="row">
+                <form [formGroup]="userAddForm" (ngSubmit)="onSubmit(userAddForm.value)" class="form">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="id" class="form-label">Select a User for Update</label>
+                            <select formControlName="id" class="form-select" id="id" (change)="onChangeType($event)">
+                                <option selected>Select Name</option>
+                                <option *ngFor="let u of arrUsers" [ngValue]="u.id">{{u.firstName}} {{u.lastName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div *ngIf="userAddForm.get('id')?.value">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" id="firstName" placeholder="First Name" class="form-control"
+                                    formControlName="firstName">
+                                <div *ngIf="f['firstName'].touched && f['firstName'].errors">
+                                    <div class="text-danger" *ngIf="f['firstName'].errors['required']">*Required First
+                                        Name</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" id="lastName" placeholder="Last Name" class="form-control"
+                                    formControlName="lastName">
+                                <div *ngIf="f['lastName'].touched && f['lastName'].errors">
+                                    <div class="text-danger" *ngIf="f['lastName'].errors['required']">*Required Last
+                                        Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" placeholder="Email" class="form-control"
+                                    formControlName="email">
+                                <div *ngIf="f['email'].touched && f['email'].errors">
+                                    <div class="text-danger" *ngIf="f['email'].errors['required']">*Required Email
+                                    </div>
+                                    <div class="text-danger" *ngIf="f['email'].errors['email']">*Please follow the
+                                        correct format
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="mobileNo" class="form-label">Mobile No.</label>
+                                <input type="tel" id="mobileNo" placeholder="Mobile No." class="form-control"
+                                    formControlName="mobileNo">
+                                <div *ngIf="f['mobileNo'].touched && f['mobileNo'].errors">
+                                    <div class="text-danger" *ngIf="f['mobileNo'].errors['required']">*Required Mobile
+                                        No.</div>
+                                    <div class="text-danger" *ngIf="f['mobileNo'].errors['pattern']">*Mobile No. should
+                                        be 10 digits
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="dob" class="form-label">DOB</label>
+                                <input type="date" id="dob" placeholder="DOB" class="form-control" formControlName="dob"
+                                    max="{{ maxDate }}">
+                                <div *ngIf="f['dob'].errors">
+                                    <div class="text-danger" *ngIf="f['dob'].errors['required'] && f['dob'].touched">
+                                        *Required Date of Birth</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" placeholder="Password" class="form-control"
+                                    formControlName="password">
+                                <div *ngIf="f['password'].errors">
+                                    <div class="text-danger"
+                                        *ngIf="f['password'].errors['required'] && f['password'].touched">*Required
+                                        Password
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="role" class="form-label">Role</label>
+                                <select id="role" class="form-control" formControlName="role">
+                                    <option value="" disabled selected>Select Role</option>
+                                    <option value="user">user</option>
+                                    <option value="faculty">faculty</option>
+                                    <option value="faculty">admin</option>
+                                </select>
+                                <div *ngIf="f['role'].errors">
+                                    <div class="text-danger" *ngIf="f['role'].errors['required'] && f['role'].touched">
+                                        *Required Role</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="text-align: center;">Address</h3>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="houseNo" class="form-label">House No.</label>
+                                <input type="number" id="houseNo" placeholder="House No." class="form-control"
+                                    formControlName="houseNo">
+                                <div *ngIf="f['houseNo'].touched && f['houseNo'].errors">
+                                    <div class="text-danger" *ngIf="f['houseNo'].errors['required']">*Required House No.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="street" class="form-label">Street</label>
+                                <input type="text" id="street" placeholder="Street" class="form-control"
+                                    formControlName="street">
+                                <div *ngIf="f['street'].touched && f['street'].errors">
+                                    <div class="text-danger" *ngIf="f['street'].errors['required']">*Required Street
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="area" class="form-label">Area</label>
+                                <input type="text" id="area" placeholder="Area" class="form-control"
+                                    formControlName="area">
+                                <div *ngIf="f['area'].touched && f['area'].errors">
+                                    <div class="text-danger" *ngIf="f['area'].errors['required']">*Required Area
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="area" class="form-label">City</label>
+                                <input type="text" id="city" placeholder="Area" class="form-control"
+                                    formControlName="city">
+                                <div *ngIf="f['city'].touched && f['city'].errors">
+                                    <div class="text-danger" *ngIf="f['city'].errors['required']">*Required City
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="state" class="form-label">State</label>
+                                <input type="text" id="state" placeholder="State" class="form-control"
+                                    formControlName="state">
+                                <div *ngIf="f['state'].touched && f['state'].errors">
+                                    <div class="text-danger" *ngIf="f['state'].errors['required']">*Required State
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" id="country" placeholder="Country" class="form-control"
+                                    formControlName="country">
+                                <div *ngIf="f['country'].touched && f['country'].errors">
+                                    <div class="text-danger" *ngIf="f['country'].errors['required']">*Required Country
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="pincode" class="form-label">Pincode</label>
+                                <input type="number" id="pincode" placeholder="Pincode" class="form-control"
+                                    formControlName="pincode">
+                                <div *ngIf="f['pincode'].touched && f['pincode'].errors">
+                                    <div class="text-danger" *ngIf="f['pincode'].errors['required']">*Required Pincode
+                                    </div>
+                                    <div class="text-danger" *ngIf="f['pincode'].errors['pattern']">*Pincode should be 6
+                                        digits
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <button type="submit" class="btn btn-primary justify-content-center"
+                                [disabled]="!userAddForm.valid">Update</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,155 @@
+<div class="container mt-5">
+    <div>
+        <form [formGroup]="userAddForm" (ngSubmit)="onSubmit(userAddForm.value)" class="form">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" id="firstName" placeholder="First Name" class="form-control"
+                        formControlName="firstName">
+                    <div *ngIf="f['firstName'].touched && f['firstName'].errors">
+                        <div class="text-danger" *ngIf="f['firstName'].errors['required']">*First Name is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Last Name" class="form-control"
+                        formControlName="lastName">
+                    <div *ngIf="f['lastName'].touched && f['lastName'].errors">
+                        <div class="text-danger" *ngIf="f['lastName'].errors['required']">*Last Name is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" placeholder="Email" class="form-control" formControlName="email">
+                    <div *ngIf="f['email'].touched && f['email'].errors">
+                        <div class="text-danger" *ngIf="f['email'].errors['required']">*Email is required</div>
+                        <div class="text-danger" *ngIf="f['email'].errors['email']">*Please follow the correct format
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="registerpassword" class="form-control" formControlName="password">
+                        <i class="fa fa-light fa-eye float-right" id="togglePassword"
+                            (click)="togglePassword('registerpassword')"></i>
+                    </div>
+                    <div *ngIf="f['password'].touched && f['password'].errors">
+                        <div class="text-danger" *ngIf="f['password'].errors['required']">*Password is required</div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password2" class="form-control" formControlName="confirmPassword"
+                            (change)="passwordMatchValidator(userAddForm)">
+                        <i class="fa fa-light fa-eye float-right" id="togglePassword"
+                            (click)="togglePassword('password2')"></i>
+                    </div>
+                    <div *ngIf="f['confirmPassword'].touched && f['confirmPassword'].errors">
+                        <div class="text-danger" *ngIf="f['confirmPassword'].errors['required']">*Password is required
+                        </div>
+                        <div class="text-danger" *ngIf="f['confirmPassword'].errors['mismatch']">*Passwords do not match
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="mobileNo" class="form-label">Mobile No.</label>
+                    <input type="tel" id="mobileNo" placeholder="Mobile No." class="form-control"
+                        formControlName="mobileNo">
+                    <div *ngIf="f['mobileNo'].touched && f['mobileNo'].errors">
+                        <div class="text-danger" *ngIf="f['mobileNo'].errors['required']">*Mobile No. is required</div>
+                        <div class="text-danger" *ngIf="f['mobileNo'].errors['pattern']">*Mobile No. should be 10 digits
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="dob" class="form-label">DOB</label>
+                    <input type="date" id="dob" placeholder="DOB" class="form-control" formControlName="dob"
+                        max="{{ maxDate }}">
+                    <div *ngIf="f['dob'].touched && f['dob'].errors">
+                        <div class="text-danger" *ngIf="f['dob'].errors['required']">*Date of Birth is required</div>
+                        <div class="text-danger" *ngIf="f['dob'].errors['max']">*Date of Birth cannot be in the future
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="text-align: center;">Address</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="houseNo" class="form-label">House No.</label>
+                    <input type="number" id="houseNo" placeholder="House No." class="form-control"
+                        formControlName="houseNo">
+                    <div *ngIf="f['houseNo'].touched && f['houseNo'].errors">
+                        <div class="text-danger" *ngIf="f['houseNo'].errors['required']">*House No. is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="street" class="form-label">Street</label>
+                    <input type="text" id="street" placeholder="Street" class="form-control" formControlName="street">
+                    <div *ngIf="f['street'].touched && f['street'].errors">
+                        <div class="text-danger" *ngIf="f['street'].errors['required']">*Street is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="area" class="form-label">Area</label>
+                    <input type="text" id="area" placeholder="Area" class="form-control" formControlName="area">
+                    <div *ngIf="f['area'].touched && f['area'].errors">
+                        <div class="text-danger" *ngIf="f['area'].errors['required']">*Area is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" id="city" placeholder="City" class="form-control" formControlName="city">
+                    <div *ngIf="f['city'].touched && f['city'].errors">
+                        <div class="text-danger" *ngIf="f['city'].errors['required']">*City is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" id="state" placeholder="State" class="form-control" formControlName="state">
+                    <div *ngIf="f['state'].touched && f['state'].errors">
+                        <div class="text-danger" *ngIf="f['state'].errors['required']">*State is required</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" id="country" placeholder="Country" class="form-control"
+                        formControlName="country">
+                    <div *ngIf="f['country'].touched && f['country'].errors">
+                        <div class="text-danger" *ngIf="f['country'].errors['required']">*Country is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="pincode" class="form-label">Pincode</label>
+                    <input type="number" id="pincode" placeholder="Pincode" class="form-control"
+                        formControlName="pincode">
+                    <div *ngIf="f['pincode'].touched && f['pincode'].errors">
+                        <div class="text-danger" *ngIf="f['pincode'].errors['required']">*Pincode is required</div>
+                        <div class="text-danger" *ngIf="f['pincode'].errors['pattern']">*Pincode should be 6 digits
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div *ngIf="!uniqueEmail" class="text-danger">This username already exists</div>
+            </div>
+            <div style="text-align: center;">
+                <button type="submit" class="btn btn-primary justify-content-center"
+                    [disabled]="!userAddForm.valid && uniqueEmail">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

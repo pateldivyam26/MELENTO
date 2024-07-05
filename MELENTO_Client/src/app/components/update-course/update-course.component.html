@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="text-center">Update Course</h3>
+                </div>
+            </div>
+            <form [formGroup]="courseAddForm" (ngSubmit)="onSubmit(courseAddForm.value)" class="form">
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="id" class="form-label">Select a Course for Update</label>
+                        <select formControlName="id" class="form-select" id="id" (change)="onChangeType($event)">
+                            <option selected>Select Course Name</option>
+                            <option *ngFor="let course of arrCourse" [ngValue]="course.id">{{course.cName}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="cName" class="form-label">Course Name</label>
+                        <input type="text" id="cName" placeholder="Course Name" class="form-control"
+                            formControlName="cName">
+                        <div *ngIf="f['cName'].errors">
+                            <div class="text-danger" *ngIf="f['cName'].errors['required'] && f['cName'].touched">
+                                *Required Course Name</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label for="cDescription" class="form-label">Course Description</label>
+                        <textarea id="cDescription" rows="5" placeholder="Course Description" class="form-control"
+                            formControlName="cDescription"></textarea>
+                        <div *ngIf="f['cDescription'].errors">
+                            <div class="text-danger"
+                                *ngIf="f['cDescription'].errors['required'] && f['cDescription'].touched">*Required
+                                Course Description</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="categoryId" class="form-label">Category</label>
+                        <select id="categoryId" class="form-select" formControlName="categoryId">
+                            <!-- <option value="">Select Category</option>
+                            <option value="1">Category 1</option>
+                            <option value="2">Category 2</option>
+                            <option value="3">Category 3</option>
+                            <option value="4">Category 4</option>
+                            <option value="5">Category 5</option> -->
+                            <option value="">Select Category</option>
+                            <option *ngFor="let category of arrCategory" [value]="category.id">{{ category.categoryName }}</option>
+                        </select>
+                        <div *ngIf="f['categoryId'].errors">
+                            <div class="text-danger"
+                                *ngIf="f['categoryId'].errors['required'] && f['categoryId'].touched">*Required Category
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-primary justify-content-center" [disabled]="!courseAddForm.valid">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

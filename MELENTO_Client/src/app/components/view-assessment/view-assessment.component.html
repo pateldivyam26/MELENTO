@@ -1,0 +1,24 @@
+<div class="container card-body card shadow mt-5 table-responsive mt-3">
+    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Assessment Name</th>
+                <th scope="col">Assessment Date</th>
+                <th scope="col">Total Marks</th>
+                <th scope="col">Faculty ID</th>
+                <th scope="col">Download</th>
+            </tr>
+        </thead>
+        <tbody id="assessment-table-body">
+            <tr *ngFor="let assessment of arrAssessments">
+                <td scope="col">{{assessment.id}}</td>
+                <td scope="col">{{assessment.assessmentName}}</td>
+                <td scope="col">{{assessment.assessmentDate}}</td>
+                <td scope="col">{{assessment.totalMarks}}</td>
+                <td scope="col">{{assessment.facultyId}}</td>
+                <td scope="col"><i class="fa fa-download" aria-hidden="true" (click)="download(assessment)"></i></td>
+            </tr> 
+        </tbody>
+    </table>
+</div>

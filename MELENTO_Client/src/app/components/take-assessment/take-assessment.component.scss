@@ -1,0 +1,27 @@
+.card:hover {
+    transform: scale(1);
+
+}
+.card-header .btn-link:hover {
+    color: #8AB6F9;
+}
+  
+  .section-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .question-details {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .correct-answer {
+    color: green;
+  }
+  
+  .incorrect-answer {
+    color: red;
+  }
