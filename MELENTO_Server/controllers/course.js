@@ -3,7 +3,7 @@ const util = require('../utility/util')
 
 function getCourse(req, res) {
     res.setHeader('Content-Type', 'application/json')
-    course_service.findC().then(
+    course_service.find().then(
         (items) => {
             const objArr = items;
             objArr.forEach((obj) => {
