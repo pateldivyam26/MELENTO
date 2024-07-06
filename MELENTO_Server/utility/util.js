@@ -32,4 +32,14 @@ function updateObject(collection, id, updatedObject) {
         }
     });
 }
-module.exports = { connect, renameKey, addObject,updateObject };
+function deleteObject(collection, id, deletedObject) {
+    return collection.deleteOne({ _id: id }, { $set: deletedObject }, function (err, result) {
+        if (!err) {
+            console.log('Deleted: ')
+            console.log(result)
+        } else {
+            console.error('Error deleting object: ', err);
+        }
+    });
+}
+module.exports = { connect, renameKey, addObject, updateObject, deleteObject };

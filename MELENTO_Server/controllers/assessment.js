@@ -1,43 +1,67 @@
 const assessment_service = require('../service/assessmentService')
 const util = require('../utility/util')
 
-function getAssessment(req,res){
+function getAssessment(req, res) {
     res.setHeader('Content-Type', 'application/json')
-    assessment_service.findAssessment().then(
-        (items)=>{
+    assessment_service.find().then(
+        (items) => {
             const objArr = items;
-            objArr.forEach((obj)=>{
-                util.renameKey(obj,"_id","id");
+            objArr.forEach((obj) => {
+                util.renameKey(obj, "_id", "id");
             });
             const updateItems = JSON.stringify(objArr);
             res.send(updateItems);
         },
-        (err)=>{
+        (err) => {
             console.log('Promise Rejected')
             console.log(err)
         }
     )
 }
 
-function addAssessment(req,res){
+function getAssessmentById(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    const id = req.params.id;
+    assessment_service.getById(id).then((assessment) => {
+        if (!assessment) {
+            res.status(404).json({ error: 'Assessment not found' });
+        } else {
+            util.renameKey(assessment, '_id', 'id');
+            res.json(assessment);
+        }
+    });
+}
+
+function addAssessment(req, res) {
     res.setHeader('Content-Type', 'application/json')
     console.log("Add called")
     var id = req.body.id
-    var assessment=req.body
+    var assessment = req.body
     assessment_service.add(assessment).then(
-        res.send(JSON.stringify({data_submitted: id}))
+        res.send(JSON.stringify({ data_submitted: id }))
     )
 }
 
-function updateAssessment(req,res){
+function updateAssessment(req, res) {
     res.setHeader('Content-Type', 'application/json');
     console.log("Update called");
 
     var id = req.params.id;
-    var assessment=req.body;
+    var assessment = req.body;
 
-    assessment_service.update(id,assessment);
+    assessment_service.update(id, assessment);
     res.send(JSON.stringify({ data_updated: id }));
+}
+
+function deleteAssessment(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    console.log("Delete called");
+
+    var id = req.params.id;
+    var assessment = req.body;
+
+    assessment_service.remove(id, assessment);
+    res.send(JSON.stringify({ data_deleted: id }));
 }
 
 // async function listAssessment(req, res) {
@@ -82,18 +106,18 @@ function updateAssessment(req,res){
 //     }
 // }
 
-async function deleteAssessment(req, res) {
-    const { id } = req.params;
-    try {
-        const assessment = await assessment_service.remove(id);
-        if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
-        res.json({ message: 'Assessment deleted successfully', assessment });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-}
+// async function deleteAssessment(req, res) {
+//     const { id } = req.params;
+//     try {
+//         const assessment = await assessment_service.remove(id);
+//         if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
+//         res.json({ message: 'Assessment deleted successfully', assessment });
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// }
 
 
 module.exports = {
-    getAssessment, updateAssessment, addAssessment, deleteAssessment
+    getAssessment, getAssessmentById, updateAssessment, addAssessment, deleteAssessment
 }

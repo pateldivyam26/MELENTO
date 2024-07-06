@@ -3,7 +3,7 @@ const path = require('path')
 const util = require('../utility/util')
 const assessmentFile = path.join(__dirname, '../data/assessment.json')
 
-var findAssessment = function () {
+function find() {
     return new Promise((resolve, reject) => {
         var coll = util.connect('assessment')
         var items = coll.find().toArray();
@@ -11,40 +11,53 @@ var findAssessment = function () {
     })
 }
 
-
-
 function add(assessment) {
     return new Promise((resolve, reject) => {
         var coll = util.connect('assessment')
-        util.renameKey(assessment,'id','_id');
+        util.renameKey(assessment, 'id', '_id');
         resolve(util.addObject(coll, assessment));
     })
 }
 
-
-
-function update(id,updatedAssessment) {
+function getById(id) {
     return new Promise((resolve, reject) => {
         var coll = util.connect('assessment');
-        util.renameKey(updatedAssessment,'id','_id');
-        resolve(util.updateObject(coll, id,updatedAssessment));
+        var query = { _id: id };
+        const assessment = coll.findOne(query);
+        resolve(assessment);
     });
 }
 
-async function list() {
-    const data = await fs.readFile(assessmentFile)
-    return JSON.parse(data)
+function update(id, updatedAssessment) {
+    return new Promise((resolve, reject) => {
+        var coll = util.connect('assessment');
+        util.renameKey(updatedAssessment, 'id', '_id');
+        resolve(util.updateObject(coll, id, updatedAssessment));
+    });
 }
 
-async function get(id) {
-    const assessments = JSON.parse(await fs.readFile(assessmentFile))
-    for (let i = 0; i < assessments.length; i++) {
-        if (assessments[i].id == id) {
-            return assessments[i]
-        }
-    }
-    return null
+function remove(id, deletedAssessment) {
+    return new Promise((resolve, reject) => {
+        var coll = util.connect('assessment');
+        util.renameKey(deletedAssessment, 'id', '_id');
+        resolve(util.deleteObject(coll, id, deletedAssessment));
+    });
 }
+
+// async function list() {
+//     const data = await fs.readFile(assessmentFile)
+//     return JSON.parse(data)
+// }
+
+// async function get(id) {
+//     const assessments = JSON.parse(await fs.readFile(assessmentFile))
+//     for (let i = 0; i < assessments.length; i++) {
+//         if (assessments[i].id == id) {
+//             return assessments[i]
+//         }
+//     }
+//     return null
+// }
 
 // async function update(id, updatedAssessment) {
 //     const assessments = JSON.parse(await fs.readFile(assessmentFile));
@@ -63,16 +76,16 @@ async function get(id) {
 //     return newAssessment;
 // }
 
-async function remove(id) {
-    const assessments = JSON.parse(await fs.readFile(assessmentFile));
-    const index = assessments.findIndex(assessment => assessment.id == id);
-    if (index === -1) return null;
+// async function remove(id) {
+//     const assessments = JSON.parse(await fs.readFile(assessmentFile));
+//     const index = assessments.findIndex(assessment => assessment.id == id);
+//     if (index === -1) return null;
 
-    const removedAssessment = assessments.splice(index, 1);
-    await fs.writeFile(assessmentFile, JSON.stringify(assessments, null, 2));
-    return removedAssessment[0];
-}
+//     const removedAssessment = assessments.splice(index, 1);
+//     await fs.writeFile(assessmentFile, JSON.stringify(assessments, null, 2));
+//     return removedAssessment[0];
+// }
 
 module.exports = {
-    list, get, add, update, remove, findAssessment
+    add, update, remove, find, getById
 }
