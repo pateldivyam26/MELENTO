@@ -3,7 +3,8 @@ require('dotenv').config();
 
 function connect(collection_name) {
     var conn = new MongoClient(process.env.mongoDbURL);
-    var myDB = conn.db();
+    conn.connect();
+    var myDB = conn.db('assessment');
     var coll = myDB.collection(collection_name);
     return coll;
 }
