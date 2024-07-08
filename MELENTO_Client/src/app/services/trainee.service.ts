@@ -34,7 +34,7 @@ export class TraineeService {
     return this.httpClient.post<Trainee>(this.baseUrl+'/trainee',JSON.stringify(payload),this.httpHeader).pipe(catchError(this.httpError));
   }
   updateTrainee(t: Trainee): Observable<Trainee> {
-    return this.httpClient.put<Trainee>(this.baseUrl+'/trainee/'+t.id.toString(),JSON.stringify(t)).pipe(catchError(this.httpError));
+    return this.httpClient.put<Trainee>(this.baseUrl+'/trainee/'+t.id.toString(),JSON.stringify(t),this.httpHeader).pipe(catchError(this.httpError));
   }
   httpError(error:HttpErrorResponse){
     let msg='';
