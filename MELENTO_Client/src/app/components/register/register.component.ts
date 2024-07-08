@@ -6,7 +6,7 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { Cart } from '../../models/cart';
 import { CartService } from '../../services/cart.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -52,6 +52,19 @@ export class RegisterComponent implements OnInit {
 
   get f() { return this.userAddForm.controls; }
 
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage() {
+    this.openSnackBar('User added Successfully!!', 'Close');
+  }
+
   onSubmit(frmValue: any): void {
     if (!this.userAddForm.valid) {
       console.log("Form is not valid");
@@ -93,15 +106,9 @@ export class RegisterComponent implements OnInit {
     );
     console.log(tempUser);
     this.userService.addUser(tempUser).subscribe(data=>{
-      console.log(data);
-      console.log("User added successfully");
-      this._snackBar.open('User Added Successfully!!', 'Close', {
-        duration: 2000,
-      });
+      this.showMessage();
       const cart= new Cart(this.tempId,[],[],0)
-      console.log(cart);
       this.cartService.AddToCart(cart).subscribe(data=>{
-        console.log(data);
         console.log("Cart created successfully");
         this.router.navigate(['/home']).then(() => {
           location.reload();

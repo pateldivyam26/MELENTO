@@ -18,7 +18,7 @@ import { FormControl } from '@angular/forms';
 import { FacultyService } from '../../services/faculty.service';
 import { Faculty } from '../../models/faculty';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-add-assessment',
   templateUrl: './add-assessment.component.html',
@@ -28,14 +28,14 @@ export class AddAssessmentComponent {
   firstFormGroup: FormGroup;
   questionForm: FormGroup;
   isLinear = false;
-  assessment: Assessment = new Assessment(0,'','',0,'','',[],0,0,0, true)
+  assessment: Assessment = new Assessment(0, '', '', 0, '', '', [], 0, 0, 0, true)
   arrAssessments: Assessment[] = [];
-  role:string='';
-  faculty:Faculty=new Faculty(0,0,[]);
-  arrFaculty:Faculty[]=[];
-  facultyId:number=0;
-  constructor(private _formBuilder: FormBuilder,private assessmentservice:AssessmentsService,private facultyService:FacultyService,
-    private _snackBar: MatSnackBar,private router:Router) {
+  role: string = '';
+  faculty: Faculty = new Faculty(0, 0, []);
+  arrFaculty: Faculty[] = [];
+  facultyId: number = 0;
+  constructor(private _formBuilder: FormBuilder, private assessmentservice: AssessmentsService, private facultyService: FacultyService,
+    private _snackBar: MatSnackBar, private router: Router) {
     this.firstFormGroup = this._formBuilder.group({
       assessmentNameCtrl: ['', Validators.required],
       assessmentDateCtrl: ['', Validators.required],
@@ -47,10 +47,10 @@ export class AddAssessmentComponent {
       priceCtrl: ['', Validators.required],
       activeCtrl: [true, Validators.required],
     });
-    this.assessmentservice.getAssessments().subscribe(data=>{
-      this.arrAssessments=data;
+    this.assessmentservice.getAssessments().subscribe(data => {
+      this.arrAssessments = data;
     })
-    
+
     // AssessmentsService.getAssessments().subscribe((data) => {
     //   this.arrAssessments = data;
     // }
@@ -58,20 +58,34 @@ export class AddAssessmentComponent {
     this.questionForm = this._formBuilder.group({
       questions: this._formBuilder.array([this.createQuestion()]),
     });
-    this.facultyService.getFaculty().subscribe(data=>{
-    this.arrFaculty=data;
-    var currole = localStorage.getItem('role');
-    var id = localStorage.getItem('id');
-    if(currole){ this.role = currole};
-    if (currole == 'faculty') {
-      for(var i=0;i<this.arrFaculty.length;i++){
-        // console.log(this.arrFaculty[i]);
-        if(this.arrFaculty[i].userId==Number(id)){
-          this.facultyId=this.arrFaculty[i].id;
-          this.firstFormGroup.get('facultyIdCtrl')?.setValue(this.arrFaculty[i].id);
+    this.facultyService.getFaculty().subscribe(data => {
+      this.arrFaculty = data;
+      var currole = localStorage.getItem('role');
+      var id = localStorage.getItem('id');
+      if (currole) { this.role = currole };
+      if (currole == 'faculty') {
+        for (var i = 0; i < this.arrFaculty.length; i++) {
+          // console.log(this.arrFaculty[i]);
+          if (this.arrFaculty[i].userId == Number(id)) {
+            this.facultyId = this.arrFaculty[i].id;
+            this.firstFormGroup.get('facultyIdCtrl')?.setValue(this.arrFaculty[i].id);
+          }
         }
       }
-    }});
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage() {
+    this.openSnackBar('Assessment Successfully Added!!', 'Close');
   }
 
   saveFirstFormData(firstFormGroup: any) {
@@ -83,17 +97,17 @@ export class AddAssessmentComponent {
     this.assessment.assessmentTime = firstFormGroup.value.assessmentTimeCtrl;
     this.assessment.assessmentImage = firstFormGroup.value.assessmentImageCtrl;
     this.assessment.assessmentDescription =
-    firstFormGroup.value.assessmentDescriptionCtrl;
+      firstFormGroup.value.assessmentDescriptionCtrl;
     this.assessment.facultyId = firstFormGroup.value.facultyIdCtrl;
     this.assessment.totalMarks = firstFormGroup.value.totalMarksCtrl;
     this.assessment.price = firstFormGroup.value.priceCtrl;
     // this.assessment.active = firstFormGroup.value.activeCtrl;
-   if(firstFormGroup.value.activeCtrl=='true'){
-     this.assessment.active=true;
-   }
-   else{
-      this.assessment.active=false;
-   }
+    if (firstFormGroup.value.activeCtrl == 'true') {
+      this.assessment.active = true;
+    }
+    else {
+      this.assessment.active = false;
+    }
 
     // console.log(this.assessment);
   }
@@ -189,7 +203,7 @@ export class AddAssessmentComponent {
     var id = this.assessment.facultyId;
     // console.log(id);
     this.facultyService.getFacultyById(id).subscribe((data) => {
-      this.faculty=data;
+      this.faculty = data;
       this.faculty.arrAssessmentsIds.push(this.assessment.id);
       this.facultyService.updateFaculty(this.faculty).subscribe();
     });
@@ -214,13 +228,11 @@ export class AddAssessmentComponent {
     return false;
   }
 
-  reset(){
+  reset() {
     this.firstFormGroup.reset();
     this.questionForm.reset();
     this.firstFormGroup.get('facultyIdCtrl')?.setValue(this.facultyId);
-    this._snackBar.open('Assessment Successfully Added', 'Close', {
-      duration: 2000,
-    });
+    this.showMessage();
     location.reload();
   }
 }

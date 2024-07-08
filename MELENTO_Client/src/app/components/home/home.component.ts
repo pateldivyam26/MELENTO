@@ -4,7 +4,7 @@ import { AssessmentsService } from '../../services/assessments.service';
 import { Router } from '@angular/router';
 import { Assessment } from '../../models/assessment';
 import { CartService } from '../../services/cart.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -30,15 +30,25 @@ export class HomeComponent {
             this.lastThreeAssessments = this.arrAssessments.slice(-3);
         });
     }
+
+    openSnackBar(message: string, action: string) {
+      const config = new MatSnackBarConfig();
+      config.duration = 2000;
+      config.horizontalPosition = 'center';
+      config.verticalPosition = 'top';
+  
+      this._snackBar.open(message, action, config);
+    }
+  
+    showMessage() {
+      this.openSnackBar('Please Login!!', 'Close');
+    }
     AddToCart(c: any) {
         // console.log(c);
         const userId = localStorage.getItem('id');
         // console.log(userId);
         if (userId == null) {
-            console.log("Please login");
-            this._snackBar.open('Please Login', 'Close', {
-                duration: 2000,
-            });
+          this.showMessage();
             return;
             // this.router.navigate(['login']); need to do this part. right now no url exists for login
         }

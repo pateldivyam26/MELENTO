@@ -5,6 +5,7 @@ import { CourseService } from '../../services/course.service';
 import { Course } from '../../models/course';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-course',
@@ -16,7 +17,7 @@ export class AddCourseComponent {
   arrCourse: Course[] = [];
   arrCategory: Category[] = [];
   tempId: number = 0;
-  constructor(fb: FormBuilder, private courseService: CourseService, private categoryService:CategoryService) {
+  constructor(fb: FormBuilder, private courseService: CourseService, private categoryService:CategoryService, private _snackBar: MatSnackBar) {
     this.courseAddForm = fb.group({
       'cName': ['', Validators.required],
       'cDescription': ['', Validators.required],
@@ -31,6 +32,19 @@ export class AddCourseComponent {
   }
 
   get f() { return this.courseAddForm.controls; }
+
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage() {
+    this.openSnackBar('Course Successfully Added!!', 'Close');
+  }
 
   onSubmit(frmValue: any): void {
     if (!this.courseAddForm.valid) {
@@ -50,5 +64,6 @@ export class AddCourseComponent {
       frmValue['categoryId']
     );
     this.courseService.addCourse(newCourse).subscribe();
+    this.showMessage();
   }
 }

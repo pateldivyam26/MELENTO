@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { Address } from '../../models/address';
 import { Faculty } from '../../models/faculty';
 import { FacultyService } from '../../services/faculty.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-update-user',
   templateUrl: './update-user.component.html',
@@ -18,7 +19,7 @@ export class UpdateUserComponent {
   idUpdated: number = 0;
   tempId: number = 0;
   maxDate: string="";
-  constructor(fb: FormBuilder, private userService: UserService, private facultyService: FacultyService) {
+  constructor(fb: FormBuilder, private userService: UserService, private facultyService: FacultyService, private _snackBar: MatSnackBar) {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
@@ -50,6 +51,19 @@ export class UpdateUserComponent {
   }
 
   get f() { return this.userAddForm.controls; }
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage(message: string) {
+    this.openSnackBar(message, 'Close');
+  }
+
   onChangeType(evt: any) {
     var idObtained = evt.target.value;
     this.idUpdated = parseInt(idObtained.split(':')[1].trim());
@@ -94,7 +108,8 @@ export class UpdateUserComponent {
         );
         
         this.facultyService.addFaculty(tempFaculty).subscribe();
-        console.log("Faculty added successfully");
+        // console.log("Faculty added successfully");
+        this.showMessage('Role Updated to Faculty!!');
       }
 
     this.user.firstName=frmValue['firstName'];
@@ -112,6 +127,7 @@ export class UpdateUserComponent {
     this.user.address.country=frmValue['country'];
     this.user.address.pincode=frmValue['pincode'];
     this.userService.updateUser(this.user).subscribe();
+    this.showMessage('User Updated Successfully!!');
   }
   
 }

@@ -5,6 +5,7 @@ import { CourseService } from '../../services/course.service';
 import { Course } from '../../models/course';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-course',
@@ -17,7 +18,7 @@ export class UpdateCourseComponent {
   arrCategory: Category[] = [];
   course = new Course(0,"","",0)
   idUpdated: number = 0;
-  constructor(fb: FormBuilder, private courseService: CourseService, private categoryService:CategoryService) {
+  constructor(fb: FormBuilder, private courseService: CourseService, private categoryService:CategoryService, private _snackBar: MatSnackBar) {
     this.courseService.getCourses().subscribe(data=>{
       this.arrCourse=data
     })
@@ -33,6 +34,19 @@ export class UpdateCourseComponent {
   }
 
   get f() { return this.courseAddForm.controls; }
+
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage(message: string) {
+    this.openSnackBar(message, 'Close');
+  }
 
   onChangeType(evt: any) {
     var idObtained = evt.target.value;
@@ -59,6 +73,7 @@ export class UpdateCourseComponent {
     this.course.cDescription=frmValue['cDescription'];
     this.course.categoryId=frmValue['categoryId'];
     this.courseService.updateCourse(this.course).subscribe();
+    this.showMessage('Course Updated Successfully!!');
     // const newCourse = new Course(
     //   0, // Assuming auto-generated ID
     //   frmValue['cName'],

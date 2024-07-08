@@ -6,7 +6,7 @@ import { Assessment } from '../../models/assessment';
 import { CartService } from '../../services/cart.service';
 import { Cart } from '../../models/cart';
 import { catchError, of } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-assessments',
   templateUrl: './assessments.component.html',
@@ -32,6 +32,18 @@ export class AssessmentsComponent {
     
   }
   
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage() {
+    this.openSnackBar('Please Login!!', 'Close');
+  }
   displayAssessments() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -82,10 +94,7 @@ export class AssessmentsComponent {
     const userId=localStorage.getItem('id');
     // console.log(userId);
     if(userId==null){
-      console.log("Please login");
-      this._snackBar.open('Please Login', 'Close', {
-        duration: 2000,
-      });
+      this.showMessage();
       return;
       // this.router.navigate(['login']); need to do this part. right now no url exists for login
     }

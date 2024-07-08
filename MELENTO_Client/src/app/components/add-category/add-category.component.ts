@@ -3,6 +3,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-category',
@@ -13,7 +14,7 @@ export class AddCategoryComponent {
   categoryAddForm: FormGroup;
   arrCategory: Category[] = [];
   tempId: number = 0;
-  constructor(fb: FormBuilder, private categoryService: CategoryService) {
+  constructor(fb: FormBuilder, private categoryService: CategoryService, private _snackBar: MatSnackBar) {
     this.categoryAddForm = fb.group({
       'categoryName': ['', Validators.required],
       'categoryDescription': ['', Validators.required],
@@ -24,6 +25,19 @@ export class AddCategoryComponent {
   }
 
   get f() { return this.categoryAddForm.controls; }
+
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 2000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage() {
+    this.openSnackBar('Category Successfully Added!!', 'Close');
+  }
 
   onSubmit(frmValue: any): void {
     if (!this.categoryAddForm.valid) {
@@ -41,5 +55,6 @@ export class AddCategoryComponent {
       frmValue['categoryDescription']
     );
     this.categoryService.addCategory(newCategory).subscribe();
+    this.showMessage();
   }
 }

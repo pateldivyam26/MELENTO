@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,6 +29,19 @@ export class LoginComponent {
     return this.myForm.controls;
   }
 
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000;
+    config.horizontalPosition = 'center';
+    config.verticalPosition = 'top';
+
+    this._snackBar.open(message, action, config);
+  }
+
+  showMessage() {
+    this.openSnackBar('Login Successful!!', 'Close');
+  }
+
   verify_login(myForm: any) {
     if (this.myForm.invalid) {
       console.log('Not valid');
@@ -42,9 +55,7 @@ export class LoginComponent {
         checkuser= true;
         if (this.arrUsers[i].password == myForm['password']) {
           // console.log('Login successful');
-          this._snackBar.open('Login successful', 'Close', {
-            duration: 2000,
-          });
+          this.showMessage();
           // console.log(this.arrUsers[i]);
           localStorage.setItem('role', this.arrUsers[i].role);
           localStorage.setItem('id', String(this.arrUsers[i].id)); // Convert id to string since local storage only stores string
