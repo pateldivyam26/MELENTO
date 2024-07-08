@@ -45,26 +45,41 @@
                 <div *ngIf="validTypeOfQ(question.type)">
                   <div [ngSwitch]="typeofQ(question.type)">
                     <div *ngSwitchCase="'MCQ'" class="row">
-                      <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
-                        <mat-label>Question</mat-label>
-                        <input matInput [value]="question.questionText" readonly>
-                      </mat-form-field>
-                      <div class="bg-light col-sm-12 col-md-10">
-                        <mat-checkbox appearance="fill" class="col-sm-12 col-md-10"
-                          (change)="updateSelectedOptions(i, $event, 0,'a')">{{question.options[0]}}</mat-checkbox>
-                        <mat-checkbox appearance="fill" class="col-sm-12 col-md-10"
-                          (change)="updateSelectedOptions(i, $event, 1,'b')">{{question.options[1]}}</mat-checkbox>
-                        <mat-checkbox appearance="fill" class="col-sm-12 col-md-10"
-                          (change)="updateSelectedOptions(i, $event, 2,'c')">{{question.options[2]}}</mat-checkbox>
-                        <mat-checkbox appearance="fill" class="col-sm-12 col-md-10"
-                          (change)="updateSelectedOptions(i, $event, 3,'d')">{{question.options[3]}}</mat-checkbox>
-                      </div>
-                    </div>
+                      <div class="container my-3">
+                        <div class="row bg-light p-3">
+                          <div class="col-12">
+                            <p class="font-weight-bold">{{ question.questionText }}</p>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <mat-checkbox appearance="fill" class="mb-2" (change)="updateSelectedOptions(i, $event, 0, 'a')">
+                              {{ question.options[0] }}
+                            </mat-checkbox>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <mat-checkbox appearance="fill" class="mb-2" (change)="updateSelectedOptions(i, $event, 1, 'b')">
+                              {{ question.options[1] }}
+                            </mat-checkbox>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <mat-checkbox appearance="fill" class="mb-2" (change)="updateSelectedOptions(i, $event, 2, 'c')">
+                              {{ question.options[2] }}
+                            </mat-checkbox>
+                          </div>
+                          <div class="col-12 col-md-6">
+                            <mat-checkbox appearance="fill" class="mb-2" (change)="updateSelectedOptions(i, $event, 3, 'd')">
+                              {{ question.options[3] }}
+                            </mat-checkbox>
+                          </div>
+                        </div>
+                      </div>                      
+                  </div>
                     <div *ngSwitchCase="'TOF'" class="row">
-                      <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
-                        <mat-label>Question</mat-label>
-                        <input matInput [value]="question.questionText" readonly>
-                      </mat-form-field>
+                      <div class="container my-3">
+                        <div class="row bg-light p-3">
+                          <div class="col-12">
+                            <p class="font-weight-bold">{{ question.questionText }}</p>
+                          </div>
+                        <div class="col-12 col-md-6">
                       <mat-form-field appearance="fill" class="col-sm-12 col-md-10">
                         <mat-label>Select Answer</mat-label>
                         <mat-select (selectionChange)="updateTOFvalue($event, i)">
@@ -72,6 +87,9 @@
                           <mat-option [value]="'False'">False</mat-option>
                         </mat-select>
                       </mat-form-field>
+                    </div>
+                      </div>
+                      </div>
                     </div>
                   </div>
                   <div class="mt-4 col-sm-12 col-md-10">
@@ -85,56 +103,56 @@
         </div>
       </div>
     </div>
-    <div id="contentToConvert" *ngIf="timeOver||submited">
-      <div class="card mb-4 mx-1">
-        <div class="card-body">
-          <div class="text-center"><h3>Thank You For Taking This assessment</h3></div>
-          <div class="row my-1">
-            <p class="col-sm-12 col-md-6">Your Score is: {{ traineeOverallScore }}/{{ assessment.totalMarks }}</p>
-            <p class="col-sm-12 col-md-6">Your Score Percentage is: {{ (traineeOverallScore / assessment.totalMarks) *
-              100 }}%</p>
-          </div>
-          <div *ngIf="pass">Result:<strong class="correct-answer">PASS</strong></div>
-          <div *ngIf="!pass">Result:<strong class="incorrect-answer">FAIL</strong></div>
-          <div class="row">
-            <div class="col-sm-12 col-md-10">
-              <p class="section-title">Correct Answers</p>
-              <div *ngFor="let question of assessment.questions; let i = index">
-                <div *ngIf="question.type === 'MCQ'">
-                  <div class="question-details">
-                    <p><strong>Question:</strong> {{ question.questionText }}</p>
-                    <p class="correct-answer" *ngIf="isAnswerCorrect(question, answersArray[i])">
-                      Correct Answer: {{ question.answer }}
-                    </p>
-                    <p class="incorrect-answer" *ngIf="!isAnswerCorrect(question, answersArray[i])">
-                      Correct Answer: {{ question.answer }}
-                    </p>
-                    <p>Your Answer: {{ answersArray[i] }}</p>
-                  </div>
-                </div>
-                <div *ngIf="question.type === 'TOF'">
-                  <div class="question-details">
-                    <p><strong>Question:</strong> {{ question.questionText }}</p>
-                    <p class="correct-answer" *ngIf="isAnswerCorrect(question, answersArray[i])">
-                      Correct Answer: {{ question.answer }}
-                    </p>
-                    <p class="incorrect-answer" *ngIf="!isAnswerCorrect(question, answersArray[i])">
-                      Correct Answer: {{ question.answer }}
-                    </p>
-                    <p>Your Answer: {{ answersArray[i] }}</p>
+    <div id="contentToConvert" *ngIf="timeOver || submited">
+      <div class="container my-4">
+        <div class="card mb-4">
+          <div class="card-body row">
+            <div class="text-center">
+              <h3>Thank You For Taking This Assessment</h3>
+            </div>
+            <div class="row my-2  col-sm-12 col-md-10">
+              <div class="col-sm-12 col-md-6">
+                <p>Your Score is: {{ traineeOverallScore }}/{{ assessment.totalMarks }}</p>
+              </div>
+              <div class="col-sm-12 col-md-6 d-flex justify-content-end">
+                <p>Your Score Percentage is: {{ (traineeOverallScore / assessment.totalMarks) * 100 }}%</p>
+              </div>
+            </div>
+            <div *ngIf="pass" class=" col-sm-12 col-md-10">
+              Result: <strong class="text-success">PASS</strong>
+            </div>
+            <div *ngIf="!pass" class=" col-sm-12 col-md-10">
+              Result: <strong class="text-danger">FAIL</strong>
+            </div>
+            <div class="row  col-sm-12 col-md-10">
+              <div class="col-sm-12 col-md-10">
+                <p class="section-title">Correct Answers</p>
+                <div *ngFor="let question of assessment.questions; let i = index">
+                  <div *ngIf="question.type === 'MCQ' || question.type === 'TOF'">
+                    <div class="question-details mb-3">
+                      <p><strong>Question:</strong> {{ question.questionText }}</p>
+                      <p class="text-success" *ngIf="isAnswerCorrect(question, answersArray[i])">
+                        Correct Answer: {{ question.answer }}
+                      </p>
+                      <p class="text-danger" *ngIf="!isAnswerCorrect(question, answersArray[i])">
+                        Correct Answer: {{ question.answer }}
+                      </p>
+                      <p>Your Answer: {{ answersArray[i] }}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="text-center mt-3">
-            <button class="btn btn-primary" (click)="captureReport()">Download PDF</button>
-          </div>
-          <div class="text-center mt-1">
-            <button class="btn btn-primary mt-3" (click)="redirectToDashboard()">Back to Dashboard</button>
+            <div class="text-center mt-3">
+              <button class="btn btn-primary" (click)="captureReport()">Download PDF</button>
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-primary" (click)="redirectToDashboard()">Back to Dashboard</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    
   </div>
 </div>

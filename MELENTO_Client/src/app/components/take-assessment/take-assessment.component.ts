@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { AssessmentScoreService } from '../../services/assessment-score.service';
 import { AssessmentScore } from '../../models/assessmentScore';
 import { TraineeService } from '../../services/trainee.service';
-import { Trainee } from '../../models/trainee';
+import { Trainee, completedAssessments } from '../../models/trainee';
 import { AttendanceService } from '../../services/attendance.service';
 import { Attendance } from '../../models/attendance';
 import jspdf from 'jspdf';
@@ -41,6 +41,7 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
   arrTrainees: Trainee[] = [];
   arrAttendace:Attendance[]=[];
   attendance:Attendance=new Attendance(0,0,0,new Date());
+  trainee:Trainee= new Trainee(0,0,[],[])
   last10min:boolean=false;
   readonly dialog = inject(MatDialog);
   constructor(private activatedRoute: ActivatedRoute, private assessmentService: AssessmentsService,private router:Router,private assessmentScoreService:AssessmentScoreService,private traineeService: TraineeService,
@@ -77,6 +78,8 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
         for (var i = 0; i < this.arrTrainees.length; i++) {
           if (this.tempId === (this.arrTrainees[i].userId).toString()) {
             this.traineeId = this.arrTrainees[i].id;
+            this.trainee= this.arrTrainees[i]
+            // console.log(this.trainee);
           }
         }
       })
@@ -176,8 +179,16 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
       this.pass=this.passOrFail(50);
       this.makeAssessmentScore();
       this.makeAttendance();
+      this.saveAssessmentScore();
       clearInterval(this.interval);
   }
+  saveAssessmentScore() {
+    console.log(this.trainee);
+    this.trainee.completedAssessments = this.trainee.completedAssessments || [];
+    this.trainee.completedAssessments.push(new completedAssessments(this.assessment.id, this.traineeOverallScore));
+    console.log(this.trainee);
+    this.traineeService.updateTrainee(this.trainee).subscribe();
+}
   makeAssessmentScore(){
     if(this.arrAssessmentsScores.length==0){
       this.assessmentScore.id=1;

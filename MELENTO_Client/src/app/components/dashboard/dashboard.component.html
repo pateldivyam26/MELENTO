@@ -1,65 +1,80 @@
 <div class="container mt-5">
     <div class="row">
-        <p class="text-center fw-bold">Entrolled Assessments</p>
-        <div class="col-md-4" *ngFor="let item of assessmentDetails; let i = index">
-            <div class="card mb-4 shadow">
-                <img [src]="item.assessment.assessmentImage" class="card-img-top" width="150px" height="150px"
-                    alt="item.assessment.assessmentName">
-                <div class="card-body text-center" [ngClass]="{ 'inactive-card': !item.assessment.active }">
-                    <h5 class="card-title">{{ item.assessment.assessmentName }}</h5>
-                    <p class="card-text"><b>Attempts Left: </b>{{ item.traineeAssessment.quantity }}</p>
-                    <button class="btn btn-outline-primary" style="margin-right: 20px;" 
-                        (click)="displayDetails(item.assessment.id)">View Details</button>
-                    <ng-container *ngIf="item.traineeAssessment.quantity > 0; else noAttempts">
-                        <button class="btn btn-outline-secondary" 
-                            (click)="takeAssessment(item.assessment.id, i)"
-                            [disabled]="!item.assessment.active">
-                            Take Assessment
-                        </button>
-                    </ng-container>
-                    <ng-template #noAttempts>
-                        <button class="btn btn-outline-success"
-                            (click)="viewCharts(item.assessment.id)">
-                            View Score
-                        </button>
-                    </ng-template>
-                </div>
-            </div>
+      <p class="fw-bold">Enrolled Assessments</p>
+      <ng-container *ngIf="assessmentDetails.length == 0">
+        <div class="alert alert-warning" role="alert">
+          No assessments enrolled yet!
         </div>
-    </div>
-    <div *ngIf="role=='faculty'" class="row">
-        <p class="text-center fw-bold">Mentoring Assessments</p>
-        <div class="col-md-4" *ngFor="let item of facultyArrAssessments; let i = index">
-            <div class="card mb-4 shadow">
-                <img [src]="item.assessmentImage" class="card-img-top" width="150px" height="150px"
-                    alt="item.assessmentName">
-                <div class="card-body text-center" [ngClass]="{ 'inactive-card': !item.active }">
-                    <h5 class="card-title">{{ item.assessmentName }}</h5>
-                    <button class="btn btn-outline-primary" style="margin-right: 20px;" 
-                        (click)="displayDetails(item.id)">View Details</button>
-                        <mat-slide-toggle [(ngModel)]="item.active" color="primary" (change)="updateAssessmentStatus(item,item.active)">
-                            {{ item.active ? 'Active' : 'Inactive' }}
-                        </mat-slide-toggle>
-                    
-                </div>
-            </div>
+        </ng-container>
+        <ng-container *ngFor="let item of assessmentDetails; let i = index">
+      <div *ngIf="item.traineeAssessment.quantity > 0" class="col-md-4" >
+        <div  class="card mb-4 shadow">
+          <img [src]="item.assessment.assessmentImage" class="card-img-top" width="150px" height="150px" alt="{{item.assessment.assessmentName}}">
+          <div class="card-body text-center" [ngClass]="{ 'inactive-card': !item.assessment.active }">
+            <h5 class="card-title">{{ item.assessment.assessmentName }}</h5>
+            <p class="card-text"><b>Attempts Left: </b>{{ item.traineeAssessment.quantity }}</p>
+            <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(item.assessment.id)">View Details</button>
+            <button class="btn btn-outline-secondary" (click)="takeAssessment(item.assessment.id, i)" [disabled]="!item.assessment.active">
+              Take Assessment
+            </button>
+          </div>
         </div>
+      </div>
+    </ng-container>
     </div>
-    <div *ngIf="role=='admin'" class="row">
-        <p class="text-center fw-bold">All assessments</p>
-        <div class="col-md-4" *ngFor="let item of arrAssessments; let i = index">
-            <div class="card mb-4 shadow">
-                <img [src]="item.assessmentImage" class="card-img-top" width="150px" height="150px"
-                    alt="item.assessmentName">
-                <div class="card-body text-center" [ngClass]="{ 'inactive-card': !item.active }">
-                    <h5 class="card-title">{{ item.assessmentName }}</h5>
-                    <button class="btn btn-outline-primary" style="margin-right: 20px;" 
-                        (click)="displayDetails(item.id)">View Details</button>
-                        <mat-slide-toggle [(ngModel)]="item.active" color="primary" (change)="updateAssessmentStatus(item, item.active)">
-                            {{ item.active ? 'Active' : 'Inactive' }}
-                        </mat-slide-toggle>
-                </div>
-            </div>
+
+    <div class="row mt-4">
+      <p class="fw-bold">Completed Assessments</p>
+      <ng-container *ngIf="completedAssessments.length == 0">
+        <div class="alert alert-warning" role="alert">
+          No assessments completed yet!
         </div>
+        </ng-container>
+      <div class="col-md-4" *ngFor="let item of completedAssessments; let i = index">
+        <div class="card mb-4 shadow">
+          <img [src]="item.assessment.assessmentImage" class="card-img-top" width="150px" height="150px" alt="{{item.assessment.assessmentName}}">
+          <div class="card-body text-center">
+            <h5 class="card-title">{{ item.assessment.assessmentName }}</h5>
+            <p class="card-text"><b>Your Score: </b>{{ item.completedAssessment.score }}/{{ item.assessment.totalMarks }}</p>
+            <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(item.assessment.id)">View Details</button>
+            <button class="btn btn-outline-success" (click)="viewCharts(item.assessment.id)">
+              View Score
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  
+    <div *ngIf="role=='faculty'" class="row mt-4">
+      <p class="text-center fw-bold">Mentoring Assessments</p>
+      <div class="col-md-4" *ngFor="let item of facultyArrAssessments; let i = index">
+        <div class="card mb-4 shadow">
+          <img [src]="item.assessmentImage" class="card-img-top" width="150px" height="150px" alt="{{item.assessmentName}}">
+          <div class="card-body text-center" [ngClass]="{ 'inactive-card': !item.active }">
+            <h5 class="card-title">{{ item.assessmentName }}</h5>
+            <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(item.id)">View Details</button>
+            <mat-slide-toggle [(ngModel)]="item.active" color="primary" (change)="updateAssessmentStatus(item, item.active)">
+              {{ item.active ? 'Active' : 'Inactive' }}
+            </mat-slide-toggle>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="role=='admin'" class="row mt-4">
+      <p class="text-center fw-bold">All assessments</p>
+      <div class="col-md-4" *ngFor="let item of arrAssessments; let i = index">
+        <div class="card mb-4 shadow">
+          <img [src]="item.assessmentImage" class="card-img-top" width="150px" height="150px" alt="{{item.assessmentName}}">
+          <div class="card-body text-center" [ngClass]="{ 'inactive-card': !item.active }">
+            <h5 class="card-title">{{ item.assessmentName }}</h5>
+            <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(item.id)">View Details</button>
+            <mat-slide-toggle [(ngModel)]="item.active" color="primary" (change)="updateAssessmentStatus(item, item.active)">
+              {{ item.active ? 'Active' : 'Inactive' }}
+            </mat-slide-toggle>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
