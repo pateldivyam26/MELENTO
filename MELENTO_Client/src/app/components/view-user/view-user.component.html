@@ -1,26 +1,66 @@
-<div class="container card-body card shadow mt-5 table-responsive mt-3">
-    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">DOB</th>
-                <th scope="col">Mobile No.</th>
-                <th scope="col">Address</th>
-            </tr>
-        </thead>
-        <tbody id="user-table-body">
-            <tr div *ngFor="let user of arrUsers">
-                <td scope="col">{{user.id}}</td>
-                <td scope="col">{{user.firstName}} {{user.lastName}}</td>
-                <td scope="col">{{user.email}}</td>
-                <td scope="col">{{user.dob}}</td>
-                <td scope="col">{{user.mobileNo}}</td>
-                <td scope="col">{{user.address.houseNo}}, {{user.address.street}}, {{user.address.area}},
-                    {{user.address.city}}, {{user.address.state}}, {{user.address.country}}, {{user.address.pincode}}
-                </td>
-            </tr>
-        </tbody>
+<div class="container-fluid my-3">
+  <div class="table-responsive table-hover">
+    <table mat-table [dataSource]="dataSource" class="table mat-elevation-z8" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>ail
+
+      <!--Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.firstName }} {{ element.lastName }}
+        </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <!-- DOB Column -->
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>DOB</th>
+        <td mat-cell *matCellDef="let element">{{ element.dob }}</td>
+      </ng-container>
+
+      <!-- Mobile No. Column -->
+      <ng-container matColumnDef="mobileNo">
+        <th mat-header-cell *matHeaderCellDef>Mobile No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.mobileNo }}</td>
+      </ng-container>
+
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center">
+          Address
+        </th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.address.houseNo }}, {{ element.address.street }},
+          {{ element.address.area }}, {{ element.address.city }},
+          {{ element.address.state }}, {{ element.address.country }},
+          {{ element.address.pincode }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.role === 'user'" class="badge badge-primary">User</span>
+          <span *ngIf="element.role === 'faculty'" class="badge badge-success">Faculty</span>
+          <span *ngIf="element.role === 'admin'" class="badge badge-danger">Admin</span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>
