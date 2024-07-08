@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  } 
+  .badge-primary {
+    color: #fff;
+    background-color: #007bff;
+  }
+  
+  .badge-secondary {
+    color: #fff;
+    background-color: #6c757d;
+  }
+  
+  /* Hover effect for table rows */
+  table.table-hover tr:hover {
+    background-color: #f5f5f5;
+  }
+  

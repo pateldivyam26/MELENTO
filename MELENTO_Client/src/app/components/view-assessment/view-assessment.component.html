@@ -1,24 +1,76 @@
-<div class="container card-body card shadow mt-5 table-responsive mt-3">
-    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Assessment Name</th>
-                <th scope="col">Assessment Date</th>
-                <th scope="col">Total Marks</th>
-                <th scope="col">Faculty ID</th>
-                <th scope="col">Download</th>
-            </tr>
-        </thead>
-        <tbody id="assessment-table-body">
-            <tr *ngFor="let assessment of arrAssessments">
-                <td scope="col">{{assessment.id}}</td>
-                <td scope="col">{{assessment.assessmentName}}</td>
-                <td scope="col">{{assessment.assessmentDate}}</td>
-                <td scope="col">{{assessment.totalMarks}}</td>
-                <td scope="col">{{assessment.facultyId}}</td>
-                <td scope="col"><i class="fa fa-download" aria-hidden="true" (click)="download(assessment)"></i></td>
-            </tr> 
-        </tbody>
-    </table>
-</div>
+<div class="container-fluid my-3">
+    <div class="table-responsive table-hover">
+      <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 " matSort>
+  
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+        </ng-container>
+  
+        <!-- Assessment Name Column -->
+        <ng-container matColumnDef="assessmentName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Assessment Name </th>
+          <td mat-cell *matCellDef="let element"> {{ element.assessmentName }} </td>
+        </ng-container>
+  
+        <!-- Assessment Date Column -->
+        <ng-container matColumnDef="assessmentDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Assessment Date </th>
+          <td mat-cell *matCellDef="let element"> {{ element.assessmentDate }} </td>
+        </ng-container>
+  
+        <!-- Total Marks Column -->
+        <ng-container matColumnDef="totalMarks">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Marks </th>
+          <td mat-cell *matCellDef="let element"> {{ element.totalMarks }} </td>
+        </ng-container>
+  
+        <!-- Faculty ID Column -->
+        <ng-container matColumnDef="facultyId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Faculty ID </th>
+          <td mat-cell *matCellDef="let element"> {{ element.facultyId }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="active">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status</th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="element.active" class="badge badge-primary">Active</span>
+              <span *ngIf="!element.active" class="badge badge-secondary">Inactive</span>
+            </td>
+          </ng-container>
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="download(element)">
+              <mat-icon>download</mat-icon>
+            </button>
+            <button mat-icon-button (click)="toggleRow(element)">
+              <mat-icon>{{ expandedElement === element ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Expanded Content Column -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="example-element-detail" [@detailExpand]="element === expandedElement ? 'expanded' : 'collapsed'">
+              <mat-list *ngIf="expandedElement === element">
+                <mat-list-item *ngFor="let question of element.questions">Q{{question.id}}:{{ question.questionText }}</mat-list-item>
+              </mat-list>
+            </div>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons>
+  </mat-paginator>
+    </div>
+  </div>
+  
