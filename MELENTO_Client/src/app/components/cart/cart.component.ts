@@ -23,7 +23,6 @@ export class CartComponent {
     var tId = localStorage.getItem('id');
     if (tId != null) this.tempId = tId.toString();
     if (this.tempId !== null) {
-      console.log(this.tempId);
       this.cartService.getCartById(this.tempId.toString()).subscribe((data) => {
         this.cart = data;
         if (this.cart.arrAssessments.length > 0) {
@@ -32,7 +31,6 @@ export class CartComponent {
       });
       this.traineeService.getTrainee().subscribe(data => {
         this.arrTrainees = data;
-        console.log(data);
         for (var i = 0; i < this.arrTrainees.length; i++) {
           if (this.tempId === (this.arrTrainees[i].userId).toString()) {
             this.traineeexists = true;
@@ -42,7 +40,6 @@ export class CartComponent {
         if (this.traineeexists) {
           this.traineeService.getTraineeById(this.traineeId).subscribe(data => {
             this.trainee = data;
-            console.log(data);
           })
         }
       })
@@ -67,7 +64,6 @@ export class CartComponent {
     this.cartService.UpdateCart(this.cart).subscribe();
   }
   checkout() {
-    console.log(this.cart.arrAssessments);
     if (this.traineeexists) {
       this.updateTrainee();
     }
@@ -80,8 +76,6 @@ export class CartComponent {
     this.cart.total = 0;
     this.cartService.UpdateCart(this.cart).subscribe();
     this.router.navigate(['/home']);
-    //redirect to dashboard and clear cart fuctionalities left
-
   }
 
   removeFromCart(i: number): void {
