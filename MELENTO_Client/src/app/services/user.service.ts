@@ -25,13 +25,14 @@ export class UserService {
     // return this.arrUsers;
     return this.httpClient.get<User[]>(this.baseUrl+'/users').pipe(catchError(this.httpError));
   }
-  getUserById(id: number) {
-    for (var i = 0; i < this.arrUsers.length; i++) {
-      if (id == this.arrUsers[i].id) {
-        return this.arrUsers[i]
-      }
-    }
-    return new User(0, "", "", "", "", "", "", "", new Address(0, 0, '', '', '', '', '', 0))
+  getUserById(id: number):Observable<User>{
+    // for (var i = 0; i < this.arrUsers.length; i++) {
+    //   if (id == this.arrUsers[i].id) {
+    //     return this.arrUsers[i]
+    //   }
+    // }
+    // return new User(0, "", "", "", "", "", "", "", new Address(0, 0, '', '', '', '', '', 0))
+    return this.httpClient.get<User>(this.baseUrl+'/users/'+id.toString()).pipe(catchError(this.httpError));
   }
 
   // addUser(u: User) {
