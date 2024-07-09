@@ -1,6 +1,6 @@
 <div class="container mt-5">
-    <div class="row">
-      <p class="fw-bold">Enrolled Assessments</p>
+    <div class="row" style="text-align: center;">
+      <h2>Enrolled Assessments</h2>
       <ng-container *ngIf="assessmentDetails.length == 0">
         <div class="alert alert-warning" role="alert">
           No assessments enrolled yet!
@@ -23,8 +23,8 @@
     </ng-container>
     </div>
 
-    <div class="row mt-4">
-      <p class="fw-bold">Completed Assessments</p>
+    <div class="row mt-4" style="text-align: center;">
+      <h2>Completed Assessments</h2>
       <ng-container *ngIf="completedAssessments.length == 0">
         <div class="alert alert-warning" role="alert">
           No assessments completed yet!
@@ -44,9 +44,9 @@
         </div>
       </div>
     </div>
-  
-    <div *ngIf="role=='faculty'" class="row mt-4">
-      <p class="text-center fw-bold">Mentoring Assessments</p>
+
+    <div *ngIf="role=='faculty'" class="row mt-4" style="text-align: center;">
+      <h2>Mentoring Assessments</h2>
       <div class="col-md-4" *ngFor="let item of facultyArrAssessments; let i = index">
         <div class="card mb-4 shadow">
           <img [src]="item.assessmentImage" class="card-img-top" width="150px" height="150px" alt="{{item.assessmentName}}">
@@ -60,9 +60,9 @@
         </div>
       </div>
     </div>
-  
-    <div *ngIf="role=='admin'" class="row mt-4">
-      <p class="text-center fw-bold">All assessments</p>
+
+    <div *ngIf="role=='admin'" class="row mt-4" style="text-align: center;">
+      <h2>All Assessments</h2>
       <div class="col-md-4" *ngFor="let item of arrAssessments; let i = index">
         <div class="card mb-4 shadow">
           <img [src]="item.assessmentImage" class="card-img-top" width="150px" height="150px" alt="{{item.assessmentName}}">
@@ -77,4 +77,3 @@
       </div>
     </div>
   </div>
-  
