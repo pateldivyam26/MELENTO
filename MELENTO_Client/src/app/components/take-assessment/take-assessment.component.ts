@@ -185,7 +185,7 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
   saveAssessmentScore() {
     console.log(this.trainee);
     this.trainee.completedAssessments = this.trainee.completedAssessments || [];
-    this.trainee.completedAssessments.push(new completedAssessments(this.assessment.id, this.traineeOverallScore));
+    this.trainee.completedAssessments.push(new completedAssessments(this.assessmentScore.id, this.traineeOverallScore));
     console.log(this.trainee);
     this.traineeService.updateTrainee(this.trainee).subscribe();
 }
