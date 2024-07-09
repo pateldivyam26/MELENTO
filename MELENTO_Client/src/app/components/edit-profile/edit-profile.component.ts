@@ -28,7 +28,7 @@ export class EditProfileComponent {
       id: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       mobileNo: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       dob: ['', Validators.required],
       role: [{ value: '', disabled: true }, Validators.required],
