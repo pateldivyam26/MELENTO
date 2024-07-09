@@ -12,9 +12,11 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class EditProfileComponent {
   userAddForm: FormGroup;
+  arrUser: User[] = []
   user = new User(0, "", "", "", "", "", "", "", new Address(0, 0, '', '', '', '', '', 0));
   maxDate: string = '';
-
+  tempId: string = '';
+  userId: number = 0;
   constructor(private fb: FormBuilder,private userService: UserService,private _snackBar: MatSnackBar) {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -39,15 +41,22 @@ export class EditProfileComponent {
       country: ['', Validators.required],
       pincode: ['', [Validators.required, Validators.pattern(/^\d{6}$/)]]
     });
-
-    this.userService.getUserById(2).subscribe((data: User) => {
-      if (data) {
-        this.user = data;
+    const tId = localStorage.getItem('id');
+    if (tId != null) this.tempId = tId.toString();
+    if (this.tempId !== null) {
+      this.userService.getUsers().subscribe(data => {
+        this.arrUser = data;
+        for (let i = 0; i < this.arrUser.length; i++) {
+          if (this.tempId === (this.arrUser[i].id).toString()) {
+            this.userId = this.arrUser[i].id;
+          }
+        }
+        this.userService.getUserById(this.userId).subscribe(data => {
+          this.user = data;
         this.populateForm();
-      } else {
-        console.log('Error Updating Data')
-      }
-    });
+        });
+      });
+    }
   }
 
   get f() { return this.userAddForm.controls; }
