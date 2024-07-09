@@ -203,7 +203,7 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
     this.assessmentScore.assessmentScore=this.traineeScores;
     this.assessmentScore.facultyId=this.assessment.facultyId;
     this.assessmentScore.result=this.pass?"Pass":"Fail";
-    // console.log(this.assessmentScore);
+    console.log(this.assessmentScore);
     this.assessmentScoreService.addAssessmentScore(this.assessmentScore).subscribe();
   }
   makeAttendance(){

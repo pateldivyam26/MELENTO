@@ -6,6 +6,8 @@ import { Assessment } from '../../models/assessment';
 import { AssessmentsService } from '../../services/assessments.service';
 import { Faculty } from '../../models/faculty';
 import { FacultyService } from '../../services/faculty.service';
+import { AssessmentScore } from '../../models/assessmentScore';
+import { AssessmentScoreService } from '../../services/assessment-score.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +28,8 @@ export class DashboardComponent {
   facultyId: number = 0;
   role: string = '';
 
-  constructor(private traineeService: TraineeService, private assessmentsService: AssessmentsService, private router: Router, private facultyService: FacultyService) {
+  constructor(private traineeService: TraineeService, private assessmentsService: AssessmentsService, private router: Router, private facultyService: FacultyService,
+    private assessmentScoreService: AssessmentScoreService) {
     const tId = localStorage.getItem('id');
     if (tId != null) this.tempId = tId.toString();
     if (this.tempId !== null) {
@@ -86,10 +89,12 @@ export class DashboardComponent {
       });
     }
     for (const completedAssmnt of this.trainee.completedAssessments) {
-      this.assessmentsService.getAssessmentById(completedAssmnt.id).subscribe(assessmentData => {
-        this.completedAssessments.push({
-          assessment: assessmentData,
-          completedAssessment: completedAssmnt
+      this.assessmentScoreService.getAssessmentScoreById(completedAssmnt.id).subscribe((data:AssessmentScore)=>{
+        this.assessmentsService.getAssessmentById(data.assessmentId).subscribe(assessmentData => {
+          this.completedAssessments.push({
+            assessment: assessmentData,
+            completedAssessment: completedAssmnt
+          });
         });
       });
     }
@@ -111,8 +116,8 @@ export class DashboardComponent {
     }
   }
 
-  viewCharts(assessmentId: number): void {
-    this.router.navigate(['viewcharts/', assessmentId]);
+  viewCharts(assessmentscoreId: number): void {
+    this.router.navigate(['viewcharts/', assessmentscoreId]);
   }
 
   updateAssessmentStatus(item: Assessment, state: boolean) {
