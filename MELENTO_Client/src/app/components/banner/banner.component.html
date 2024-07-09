@@ -38,8 +38,12 @@
           <c-nav-item>
             <a cNavLink [routerLink]="['/contactus']">Contact Us</a>
           </c-nav-item>
-          <c-nav-item *ngIf="userLoggedIn">
-            <a cNavLink [routerLink]="['/cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
+          <c-nav-item *ngIf="userLoggedIn" class="me-1">
+              <a cNavLink [routerLink]="['/cart']">
+                <div *ngIf="minBadge != 0" matBadge="{{minBadge}}" matBadgeOverlap="false"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</div>
+                <div *ngIf="minBadge == 0"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</div>
+              </a>
+
           </c-nav-item>
           <c-nav-item *ngIf="!userLoggedIn" class="me-2">
             <a data-bs-toggle="modal" data-bs-target="#authModal"><button type="button"

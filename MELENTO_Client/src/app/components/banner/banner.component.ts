@@ -9,42 +9,47 @@ import { CartService } from '../../services/cart.service';
 import { Assessment } from '../../models/assessment';
 import { AssessmentsService } from '../../services/assessments.service';
 import { Address } from '../../models/address';
+import { Cart } from '../../models/cart';
 
 @Component({
-    selector: 'app-banner',
-    templateUrl: './banner.component.html',
-    styleUrl: './banner.component.scss'
+  selector: 'app-banner',
+  templateUrl: './banner.component.html',
+  styleUrl: './banner.component.scss'
 })
 
 export class BannerComponent {
-    userLoggedIn: boolean = false;
-    adminRole: boolean = false;
-    newAssment: number = 0;
-    minBadge: number = 0;
-    searchTerm: string = '';
-    assessments: Assessment[] = [];
-    userInitials: string = '';
-    arrUser: User[] = []
-    user = new User(0, "", "", "", "", "", "", "", new Address(0, 0, '', '', '', '', '', 0));
-    tempId: string = '';
-    userId: number = 0;
+  userLoggedIn: boolean = false;
+  adminRole: boolean = false;
+  newAssment: number = 0;
+  minBadge: number = 0;
+  searchTerm: string = '';
+  assessments: Assessment[] = [];
+  userInitials: string = '';
+  arrUser: User[] = []
+  user = new User(0, "", "", "", "", "", "", "", new Address(0, 0, '', '', '', '', '', 0));
+  tempId: string = '';
+  userId: number = 0;
+  cart: Cart[] = [];
+  constructor(private router: Router, private cartService: CartService, private assessmentsService: AssessmentsService, private userService: UserService) {
+    var role = localStorage.getItem('role')
+    if (role == 'admin' || role === 'faculty') {
+      this.adminRole = true;
+    }
+    if (role !== null) {
+      this.userLoggedIn = true;
+    }
+    this.cartService.getcheckout().subscribe(data => {
+      this.newAssment += data;
+    });
+    this.cartService.getCart().subscribe(data => {
+      this.cart = data;
+      this.updateBadgeCount();
+    });
+    this.assessmentsService.getAssessments().subscribe(data => {
+      this.assessments = data;
+    });
 
-    constructor(private router: Router, private cartService: CartService, private assessmentsService: AssessmentsService, private userService: UserService) {
-        var role = localStorage.getItem('role')
-        if (role == 'admin' || role === 'faculty') {
-            this.adminRole = true;
-        }
-        if (role !== null) {
-            this.userLoggedIn = true;
-        }
-        this.cartService.getcheckout().subscribe(data => {
-            this.newAssment += data;
-        });
-        this.assessmentsService.getAssessments().subscribe(data => {
-            this.assessments = data;
-        });
-
-        const tId = localStorage.getItem('id');
+    const tId = localStorage.getItem('id');
     if (tId != null) this.tempId = tId.toString();
     if (this.tempId !== null) {
       this.userService.getUsers().subscribe(data => {
@@ -60,47 +65,60 @@ export class BannerComponent {
         })
       })
     }
-    }
+  }
 
-    setUserInitials() {
-      if (this.user) {
-        const firstNameInitial = this.user.firstName.charAt(0).toUpperCase();
-        const lastNameInitial = this.user.lastName.charAt(0).toUpperCase();
-        this.userInitials = `${firstNameInitial}${lastNameInitial}`;
+  setUserInitials() {
+    if (this.user) {
+      const firstNameInitial = this.user.firstName.charAt(0).toUpperCase();
+      const lastNameInitial = this.user.lastName.charAt(0).toUpperCase();
+      this.userInitials = `${firstNameInitial}${lastNameInitial}`;
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('role');
+    localStorage.removeItem('id');
+    this.userLoggedIn = false;
+    console.log("User logged out");
+    this.router.navigate(['/home']).then(() => {
+      location.reload();
+    });
+  }
+
+  updateBadgeCount() {
+    if (this.cart.length > 0) {
+      let totalCount = 0;
+      for (let i = 0; i < this.cart.length; i++) {
+        totalCount += this.cart[i].quantity.reduce((a, b) => a + b, 0);
       }
+      this.minBadge = totalCount;
     }
-
-    logout() {
-        localStorage.removeItem('role');
-        localStorage.removeItem('id');
-        this.userLoggedIn = false;
-        console.log("User logged out");
-        this.router.navigate(['/home']).then(() => {
-            location.reload();
-        });
+    else {
+      this.minBadge = 0;
     }
-    newAssessment(event: any) {
-        this.newAssment = event;
+  }
+  newAssessment(event: any) {
+    this.newAssment = event;
+  }
+  CheckNewAssment() {
+    if (this.newAssment > 0) {
+      return true;
     }
-    CheckNewAssment() {
-        if (this.newAssment > 0) {
-            return true;
-        }
-        return false;
+    return false;
+  }
+  resetBadge() {
+    this.newAssment = 0;
+    // console.log("resetted");
+  }
+  onSearchSubmit(event: any) {
+    event.preventDefault();
+    const exactMatch = this.assessments.find(assessment =>
+      assessment.assessmentName.toLowerCase() === this.searchTerm.toLowerCase()
+    );
+    if (exactMatch) {
+      this.router.navigate(['viewassessmentdetails/', exactMatch.id]);
+    } else {
+      console.log('No matching assessment found');
     }
-    resetBadge() {
-        this.newAssment = 0;
-        // console.log("resetted");
-    }
-    onSearchSubmit(event: any) {
-        event.preventDefault();
-        const exactMatch = this.assessments.find(assessment =>
-            assessment.assessmentName.toLowerCase() === this.searchTerm.toLowerCase()
-        );
-        if (exactMatch) {
-            this.router.navigate(['viewassessmentdetails/', exactMatch.id]);
-        } else {
-            console.log('No matching assessment found');
-        }
-    }
+  }
 }
