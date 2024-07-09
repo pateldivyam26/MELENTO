@@ -1,53 +1,51 @@
-<div id="contentToConvert" class="container mt-5 flex-grow-1 mb-5">
-    <div class="card">
-        <div class="card-header">
-            <h4 class="text-center">Assessment Score Details</h4>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-6">
-                    <p><strong>Assessment ID:</strong> {{ score.assessmentId }}</p>
-                </div>
-                <div class="col-md-6">
-                    <p><strong>Assessment Name:</strong> {{ assessment.assessmentName }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p><strong>Trainee ID:</strong> {{ score.traineeId }}</p>
-                </div>
-                <div class="col-md-6">
-                    <p><strong>Faculty ID:</strong> {{ score.facultyId }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p><strong>Marks Obtained:</strong> {{ score.score }}</p>
-                </div>
-                <div class="col-md-6">
-                    <p><strong>Total Marks:</strong> {{ assessment.totalMarks }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p><strong>Result: </strong> {{ score.result }}</p>
-                </div>
-            </div>
-            <div class="row mt-4 justify-content-center">
-                <div class="col-md-8">
-                    <canvasjs-chart [options]="chartOptions_bar"
-                        [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                </div>
-            </div>
-            <div class="row mt-4 justify-content-center">
-                <div class="col-md-8">
-                    <canvasjs-chart [options]="chartOptions"
-                        [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
-                </div>
-            </div>
-            <div class="text-center mt-3">
-                <button class="btn btn-primary" (click)="captureScreen()">Download PDF</button>
-            </div>
-        </div>
+<div class="container mt-5 flex-grow-1 mb-5">
+  <div class="card" id="contentToConvert">
+    <div class="card-header">
+      <h4 class="text-center">Assessment Score Details</h4>
     </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Assessment ID:</strong> {{ score.assessmentId }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Assessment Name:</strong> {{ assessment.assessmentName }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Trainee ID:</strong> {{ score.traineeId }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Faculty ID:</strong> {{ score.facultyId }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Marks Obtained:</strong> {{ score.score }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Total Marks:</strong> {{ assessment.totalMarks }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Result: </strong> {{ score.result }}</p>
+        </div>
+      </div>
+      <div class="row mt-4 justify-content-center">
+        <div class="col-md-8">
+          <canvasjs-chart [options]="chartOptions_bar" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+        </div>
+      </div>
+      <div class="row mt-4 justify-content-center">
+        <div class="col-md-8">
+          <canvasjs-chart [options]="chartOptions" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button class="btn btn-primary" (click)="captureScreen()">Download PDF</button>
+      </div>
+    </div>
+  </div>
 </div>

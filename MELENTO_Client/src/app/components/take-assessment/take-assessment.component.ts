@@ -175,7 +175,7 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
   // Method to submit the assessment
   submitAssessment() {
       this.submited=true;
-      this.traineeOverallScore=this.calcualteScores(); 
+      this.traineeOverallScore=this.calcualteScores();
       this.pass=this.passOrFail(50);
       this.makeAssessmentScore();
       this.makeAttendance();
@@ -241,7 +241,7 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
         }
         else{
           this.traineeScores.push(0);
-        
+
         }
       }
       else{
@@ -267,15 +267,16 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
     var data = document.getElementById("contentToConvert");
     if (data) {
       html2canvas(data).then(canvas => {
-        var imgWidth = 170;
-        var pageHeight = 250;
+        var imgWidth = 190;
+        var pageHeight = 297;
         var imgHeight = (canvas.height * imgWidth) / canvas.width;
         var heightLeft = imgHeight;
-  
+
         const contentDataURL = canvas.toDataURL("image/png");
-        let pdf = new jspdf("p", "mm", "a4"); 
-        var position = 0;
-        pdf.addImage(contentDataURL, "PNG", 0, position, imgWidth, imgHeight);
+        let pdf = new jspdf("p", "mm", "a4");
+        var position = (pageHeight - imgHeight) / 2;
+
+        pdf.addImage(contentDataURL, "PNG", 10, position, imgWidth, imgHeight);
         pdf.save(`Report_${this.assessment.assessmentName}_${this.assessment.id}.pdf`);
       }).catch(error => {
         console.error('Error generating PDF: ', error);
@@ -284,7 +285,6 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
       console.error('Element not found!');
     }
   }
-  
 
   openDialog() {
     const dialogRef = this.dialog.open(InstructionsDialogBoxComponent);
