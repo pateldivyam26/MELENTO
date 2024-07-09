@@ -63,7 +63,7 @@ import { InstructionsDialogBoxComponent } from './components/instructions-dialog
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { CollapseModule, DropdownModule, GridModule, NavbarModule, NavModule } from '@coreui/angular';
+import { AvatarModule, CollapseModule, DropdownModule, GridModule, NavbarModule, NavModule } from '@coreui/angular';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
@@ -85,7 +85,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     BrowserModule,
     AppRoutingModule, FormsModule, ReactiveFormsModule, MatStepperModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatToolbarModule,
     MatOption, MatIcon, MatSelectModule, MatRadioModule, MatDividerModule, HttpClientModule, MatBadgeModule,MatTabsModule,MatCheckboxModule, CanvasJSAngularChartsModule,
-    MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule, DropdownModule, NavbarModule, GridModule, NavModule, CollapseModule],
+    MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule, DropdownModule, NavbarModule, GridModule, NavModule, CollapseModule, AvatarModule],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync()

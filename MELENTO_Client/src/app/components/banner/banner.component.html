@@ -6,15 +6,17 @@
         Assessment Portal
       </a>
       <button [cNavbarToggler]="collapseRef"></button>
-      <form class="d-flex ms-5" (ngSubmit)="onSearchSubmit($event)">
-        <div class="input-group">
-          <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
-          <input class="form-control" type="search" placeholder="Search Assessments" aria-label="Search"
-            [(ngModel)]="searchTerm" name="search"  style="width: 500px;">
-        </div>
-      </form>
       <div #collapseRef="cCollapse" navbar cCollapse>
         <c-navbar-nav class="ms-auto mb-2 mb-lg-0">
+          <c-nav-item>
+            <form class="d-flex ms-5 mt-1" (ngSubmit)="onSearchSubmit($event)">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <input class="form-control" type="search" placeholder="Search Assessments" aria-label="Search"
+                  [(ngModel)]="searchTerm" name="search">
+              </div>
+            </form>
+          </c-nav-item>
           <c-nav-item>
             <a cNavLink [routerLink]="['/home']">Home</a>
           </c-nav-item>
@@ -45,11 +47,12 @@
           </c-nav-item>
           <c-nav-item *ngIf="userLoggedIn" class="me-4">
             <c-dropdown direction="center" variant="nav-item" [popper]="false">
-              <a cDropdownToggle cNavLink class="dropdown-toggle d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="30"
-                  alt="" loading="lazy" />
+              <a cDropdownToggle cNavLink class="dropdown-toggle d-flex align-items-center no-dropdown-arrow">
+                <div class="avatar-wrapper">
+                  <div class="avatar-circle">{{ userInitials }}</div>
+                </div>
               </a>
-              <ul cDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <ul cDropdownMenu class="dropdown-menu custom-dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><button cDropdownItem [routerLink]="['/editprofile']">Edit Profile</button></li>
                 <li><button cDropdownItem [routerLink]="['/cart']">Cart</button></li>
                 <li><button cDropdownItem (click)="logout()">Logout</button></li>

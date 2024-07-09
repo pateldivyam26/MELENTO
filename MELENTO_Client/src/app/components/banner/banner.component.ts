@@ -8,6 +8,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from '../../services/cart.service';
 import { Assessment } from '../../models/assessment';
 import { AssessmentsService } from '../../services/assessments.service';
+import { Address } from '../../models/address';
 
 @Component({
     selector: 'app-banner',
@@ -22,7 +23,13 @@ export class BannerComponent {
     minBadge: number = 0;
     searchTerm: string = '';
     assessments: Assessment[] = [];
-    constructor(private router: Router, private cartService: CartService, private assessmentsService: AssessmentsService) {
+    userInitials: string = '';
+    arrUser: User[] = []
+    user = new User(0, "", "", "", "", "", "", "", new Address(0, 0, '', '', '', '', '', 0));
+    tempId: string = '';
+    userId: number = 0;
+
+    constructor(private router: Router, private cartService: CartService, private assessmentsService: AssessmentsService, private userService: UserService) {
         var role = localStorage.getItem('role')
         if (role == 'admin' || role === 'faculty') {
             this.adminRole = true;
@@ -36,6 +43,31 @@ export class BannerComponent {
         this.assessmentsService.getAssessments().subscribe(data => {
             this.assessments = data;
         });
+
+        const tId = localStorage.getItem('id');
+    if (tId != null) this.tempId = tId.toString();
+    if (this.tempId !== null) {
+      this.userService.getUsers().subscribe(data => {
+        this.arrUser = data;
+        for (let i = 0; i < this.arrUser.length; i++) {
+          if (this.tempId === (this.arrUser[i].id).toString()) {
+            this.userId = this.arrUser[i].id;
+          }
+        }
+        this.userService.getUserById(this.userId).subscribe(data => {
+          this.user = data;
+          this.setUserInitials();
+        })
+      })
+    }
+    }
+
+    setUserInitials() {
+      if (this.user) {
+        const firstNameInitial = this.user.firstName.charAt(0).toUpperCase();
+        const lastNameInitial = this.user.lastName.charAt(0).toUpperCase();
+        this.userInitials = `${firstNameInitial}${lastNameInitial}`;
+      }
     }
 
     logout() {
