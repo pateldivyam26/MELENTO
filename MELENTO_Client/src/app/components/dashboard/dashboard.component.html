@@ -37,7 +37,7 @@
             <h5 class="card-title">{{ item.assessment.assessmentName }}</h5>
             <p class="card-text"><b>Your Score: </b>{{ item.completedAssessment.score }}/{{ item.assessment.totalMarks }}</p>
             <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(item.assessment.id)">View Details</button>
-            <button class="btn btn-outline-success" (click)="viewCharts(item.assessment.id)">
+            <button class="btn btn-outline-success" (click)="viewCharts(item.completedAssessment.id)">
               View Score
             </button>
           </div>
