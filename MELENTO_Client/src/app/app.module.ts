@@ -63,6 +63,8 @@ import { InstructionsDialogBoxComponent } from './components/instructions-dialog
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CollapseModule, DropdownModule, GridModule, NavbarModule, NavModule } from '@coreui/angular';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -77,13 +79,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ViewScoreComponent,
     ViewReportComponent,
     ViewAttendanceComponent,
-    CurrencyPipe, PageNotFoundComponent, ShowStartingWordsPipe, SearchAssessmentsPipe, TakeAssessmentComponent, ViewChartsComponent, InstructionsDialogBoxComponent,
+    CurrencyPipe, PageNotFoundComponent, ShowStartingWordsPipe, SearchAssessmentsPipe, TakeAssessmentComponent, ViewChartsComponent, InstructionsDialogBoxComponent, EditProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, FormsModule, ReactiveFormsModule, MatStepperModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatToolbarModule,
     MatOption, MatIcon, MatSelectModule, MatRadioModule, MatDividerModule, HttpClientModule, MatBadgeModule,MatTabsModule,MatCheckboxModule, CanvasJSAngularChartsModule,
-    MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule],
+    MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule, DropdownModule, NavbarModule, GridModule, NavModule, CollapseModule],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync()

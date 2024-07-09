@@ -8,6 +8,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from '../../services/cart.service';
 import { Assessment } from '../../models/assessment';
 import { AssessmentsService } from '../../services/assessments.service';
+
 @Component({
     selector: 'app-banner',
     templateUrl: './banner.component.html',

@@ -1,0 +1,127 @@
+<div class="container my-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center">Update Profile</h3>
+        </div>
+      </div>
+      <div class="row">
+        <form [formGroup]="userAddForm" (ngSubmit)="onSubmit()">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" id="firstName" class="form-control" formControlName="firstName">
+              <div *ngIf="f['firstName'].touched && f['firstName'].errors" class="text-danger">
+                <div *ngIf="f['firstName'].errors['required']">* Required First Name</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" id="lastName" class="form-control" formControlName="lastName">
+              <div *ngIf="f['lastName'].touched && f['lastName'].errors" class="text-danger">
+                <div *ngIf="f['lastName'].errors['required']">* Required Last Name</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" class="form-control" formControlName="email">
+              <div *ngIf="f['email'].touched && f['email'].errors" class="text-danger">
+                <div *ngIf="f['email'].errors['required']">* Required Email</div>
+                <div *ngIf="f['email'].errors['email']">* Please enter a valid email address</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="mobileNo" class="form-label">Mobile No.</label>
+              <input type="tel" id="mobileNo" class="form-control" formControlName="mobileNo">
+              <div *ngIf="f['mobileNo'].touched && f['mobileNo'].errors" class="text-danger">
+                <div *ngIf="f['mobileNo'].errors['required']">* Required Mobile No.</div>
+                <div *ngIf="f['mobileNo'].errors['pattern']">* Mobile No. should be 10 digits</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="dob" class="form-label">Date of Birth</label>
+              <input type="date" id="dob" class="form-control" formControlName="dob" max="{{ maxDate }}">
+              <div *ngIf="f['dob'].touched && f['dob'].errors" class="text-danger">
+                <div *ngIf="f['dob'].errors['required']">* Required Date of Birth</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="role" class="form-label">Role</label>
+              <input type="text" id="role" class="form-control" formControlName="role">
+              <div *ngIf="f['role'].touched && f['role'].errors" class="text-danger">
+                <div *ngIf="f['role'].errors['required']">* Required Role</div>
+              </div>
+            </div>
+          </div>
+          <!-- Address fields -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="houseNo" class="form-label">House No.</label>
+              <input type="number" id="houseNo" class="form-control" formControlName="houseNo">
+              <div *ngIf="f['houseNo'].touched && f['houseNo'].errors" class="text-danger">
+                <div *ngIf="f['houseNo'].errors['required']">* Required House No.</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="street" class="form-label">Street</label>
+              <input type="text" id="street" class="form-control" formControlName="street">
+              <div *ngIf="f['street'].touched && f['street'].errors" class="text-danger">
+                <div *ngIf="f['street'].errors['required']">* Required Street</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="area" class="form-label">Area</label>
+              <input type="text" id="area" class="form-control" formControlName="area">
+              <div *ngIf="f['area'].touched && f['area'].errors" class="text-danger">
+                <div *ngIf="f['area'].errors['required']">* Required Area</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="city" class="form-label">City</label>
+              <input type="text" id="city" class="form-control" formControlName="city">
+              <div *ngIf="f['city'].touched && f['city'].errors" class="text-danger">
+                <div *ngIf="f['city'].errors['required']">* Required City</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="state" class="form-label">State</label>
+              <input type="text" id="state" class="form-control" formControlName="state">
+              <div *ngIf="f['state'].touched && f['state'].errors" class="text-danger">
+                <div *ngIf="f['state'].errors['required']">* Required State</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="country" class="form-label">Country</label>
+              <input type="text" id="country" class="form-control" formControlName="country">
+              <div *ngIf="f['country'].touched && f['country'].errors" class="text-danger">
+                <div *ngIf="f['country'].errors['required']">* Required Country</div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="pincode" class="form-label">Pincode</label>
+              <input type="number" id="pincode" class="form-control" formControlName="pincode">
+              <div *ngIf="f['pincode'].touched && f['pincode'].errors" class="text-danger">
+                <div *ngIf="f['pincode'].errors['required']">* Required Pincode</div>
+                <div *ngIf="f['pincode'].errors['pattern']">* Pincode should be 6 digits</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="userAddForm.invalid">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

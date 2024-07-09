@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { TakeAssessmentComponent } from './components/take-assessment/take-assessment.component';
 import { ViewChartsComponent } from './components/view-charts/view-charts.component';
 import { LoginGuard } from './guards/loginguard';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
@@ -27,9 +28,10 @@ const routes: Routes = [
   {path:"viewassessmentdetails/:id",component:ViewAssessmentDetailsComponent},
   {path:"takeassessment/:id",component:TakeAssessmentComponent},
   {path:"viewcharts/:id",component:ViewChartsComponent,canActivate:[LoginGuard()]},
+  {path:"editprofile",component:EditProfileComponent},
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '404'}
-  
+
 ];
 
 @NgModule({

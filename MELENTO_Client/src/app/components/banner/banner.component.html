@@ -1,86 +1,94 @@
 <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid" style="font-weight: bold;">
-            <a class="navbar-brand" [routerLink]="['/home']">
-                <img src="assets/images/evaluation.svg" alt="Logo" style="width:40px;">
-                Assessment Portal
+  <c-navbar colorScheme="light" expand="lg" class="navbar">
+    <c-container fluid style="font-weight: bold;">
+      <a cNavbarBrand [routerLink]="['/home']">
+        <img src="assets/images/evaluation.svg" alt="Logo" style="width:40px;">
+        Assessment Portal
+      </a>
+      <button [cNavbarToggler]="collapseRef"></button>
+      <form class="d-flex ms-5" (ngSubmit)="onSearchSubmit($event)">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+          <input class="form-control" type="search" placeholder="Search Assessments" aria-label="Search"
+            [(ngModel)]="searchTerm" name="search"  style="width: 500px;">
+        </div>
+      </form>
+      <div #collapseRef="cCollapse" navbar cCollapse>
+        <c-navbar-nav class="ms-auto mb-2 mb-lg-0">
+          <c-nav-item>
+            <a cNavLink [routerLink]="['/home']">Home</a>
+          </c-nav-item>
+          <c-nav-item *ngIf="userLoggedIn">
+            <a cNavLink [routerLink]="['/dashboard']" (click)="resetBadge()">
+              <div *ngIf="newAssment != 0" matBadge="{{newAssment}}" matBadgeOverlap="false">Dashboard</div>
+              <div *ngIf="newAssment == 0">Dashboard</div>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" [routerLink]="['/home']">Home</a>
-                    </li>
-                    <li *ngIf="userLoggedIn" class="nav-item">
-                        <a class="nav-link" [routerLink]="['/dashboard']" (click)="resetBadge()">
-                            <div *ngIf="newAssment != 0" matBadge="{{newAssment}}" matBadgeOverlap="false">Dashboard</div>
-                            <div *ngIf="newAssment == 0">Dashboard</div>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/aboutus']">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/assessments']">Assessments</a>
-                    </li>
-                    <li *ngIf="adminRole" class="nav-item">
-                        <a class="nav-link" [routerLink]="['/admin']">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/contactus']">Contact Us</a>
-                    </li>
-                    <li *ngIf="userLoggedIn" class="nav-item">
-                        <a class="nav-link" [routerLink]="['/cart']"><i class="fa fa-shopping-cart"
-                                aria-hidden="true"></i>Cart</a>
-                    </li>
-                    <li *ngIf="!userLoggedIn" class="nav-item me-2">
-                        <a data-bs-toggle="modal" data-bs-target="#authModal"><button type="button"
-                                class="btn btn-primary">Login</button></a>
-                    </li>
-                    <li *ngIf="userLoggedIn" class="nav-item me-2">
-                        <button type="button" class="btn btn-success" (click)="logout()">Logout</button>
-                    </li>
-                    <form class="d-flex" (ngSubmit)="onSearchSubmit($event)">
-                        <input class="form-control" type="search" placeholder="Search Assessments" aria-label="Search" [(ngModel)]="searchTerm" name="search">
-                    </form>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          </c-nav-item>
+          <c-nav-item>
+            <a cNavLink [routerLink]="['/aboutus']">About</a>
+          </c-nav-item>
+          <c-nav-item>
+            <a cNavLink [routerLink]="['/assessments']">Assessments</a>
+          </c-nav-item>
+          <c-nav-item *ngIf="adminRole">
+            <a cNavLink [routerLink]="['/admin']">Admin</a>
+          </c-nav-item>
+          <c-nav-item>
+            <a cNavLink [routerLink]="['/contactus']">Contact Us</a>
+          </c-nav-item>
+          <c-nav-item *ngIf="userLoggedIn">
+            <a cNavLink [routerLink]="['/cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
+          </c-nav-item>
+          <c-nav-item *ngIf="!userLoggedIn" class="me-2">
+            <a data-bs-toggle="modal" data-bs-target="#authModal"><button type="button"
+                class="btn btn-primary">Login</button></a>
+          </c-nav-item>
+          <c-nav-item *ngIf="userLoggedIn" class="me-4">
+            <c-dropdown direction="center" variant="nav-item" [popper]="false">
+              <a cDropdownToggle cNavLink class="dropdown-toggle d-flex align-items-center">
+                <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="30"
+                  alt="" loading="lazy" />
+              </a>
+              <ul cDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><button cDropdownItem [routerLink]="['/editprofile']">Edit Profile</button></li>
+                <li><button cDropdownItem [routerLink]="['/cart']">Cart</button></li>
+                <li><button cDropdownItem (click)="logout()">Logout</button></li>
+              </ul>
+            </c-dropdown>
+          </c-nav-item>
+        </c-navbar-nav>
+      </div>
+    </c-container>
+  </c-navbar>
 
-    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="authModalLabel">Login / Register</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="nav nav-tabs" id="authTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
-                                type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register"
-                                type="button" role="tab" aria-controls="register"
-                                aria-selected="false">Register</button>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="authTabContent">
-                        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                            <app-login></app-login>
-                        </div>
-                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                            <app-register></app-register>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="authModalLabel">Login / Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="authTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button"
+                role="tab" aria-controls="login" aria-selected="true">Login</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button"
+                role="tab" aria-controls="register" aria-selected="false">Register</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="authTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+              <app-login></app-login>
+            </div>
+            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+              <app-register></app-register>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
