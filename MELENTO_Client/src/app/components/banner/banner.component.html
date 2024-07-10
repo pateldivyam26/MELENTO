@@ -9,15 +9,6 @@
       <div #collapseRef="cCollapse" navbar cCollapse>
         <c-navbar-nav class="ms-auto mb-2 mb-lg-0">
           <c-nav-item>
-            <form class="d-flex ms-5 mt-1" (ngSubmit)="onSearchSubmit($event)">
-              <div class="input-group">
-                <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
-                <input class="form-control" type="search" placeholder="Search Assessments" aria-label="Search"
-                  [(ngModel)]="searchTerm" name="search">
-              </div>
-            </form>
-          </c-nav-item>
-          <c-nav-item>
             <a cNavLink [routerLink]="['/home']">Home</a>
           </c-nav-item>
           <c-nav-item *ngIf="userLoggedIn">
@@ -49,7 +40,7 @@
             <a data-bs-toggle="modal" data-bs-target="#authModal"><button type="button"
                 class="btn btn-primary">Login</button></a>
           </c-nav-item>
-          <c-nav-item *ngIf="userLoggedIn" class="me-4">
+          <c-nav-item *ngIf="userLoggedIn">
             <c-dropdown direction="center" variant="nav-item" [popper]="false">
               <a cDropdownToggle cNavLink class="dropdown-toggle d-flex align-items-center no-dropdown-arrow">
                 <div class="avatar-wrapper">
@@ -62,6 +53,15 @@
                 <li><button cDropdownItem (click)="logout()">Logout</button></li>
               </ul>
             </c-dropdown>
+          </c-nav-item>
+          <c-nav-item>
+            <form class="d-flex ms-4" (ngSubmit)="onSearchSubmit($event)">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <input class="form-control" type="search" placeholder="Search Assessments" aria-label="Search"
+                  [(ngModel)]="searchTerm" name="search">
+              </div>
+            </form>
           </c-nav-item>
         </c-navbar-nav>
       </div>

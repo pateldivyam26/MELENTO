@@ -58,6 +58,15 @@
               </div>
             </div>
           </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+              <div *ngIf="f['password'].touched && f['password'].errors" class="text-danger">
+                <div *ngIf="f['password'].errors['required']">* Required Password</div>
+              </div>
+            </div>
+          </div>
           <!-- Address fields -->
           <div class="row mb-3">
             <div class="col-md-6">
