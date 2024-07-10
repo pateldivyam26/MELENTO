@@ -110,6 +110,14 @@
             <div class="text-center">
               <h3>Thank You For Taking This Assessment</h3>
             </div>
+           <div *ngIf="!rated" class="text-center gx-2">
+             <p-rating [(ngModel)]="assessmentRating" [readonly]="false" [cancel]="false"/>
+             <button (click)="addRating()">Rate!</button>
+           </div>
+           <div *ngIf="rated" class="text-center gx-2">
+            <p-rating [(ngModel)]="assessmentRating" [readonly]="true" [cancel]="false"/>
+            <div>Thank you For Rating</div>
+          </div>
             <div class="row my-2  col-sm-12 col-md-10">
               <div class="col-sm-12 col-md-6">
                 <p>Your Score is: {{ traineeOverallScore }}/{{ assessment.totalMarks }}</p>

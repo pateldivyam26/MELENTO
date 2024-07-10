@@ -6,6 +6,9 @@
                     alt="card.assessmentName">
                 <div class="card-body text-center" [ngClass]="{ 'inactive-card': !card.active }">
                     <h5 class="card-title">{{ card.assessmentName }}</h5>
+                    <div class="small-rating">
+                        <p-rating [(ngModel)]="card.rating" [iconOnStyle]="{'color':'green'}" [readonly]="true" [cancel]="false"></p-rating>
+                      </div>
                     <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(card.id)">View Details</button>
                     <button [disabled]= "!card.active"  class="btn btn-outline-secondary" (click)="AddToCart(card)" >Add to Cart</button>
                 </div>

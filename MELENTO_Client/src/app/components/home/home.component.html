@@ -8,13 +8,19 @@
             <div class="card mb-4">
                 <img class="card-img-top" [src]="card.assessmentImage" [alt]="card.assessmentName" width="350px"
                     height="250px">
-                <div class="card-body" style="text-align: center;" [ngClass]="{ 'inactive-card': !card.active }">
-                    <h5 class="card-title">{{ card.assessmentName }}</h5>
-                    <p class="card-text">{{ card.assessmentDescription | showStartingWords:10}}</p>
-                    <button class="btn btn-outline-primary" style="margin-right: 20px;"
-                        (click)="displayDetails(card.id)">View Details</button>
-                    <button [disabled]= "!card.active" class="btn btn-outline-secondary" (click)="AddToCart(card)">Add to Cart</button>
-                </div>
+                    <div class="card-body" [ngClass]="{ 'inactive-card': !card.active }" style="text-align: center;">
+                        <div class="card-title-wrapper">
+                          <h5 class="card-title">{{ card.assessmentName }}</h5>
+                        </div>
+                          <div class="small-rating">
+                            <p-rating [(ngModel)]="card.rating" [iconOnStyle]="{'color':'green'}" [readonly]="true" [cancel]="false"></p-rating>
+                          </div>
+                        <p class="card-text">{{ card.assessmentDescription | showStartingWords:10 }}</p>
+                        <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(card.id)">View Details</button>
+                        <button [disabled]="!card.active" class="btn btn-outline-secondary" (click)="AddToCart(card)">Add to Cart</button>
+                      </div>
+                      
+                      
             </div>
         </div>
     </div>

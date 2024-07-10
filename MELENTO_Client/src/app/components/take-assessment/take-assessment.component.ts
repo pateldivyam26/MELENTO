@@ -43,6 +43,8 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
   attendance:Attendance=new Attendance(0,0,0,new Date());
   trainee:Trainee= new Trainee(0,0,[],[])
   last10min:boolean=false;
+  assessmentRating:number=0;
+  rated:boolean=false;
   readonly dialog = inject(MatDialog);
   constructor(private activatedRoute: ActivatedRoute, private assessmentService: AssessmentsService,private router:Router,private assessmentScoreService:AssessmentScoreService,private traineeService: TraineeService,
     private attendanceService:AttendanceService,private _snackBar: MatSnackBar) {
@@ -181,6 +183,12 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
       this.makeAttendance();
       this.saveAssessmentScore();
       clearInterval(this.interval);
+  }
+  addRating(){
+    if(this.assessmentRating==0)return;
+    this.assessment.rating=this.assessment.rating*(1-((this.traineeOverallScore)/(this.assessment.totalMarks)*0.3))+this.assessmentRating*(this.traineeOverallScore/(this.assessment.totalMarks))*0.3;
+    this.assessmentService.updateAssessment(this.assessment).subscribe();
+    this.rated=true;
   }
   saveAssessmentScore() {
     console.log(this.trainee);

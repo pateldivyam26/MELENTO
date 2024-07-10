@@ -10,7 +10,8 @@ export class Assessment {
     totalMarks: number;
     price: number;
     active:boolean;
-    constructor(id: number,assessmentName: string,assessmentDate: string,assessmentTime: number,assessmentImage:string,assessmentDescription: string,questions: Question[],facultyId: number,totalMarks: number,price: number,active:boolean) {
+    rating:number;
+    constructor(id: number,assessmentName: string,assessmentDate: string,assessmentTime: number,assessmentImage:string,assessmentDescription: string,questions: Question[],facultyId: number,totalMarks: number,price: number,active:boolean,rating:number=0) {
         this.id = id;
         this.assessmentName = assessmentName;
         this.assessmentDate = assessmentDate;
@@ -22,6 +23,7 @@ export class Assessment {
         this.totalMarks = totalMarks;
         this.price = price;
         this.active=active;
+        this.rating=rating;
     }
 }
 

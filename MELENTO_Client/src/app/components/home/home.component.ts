@@ -15,6 +15,7 @@ export class HomeComponent {
     arrAssessments: Assessment[] = []
     lastThreeAssessments: Assessment[] = [];
     assessment: Assessment = new Assessment(0, '', '', 0, '', '', [], 0, 0, 0, true)
+    value: number = 5;
     displayDetails(aId: number) {
         // console.log(aId)
         // this.assessment = this.assessmentService.getAssessmentById(aId)
