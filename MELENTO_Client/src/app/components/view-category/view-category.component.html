@@ -1,17 +1,30 @@
-<div class="container card-body card shadow mt-5 table-responsive mt-3">
-    <table class="table table-bordered text-center" style="border-color: rgb(154, 153, 153);">
-        <thead>
-            <tr>
-                <th scope="col">S.No.</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Category Description</th>
-        </thead>
-        <tbody id="user-table-body">
-            <tr div *ngFor="let c of arrCategory">
-                <td scope="col">{{c.id}}</td>
-                <td scope="col">{{c.categoryName}}</td>
-                <td scope="col">{{c.categoryDescription}}</td>
-            </tr> 
-        </tbody>
+<div class="container-fluid my-3">
+  <div class="table-responsive table-hover">
+    <table mat-table [dataSource]="dataSource" class="table-hover mat-elevation-z8" matSort>
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </td>
+      </ng-container>ail
+
+      <!-- Category Name Column -->
+      <ng-container matColumnDef="categoryName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Category Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.categoryName }}</td>
+      </ng-container>
+
+      <!-- Category Description Column -->
+      <ng-container matColumnDef="categoryDescription">
+        <th mat-header-cell *matHeaderCellDef>Category Description</th>
+        <td mat-cell *matCellDef="let element">{{ element.categoryDescription }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>

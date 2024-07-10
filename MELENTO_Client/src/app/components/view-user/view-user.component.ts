@@ -31,13 +31,4 @@ export class ViewUserComponent {
       this.dataSource.data = data;
     });
   }
-
-
-
-  // arrUsers:User[]=[]
-  // constructor(private userService:UserService){
-  //   this.userService.getUsers().subscribe(data=>{
-  //     this.arrUsers=data
-  //   })
-  // }
 }
