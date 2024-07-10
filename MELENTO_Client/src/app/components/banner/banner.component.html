@@ -2,12 +2,12 @@
   <c-navbar colorScheme="light" expand="lg" class="navbar">
     <c-container fluid style="font-weight: bold;">
       <a cNavbarBrand [routerLink]="['/home']">
-        <img src="assets/images/evaluation.svg" alt="Logo" style="width:40px;">
+        <img src="assets/images/evaluation.svg" alt="Logo" style="width:45px;">
         Assessment Portal
       </a>
       <button [cNavbarToggler]="collapseRef"></button>
       <div #collapseRef="cCollapse" navbar cCollapse>
-        <c-navbar-nav class="ms-auto mb-2 mb-lg-0">
+        <c-navbar-nav class="ms-auto">
           <c-nav-item>
             <a cNavLink [routerLink]="['/home']">Home</a>
           </c-nav-item>
@@ -30,12 +30,15 @@
             <a cNavLink [routerLink]="['/contactus']">Contact Us</a>
           </c-nav-item>
           <c-nav-item *ngIf="userLoggedIn" class="me-1">
+            <a cNavLink [routerLink]="['/cart']"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a>
+          </c-nav-item>
+          <!-- <c-nav-item *ngIf="userLoggedIn" class="me-1">
               <a cNavLink [routerLink]="['/cart']">
                 <div *ngIf="minBadge != 0" matBadge="{{minBadge}}" matBadgeOverlap="false"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</div>
                 <div *ngIf="minBadge == 0"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</div>
               </a>
 
-          </c-nav-item>
+          </c-nav-item> -->
           <c-nav-item *ngIf="!userLoggedIn" class="me-2">
             <a data-bs-toggle="modal" data-bs-target="#authModal"><button type="button"
                 class="btn btn-primary">Login</button></a>
