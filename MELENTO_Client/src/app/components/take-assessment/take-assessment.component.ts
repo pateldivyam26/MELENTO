@@ -186,7 +186,10 @@ export class TakeAssessmentComponent implements OnInit, OnDestroy {
   }
   addRating(){
     if(this.assessmentRating==0)return;
-    this.assessment.rating=this.assessment.rating*(1-((this.traineeOverallScore)/(this.assessment.totalMarks)*0.3))+this.assessmentRating*(this.traineeOverallScore/(this.assessment.totalMarks))*0.3;
+    if(this.assessment.rating==0){
+      this.assessment.rating=this.assessmentRating;
+    }
+    else this.assessment.rating=this.assessment.rating*(1-((this.traineeOverallScore)/(this.assessment.totalMarks)*0.3))+this.assessmentRating*(this.traineeOverallScore/(this.assessment.totalMarks))*0.3;
     this.assessmentService.updateAssessment(this.assessment).subscribe();
     this.rated=true;
   }
