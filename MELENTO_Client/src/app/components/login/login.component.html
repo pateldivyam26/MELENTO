@@ -21,8 +21,7 @@
       </div>
     </div>
     <div class="my-2" *ngIf="f['email'].value && f['password'].value  && submitted">
-        <div *ngIf="userExists">Kindly enter the correct Password</div>
-        <div *ngIf="!userExists">Kindly register</div>
+        <div *ngIf="!userExists">Kindly enter the correct Credentials</div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Login</button>
 </form>
