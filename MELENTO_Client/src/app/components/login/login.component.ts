@@ -47,7 +47,7 @@ export class LoginComponent {
       console.log('Not valid');
       return;
     }
-    console.log(myForm);
+    // console.log(myForm);
     var checkuser=false;
     for (var i = 0; i < this.arrUsers.length; i++) {
       // console.log(this.arrUsers[i]);
@@ -59,10 +59,10 @@ export class LoginComponent {
           // console.log(this.arrUsers[i]);
           localStorage.setItem('role', this.arrUsers[i].role);
           localStorage.setItem('id', String(this.arrUsers[i].id)); // Convert id to string since local storage only stores string
-          
+
           this.router.navigate(['/home']).then(() => {
             location.reload();
-            
+
           });
           return;
         }
@@ -70,7 +70,7 @@ export class LoginComponent {
     }
     this.userExists=checkuser;
     this.submitted = true;
-    
+
     console.log('Kindly register To login'); // need to change this font colour to better match the statement.
   }
   togglepassword() {
