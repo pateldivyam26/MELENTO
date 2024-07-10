@@ -10,15 +10,12 @@ const trainee_controller = require('./controllers/trainee')
 const score_controller = require('./controllers/assessmentScore')
 const port = process.env.PORT || 3000
 const app = express()
-// const bodyParser = require('body-parser');
 const cors = require("cors")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
 const server = app.listen(port, () => console.log(`Server listening on port ${port}!`))
-
-// app.get('/', (req, res) => res.send('Hello World!'))
 
 //Assessment
 app.get('/assessment', (req, res) => {

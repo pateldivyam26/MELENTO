@@ -23,6 +23,7 @@ function add(user) {
     return new Promise((resolve, reject) => {
         var coll = util.connect('users')
         util.renameKey(user, 'id', '_id');
+        user.password = util.encrypt(user.password);
         resolve(util.addObject(coll, user));
     })
 }
@@ -31,6 +32,9 @@ function update(id, updatedUser) {
     return new Promise((resolve, reject) => {
         var coll = util.connect('users');
         util.renameKey(updatedUser, 'id', '_id');
+        if (updatedUser.password) {
+            updatedUser.password = util.encrypt(updatedUser.password);
+        }
         resolve(util.updateObject(coll, id, updatedUser));
     });
 }
