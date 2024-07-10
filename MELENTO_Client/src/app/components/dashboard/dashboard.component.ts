@@ -77,8 +77,11 @@ export class DashboardComponent {
             if (Number(this.arrFaculty[i].userId) === Number(id)) {
               this.facultyId = this.arrFaculty[i].id;
               this.getfacultyAssessments();
-              this.populateDataFaculty();
-              this.renderScatterChartFaculty();
+              this.assessmentScoreService.getAssessmentScore().subscribe(data => {
+                this.arrAssessmentScores = data;
+                this.populateDataFaculty();
+                this.renderScatterChartFaculty();
+              });             
             }
           }
         }
@@ -157,7 +160,9 @@ export class DashboardComponent {
     this.renderScatterChartTrainee();
   }
   populateDataFaculty(){
+    // console.log(this.arrAssessmentScores);
     this.facultyArrAssessments.forEach((assessment: Assessment) => {
+      
       const key = assessment.id.toString();
       this.arrAssessmentScores.forEach((assessmentScore: AssessmentScore) => {
         if (assessmentScore.assessmentId === assessment.id) {
@@ -317,9 +322,11 @@ export class DashboardComponent {
   }
   renderScatterChartFaculty(){
     if (!this.selectedAssessment) return;
+    console.log(this.FacultyAssessmentTrack)
     if(!this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()]) return;
     var scores:number[]=[]
     if(this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()])scores = this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()];
+    
     const scatterChartElement = document.getElementById('scatterChartFaculty') as HTMLCanvasElement;
     if (!scatterChartElement) return;
     const averageScore = this.calculateAverageScore(scores);
@@ -327,7 +334,6 @@ export class DashboardComponent {
     if (this.scatterChart) {
       this.scatterChart.destroy();
     }
-    this.chartvar=true;
     this.scatterChart = new Chart(scatterChartElement, {
       type: 'scatter',
       data: {
