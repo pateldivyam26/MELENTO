@@ -65,6 +65,12 @@ import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AvatarModule, BadgeModule, CollapseModule, DropdownModule, GridModule, NavbarModule, NavModule } from '@coreui/angular';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { SidebarModule } from '@coreui/angular';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { TagModule } from 'primeng/tag';
+import { CardModule } from 'primeng/card';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -85,7 +91,9 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     BrowserModule,
     AppRoutingModule, FormsModule, ReactiveFormsModule, MatStepperModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatToolbarModule,
     MatOption, MatIcon, MatSelectModule, MatRadioModule, MatDividerModule, HttpClientModule, MatBadgeModule,MatTabsModule,MatCheckboxModule, CanvasJSAngularChartsModule,
-    MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule, DropdownModule, NavbarModule, GridModule, NavModule, CollapseModule, AvatarModule, BadgeModule],
+    MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule, DropdownModule, NavbarModule, GridModule, NavModule, CollapseModule, AvatarModule, BadgeModule,SidebarModule,MatSidenavModule,MatIconModule,
+    MatListModule,TagModule,CardModule,RatingModule
+  ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync()

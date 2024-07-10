@@ -1,3 +1,47 @@
-.inactive-card{
+.inactive-card {
     background-color: #d5d6d6;
-}
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 1.5rem; /* Increase the font size */
+  }
+  
+  hr {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+
+  
+  @media screen and (min-width: 600px) {
+    mat-sidenav-container {
+      height: 100%;
+      transform: translateX(-1.2rem);
+    }
+    mat-sidenav-content {
+      background-color: #CADCFC;
+      padding-left: 10px;
+    }
+    mat-sidenav {
+      padding-left: 30px; /* Adjust for larger screens */
+      width: 20%;
+    }
+    mat-sidenav mat-nav-list a {
+      font-size: 1em; /* Default font size */
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    mat-sidenav {
+        width:70%;
+      padding-left: 10px; /* Adjust padding for smaller screens */
+    }
+    mat-sidenav mat-nav-list a {
+      font-size: 0.9em; /* Decrease font size for smaller screens */
+    }
+  }
+  
