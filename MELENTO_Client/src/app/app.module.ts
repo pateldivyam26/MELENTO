@@ -29,7 +29,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDividerModule } from '@angular/material/divider';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { ViewCourseComponent } from './components/view-course/view-course.component';
 import { ViewCategoryComponent } from './components/view-category/view-category.component';
@@ -71,6 +71,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
+import { HttpRequestInterceptor } from './interceptors/angular_interceptor';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { RatingModule } from 'primeng/rating';
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
