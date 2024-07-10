@@ -3,11 +3,12 @@ const crypto = require('crypto');
 const { publicEncrypt, privateDecrypt, generateKeyPairSync } = require('crypto');
 const fs = require('fs')
 const path = require('path');
-
+// In your application
+require('dotenv').config();
+const key = Buffer.from(process.env.AES_KEY, 'hex');
+const iv = Buffer.from(process.env.AES_IV, 'hex');
 const algorithm = 'aes-256-cbc';
-const key = crypto.randomBytes(32);
-// Use a static IV
-const iv = Buffer.alloc(16, 0)
+
 require('dotenv').config();
 
 function connect(collection_name) {

@@ -17,6 +17,7 @@ function login(req, res) {
                 res.status(404).send({message:"Wrong Credentials"});
                 return;
             }
+            // console.log(utils.decrypt(user.password))
             if(passswordEncrypt!=user.password){
                 res.status(404).send({message:"Wrong Credentials"});
                 return;
