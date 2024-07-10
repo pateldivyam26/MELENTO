@@ -38,6 +38,7 @@ export class DashboardComponent {
   scatterChart: Chart | undefined;
   traineeAvgScore:number=0;
   FacultyAssessmentTrack: { [key: string]: number[] } = {};
+  chartvar:boolean=false;
 
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
   isMobile = true;
@@ -263,6 +264,8 @@ export class DashboardComponent {
       this.scatterChart.destroy();
     }
     if(!scores)return;
+    this.chartvar=true;
+
     this.scatterChart = new Chart(scatterChartElement, {
       type: 'scatter',
       data: {
@@ -324,7 +327,7 @@ export class DashboardComponent {
     if (this.scatterChart) {
       this.scatterChart.destroy();
     }
-
+    this.chartvar=true;
     this.scatterChart = new Chart(scatterChartElement, {
       type: 'scatter',
       data: {
@@ -417,6 +420,11 @@ export class DashboardComponent {
   onAssessmentSelect() {
     if (this.scatterChart) {
       this.scatterChart.destroy();
+      this.chartvar=false;
+      const averageScoreElement = document.getElementById('averageScore');
+    if (averageScoreElement) {
+      averageScoreElement.innerHTML='';
+    }
     }
     if (this.selectedAssessment) {
       if(this.role=='admin')      this.renderScatterChart();

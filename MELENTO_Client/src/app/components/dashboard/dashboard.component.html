@@ -66,7 +66,8 @@
               </p-card>
             </div>
             <div class="container-fluid mt-2">
-              <select class="form-select" [(ngModel)]="selectedAssessment" (change)="onAssessmentSelect()">
+              <label for="id" class="form-label mb-1">Select an Assessment To View Stats</label>
+              <select class="form-select responsive-select" [(ngModel)]="selectedAssessment" (change)="onAssessmentSelect()">
                 <option value="">Select an Assessment</option>
                 <option *ngFor="let assessment of arrAssessments" [ngValue]="assessment">{{ assessment.assessmentName }}
                 </option>
@@ -93,7 +94,8 @@
               </p-card>
             </div>
             <div class="container-fluid mt-2">
-              <select class="form-select" [(ngModel)]="selectedAssessment" (change)="onAssessmentSelect()">
+              <label for="id" class="form-label">Select an Assessment To View Stats</label>
+              <select class="form-select" [(ngModel)]="selectedAssessment" (change)="onAssessmentSelect()" placeholder="Select Assessment to View Stats">
                 <option value="">Select an Assessment</option>
                 <option *ngFor="let assessment of facultyArrAssessments" [ngValue]="assessment">{{
                   assessment.assessmentName }}
