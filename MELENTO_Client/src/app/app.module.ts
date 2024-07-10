@@ -71,7 +71,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
+import { environment } from './utils/environment';
+import { NgxStripeModule } from 'ngx-stripe';
 import { HttpRequestInterceptor } from './interceptors/angular_interceptor';
+import { TypewriterComponent } from './components/typewriter/typewriter.component';
 
 @NgModule({
   declarations: [
@@ -86,14 +89,14 @@ import { HttpRequestInterceptor } from './interceptors/angular_interceptor';
     ViewScoreComponent,
     ViewReportComponent,
     ViewAttendanceComponent,
-    CurrencyPipe, PageNotFoundComponent, ShowStartingWordsPipe, SearchAssessmentsPipe, TakeAssessmentComponent, ViewChartsComponent, InstructionsDialogBoxComponent, EditProfileComponent,
+    CurrencyPipe, PageNotFoundComponent, ShowStartingWordsPipe, SearchAssessmentsPipe, TakeAssessmentComponent, ViewChartsComponent, InstructionsDialogBoxComponent, EditProfileComponent, TypewriterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, FormsModule, ReactiveFormsModule, MatStepperModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatExpansionModule, MatToolbarModule,
     MatOption, MatIcon, MatSelectModule, MatRadioModule, MatDividerModule, HttpClientModule, MatBadgeModule,MatTabsModule,MatCheckboxModule, CanvasJSAngularChartsModule,
     MatTableModule,MatSortModule,MatSlideToggleModule,MatProgressBarModule,MatDialogModule,MatListModule, MatPaginatorModule, DropdownModule, NavbarModule, GridModule, NavModule, CollapseModule, AvatarModule, BadgeModule,SidebarModule,MatSidenavModule,MatIconModule,
-    MatListModule,TagModule,CardModule,RatingModule
+    MatListModule,TagModule,CardModule,RatingModule, NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [
     provideClientHydration(),

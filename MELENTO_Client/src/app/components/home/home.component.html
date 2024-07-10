@@ -1,6 +1,7 @@
 <div class="container flex-grow-1">
     <div class="row">
         <div class="col-12 text-center my-4">
+          <app-typewriter></app-typewriter>
         </div>
     </div>
     <div class="row">
@@ -19,8 +20,8 @@
                         <button class="btn btn-outline-primary" style="margin-right: 20px;" (click)="displayDetails(card.id)">View Details</button>
                         <button [disabled]="!card.active" class="btn btn-outline-secondary" (click)="AddToCart(card)">Add to Cart</button>
                       </div>
-                      
-                      
+
+
             </div>
         </div>
     </div>
