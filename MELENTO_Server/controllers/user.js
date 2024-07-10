@@ -1,67 +1,83 @@
 const user_service = require('../service/userService')
 const util = require('../utility/util')
 
-function getUser(req, res) {
-    res.setHeader('Content-Type', 'application/json')
-    user_service.find().then(
-        (items) => {
-            const objArr = items;
-            objArr.forEach((obj) => {
-                util.renameKey(obj, "_id", "id");
-            });
-            const updateItems = JSON.stringify(objArr);
-            res.send(updateItems);
-        },
-        (err) => {
-            console.log('Promise Rejected')
-            console.log(err)
-        }
-    )
+async function getUser(req, res) {
+    try {
+        res.setHeader('Content-Type', 'application/json')
+        const items = await user_service.find();
+        const objArr = items;
+        objArr.forEach((obj) => {
+            util.renameKey(obj, "_id", "id");
+        });
+        const updateItems = JSON.stringify(objArr);
+        res.send(updateItems);
+    } catch (err) {
+        console.error('Error in getUser:', err);
+        res.status(500).send({ error: 'An error occurred while getting users' });
+    }
 }
 
-function getUserById(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    const id = req.params.id;
-    user_service.getById(id).then((user) => {
+async function getUserById(req, res) {
+    try {
+        res.setHeader('Content-Type', 'application/json');
+        const id = req.params.id;
+        const user = await user_service.getById(id);
         if (!user) {
             res.status(404).json({ error: 'User not found' });
         } else {
             util.renameKey(user, '_id', 'id');
             res.json(user);
         }
-    });
+    } catch (err) {
+        console.error('Error in getUserById:', err);
+        res.status(500).send({ error: 'An error occurred while getting the user' });
+    }
 }
 
-function addUser(req, res) {
-    res.setHeader('Content-Type', 'application/json')
-    console.log("Add called")
-    var id = req.body.id
-    var user = req.body
-    user_service.add(user).then(
+async function addUser(req, res) {
+    try {
+        res.setHeader('Content-Type', 'application/json')
+        console.log("Add called")
+        var id = req.body.id
+        var user = req.body
+        await user_service.add(user);
         res.send(JSON.stringify({ data_submitted: id }))
-    )
+    } catch (err) {
+        console.error('Error in addUser:', err);
+        res.status(500).send({ error: 'An error occurred while adding the user' });
+    }
 }
 
-function updateUser(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    console.log("Update called");
+async function updateUser(req, res) {
+    try {
+        res.setHeader('Content-Type', 'application/json');
+        console.log("Update called");
 
-    var id = req.params.id;
-    var user = req.body;
+        var id = req.params.id;
+        var user = req.body;
 
-    user_service.update(id, user);
-    res.send(JSON.stringify({ data_updated: id }));
+        await user_service.update(id, user);
+        res.send(JSON.stringify({ data_updated: id }));
+    } catch (err) {
+        console.error('Error in updateUser:', err);
+        res.status(500).send({ error: 'An error occurred while updating the user' });
+    }
 }
 
-function deleteUser(req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    console.log("Delete called");
+async function deleteUser(req, res) {
+    try {
+        res.setHeader('Content-Type', 'application/json');
+        console.log("Delete called");
 
-    var id = req.params.id;
-    var user = req.body;
+        var id = req.params.id;
+        var user = req.body;
 
-    user_service.remove(id, user);
-    res.send(JSON.stringify({ data_deleted: id }));
+        await user_service.remove(id, user);
+        res.send(JSON.stringify({ data_deleted: id }));
+    } catch (err) {
+        console.error('Error in deleteUser:', err);
+        res.status(500).send({ error: 'An error occurred while deleting the user' });
+    }
 }
 
 module.exports = {

@@ -13,8 +13,7 @@ function getAttendance(req, res) {
             res.send(updateItems);
         },
         (err) => {
-            console.log('Promise Rejected')
-            console.log(err)
+            res.status(500).json({ error: 'An error occurred while fetching attendances' });
         }
     )
 }
@@ -29,39 +28,41 @@ function getAttendanceById(req, res) {
             util.renameKey(attendance, '_id', 'id');
             res.json(attendance);
         }
+    }).catch((err) => {
+        res.status(500).json({ error: 'An error occurred while fetching the attendance' });
     });
 }
 
 function addAttendance(req, res) {
     res.setHeader('Content-Type', 'application/json')
-    console.log("Add called")
     var id = req.body.id
     var attendance = req.body
     attendance_service.add(attendance).then(
-        res.send(JSON.stringify({ data_submitted: id }))
+        () => res.send(JSON.stringify({ data_submitted: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while adding the attendance' })
     )
 }
 
 function updateAttendance(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log("Update called");
-
     var id = req.params.id;
     var attendance = req.body;
 
-    attendance_service.update(id, attendance);
-    res.send(JSON.stringify({ data_updated: id }));
+    attendance_service.update(id, attendance).then(
+        () => res.send(JSON.stringify({ data_updated: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while updating the attendance' })
+    );
 }
 
 function deleteAttendance(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log("Delete called");
-
     var id = req.params.id;
     var attendance = req.body;
 
-    attendance_service.remove(id, attendance);
-    res.send(JSON.stringify({ data_deleted: id }));
+    attendance_service.remove(id, attendance).then(
+        () => res.send(JSON.stringify({ data_deleted: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while deleting the attendance' })
+    );
 }
 
 module.exports = {

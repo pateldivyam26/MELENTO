@@ -13,8 +13,7 @@ function getAssessment(req, res) {
             res.send(updateItems);
         },
         (err) => {
-            console.log('Promise Rejected')
-            console.log(err)
+            res.status(500).json({ error: 'An error occurred while fetching assessments' });
         }
     )
 }
@@ -29,94 +28,42 @@ function getAssessmentById(req, res) {
             util.renameKey(assessment, '_id', 'id');
             res.json(assessment);
         }
+    }).catch((err) => {
+        res.status(500).json({ error: 'An error occurred while fetching the assessment' });
     });
 }
 
 function addAssessment(req, res) {
     res.setHeader('Content-Type', 'application/json')
-    console.log("Add called")
     var id = req.body.id
     var assessment = req.body
     assessment_service.add(assessment).then(
-        res.send(JSON.stringify({ data_submitted: id }))
+        () => res.send(JSON.stringify({ data_submitted: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while adding the assessment' })
     )
 }
 
 function updateAssessment(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log("Update called");
-
     var id = req.params.id;
     var assessment = req.body;
 
-    assessment_service.update(id, assessment);
-    res.send(JSON.stringify({ data_updated: id }));
+    assessment_service.update(id, assessment).then(
+        () => res.send(JSON.stringify({ data_updated: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while updating the assessment' })
+    );
 }
 
 function deleteAssessment(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log("Delete called");
-
     var id = req.params.id;
     var assessment = req.body;
 
-    assessment_service.remove(id, assessment);
-    res.send(JSON.stringify({ data_deleted: id }));
+    assessment_service.remove(id, assessment).then(
+        () => res.send(JSON.stringify({ data_deleted: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while deleting the assessment' })
+    );
 }
-
-// async function listAssessment(req, res) {
-//     res.setHeader('Access-Control-Allow-Origin', '*')
-//     try {
-//         res.json(await assessment_service.list())
-//     }
-//     catch (err) {
-//         res.status(500).json({ error: err.message })
-//     }
-// }
-
-// async function getAssessment(req, res, next) {
-//     // console.log("called")
-//     const { id } = req.params
-//     const assessments = await Assessments.get(id)
-//     if (!assessments) return next()
-//     res.json(assessments)
-// }
-
-// async function updateAssessment(req, res) {
-//     console.log("called update")
-//     const { id } = req.params;
-//     const updatedAssessment = req.body;
-//     try {
-//         const assessment = await assessment_service.update(id, updatedAssessment);
-//         if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
-//         res.json(assessment);
-//     } catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// }
-
-// async function addAssessment(req, res) {
-//     console.log("called add")
-//     const newAssessment = req.body;
-//     try {
-//         const assessment = await assessment_service.add(newAssessment);
-//         res.status(201).json(assessment);
-//     } catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// }
-
-// async function deleteAssessment(req, res) {
-//     const { id } = req.params;
-//     try {
-//         const assessment = await assessment_service.remove(id);
-//         if (!assessment) return res.status(404).json({ error: 'Assessment not found' });
-//         res.json({ message: 'Assessment deleted successfully', assessment });
-//     } catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// }
-
 
 module.exports = {
     getAssessment, getAssessmentById, updateAssessment, addAssessment, deleteAssessment

@@ -13,8 +13,7 @@ function getCart(req, res) {
             res.send(updateItems);
         },
         (err) => {
-            console.log('Promise Rejected')
-            console.log(err)
+            res.status(500).json({ error: 'An error occurred while fetching carts' });
         }
     )
 }
@@ -29,39 +28,41 @@ function getCartById(req, res) {
             util.renameKey(cart, '_id', 'id');
             res.json(cart);
         }
+    }).catch((err) => {
+        res.status(500).json({ error: 'An error occurred while fetching the cart' });
     });
 }
 
 function addCart(req, res) {
     res.setHeader('Content-Type', 'application/json')
-    console.log("Add called")
     var id = req.body.id
     var cart = req.body
     cart_service.add(cart).then(
-        res.send(JSON.stringify({ data_submitted: id }))
+        () => res.send(JSON.stringify({ data_submitted: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while adding the cart' })
     )
 }
 
 function updateCart(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log("Update called");
-
     var id = req.params.id;
     var cart = req.body;
 
-    cart_service.update(id, cart);
-    res.send(JSON.stringify({ data_updated: id }));
+    cart_service.update(id, cart).then(
+        () => res.send(JSON.stringify({ data_updated: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while updating the cart' })
+    );
 }
 
 function deleteCart(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    console.log("Delete called");
-
     var id = req.params.id;
     var cart = req.body;
 
-    cart_service.remove(id, cart);
-    res.send(JSON.stringify({ data_deleted: id }));
+    cart_service.remove(id, cart).then(
+        () => res.send(JSON.stringify({ data_deleted: id })),
+        (err) => res.status(500).json({ error: 'An error occurred while deleting the cart' })
+    );
 }
 
 module.exports = {

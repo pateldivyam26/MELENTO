@@ -9,12 +9,11 @@ function getScore(req, res) {
             objArr.forEach((obj) => {
                 util.renameKey(obj, "_id", "id");
             });
-            const updateItems = JSON.stringify(objArr);
-            res.send(updateItems);
+            res.json(objArr);
         },
         (err) => {
-            console.log('Promise Rejected')
-            console.log(err)
+            console.error('Promise Rejected', err);
+            res.status(500).json({ error: 'Failed to get scores' });
         }
     )
 }
@@ -29,17 +28,22 @@ function getScoreById(req, res) {
             util.renameKey(score, '_id', 'id');
             res.json(score);
         }
+    }).catch((err) => {
+        console.error('Promise Rejected', err);
+        res.status(500).json({ error: 'Failed to get score' });
     });
 }
 
 function addScore(req, res) {
     res.setHeader('Content-Type', 'application/json')
     console.log("Add called")
-    var id = req.body.id
     var score = req.body
-    score_service.add(score).then(
-        res.send(JSON.stringify({ data_submitted: id }))
-    )
+    score_service.add(score).then(() => {
+        res.json({ data_submitted: score.id });
+    }).catch((err) => {
+        console.error('Promise Rejected', err);
+        res.status(500).json({ error: 'Failed to add score' });
+    });
 }
 
 function updateScore(req, res) {
@@ -49,8 +53,12 @@ function updateScore(req, res) {
     var id = req.params.id;
     var score = req.body;
 
-    score_service.update(id, score);
-    res.send(JSON.stringify({ data_updated: id }));
+    score_service.update(id, score).then(() => {
+        res.json({ data_updated: id });
+    }).catch((err) => {
+        console.error('Promise Rejected', err);
+        res.status(500).json({ error: 'Failed to update score' });
+    });
 }
 
 function deleteScore(req, res) {
@@ -60,8 +68,12 @@ function deleteScore(req, res) {
     var id = req.params.id;
     var score = req.body;
 
-    score_service.remove(id, score);
-    res.send(JSON.stringify({ data_deleted: id }));
+    score_service.remove(id, score).then(() => {
+        res.json({ data_deleted: id });
+    }).catch((err) => {
+        console.error('Promise Rejected', err);
+        res.status(500).json({ error: 'Failed to delete score' });
+    });
 }
 
 module.exports = {
