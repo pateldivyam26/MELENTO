@@ -250,7 +250,7 @@ export class DashboardComponent {
   }
   renderScatterChart() {
     if (!this.selectedAssessment) return;
-
+    if(!this.arrAssessmentScoreMap[this.selectedAssessment.id.toString()])return;
     const scores = this.arrAssessmentScoreMap[this.selectedAssessment.id.toString()]; // handle the undefined error
     console.log(scores);
     const averageScore = this.calculateAverageScore(scores);
@@ -262,7 +262,7 @@ export class DashboardComponent {
     if (this.scatterChart) {
       this.scatterChart.destroy();
     }
-
+    if(!scores)return;
     this.scatterChart = new Chart(scatterChartElement, {
       type: 'scatter',
       data: {
@@ -314,6 +314,7 @@ export class DashboardComponent {
   }
   renderScatterChartFaculty(){
     if (!this.selectedAssessment) return;
+    if(!this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()]) return;
     var scores:number[]=[]
     if(this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()])scores = this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()]; 
     const scatterChartElement = document.getElementById('scatterChartFaculty') as HTMLCanvasElement;
@@ -415,6 +416,9 @@ export class DashboardComponent {
   }
 
   onAssessmentSelect() {
+    if (this.scatterChart) {
+      this.scatterChart.destroy();
+    }
     if (this.selectedAssessment) {
       if(this.role=='admin')      this.renderScatterChart();
       if(this.role=='faculty')     this.renderScatterChartFaculty();

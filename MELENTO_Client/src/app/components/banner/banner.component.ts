@@ -37,10 +37,9 @@ export class BannerComponent {
     }
     if (role !== null) {
       this.userLoggedIn = true;
-    }
-    this.cartService.getcheckout().subscribe(data => {
-      this.newAssment += data;
-    });
+      this.cartService.getcheckout().subscribe(data => {
+        this.newAssment += data;
+      });
     this.cartService.getCart().subscribe(data => {
       this.cart = data;
       this.updateBadgeCount();
@@ -48,10 +47,12 @@ export class BannerComponent {
     this.assessmentsService.getAssessments().subscribe(data => {
       this.assessments = data;
     });
+  }
 
-    const tId = localStorage.getItem('id');
+    var tId = localStorage.getItem('id');
+    // console.log(tId);
     if (tId != null) this.tempId = tId.toString();
-    if (this.tempId !== null) {
+    if (tId !== null) {
       this.userService.getUsers().subscribe(data => {
         this.arrUser = data;
         for (let i = 0; i < this.arrUser.length; i++) {
