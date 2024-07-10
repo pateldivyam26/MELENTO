@@ -37,26 +37,6 @@ export class ViewChartsComponent {
       var aid = (params['id'])
       this.scoreService.getAssessmentScoreById(aid).subscribe(data => {
         this.score = data;
-        // this.scoreService.getAssessmentScore().subscribe(data => {
-        //   this.arrAssessmentsScore = data;
-        //   var tId = localStorage.getItem('id');
-        //   if (tId != null) this.tempId = tId.toString();
-        //   if (this.tempId !== null) {
-        //     this.traineeService.getTrainee().subscribe(data => {
-        //       this.arrTrainees = data;
-        //       for (var i = 0; i < this.arrTrainees.length; i++) {
-        //         if (this.tempId === (this.arrTrainees[i].userId).toString()) {
-        //           this.traineeId = this.arrTrainees[i].id;
-        //         }
-        //       }
-
-
-        //   for(var i = 0; i < this.arrAssessmentsScore.length; i++){
-        //     if(this.arrAssessmentsScore[i].traineeId == this.traineeId && this.arrAssessmentsScore[i].assessmentId == aid){
-        //       this.score = this.arrAssessmentsScore[i];
-        //     }
-        //   }
-        // console.log(this.score);
         this.updateChartOptions();
         this.assessmentService.getAssessmentById(this.score.assessmentId).subscribe(data => {
           this.assessment = data

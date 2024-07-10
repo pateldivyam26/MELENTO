@@ -47,7 +47,7 @@
               </p-card>
             </div>
             <button class="btn btn-primary my-2" (click)="viewProgress()">View Progress</button>
-            <div class="row">
+            <div class="row scatter-chart-container">
               <canvas id="scatterChartUser" width="100" height="100"></canvas>
             </div>
           </div>
@@ -72,10 +72,10 @@
                 </option>
               </select>
             </div>
-            <div>
-              <canvas id="scatterChart" width="100" height="100"></canvas>
-            </div>
             <div id="averageScore" class="mt-2 accordion-body">
+            </div>
+            <div class="scatter-chart-container">
+              <canvas id="scatterChart" width="100" height="100"></canvas>
             </div>
           </div>
 
@@ -95,12 +95,13 @@
             <div class="container-fluid mt-2">
               <select class="form-select" [(ngModel)]="selectedAssessment" (change)="onAssessmentSelect()">
                 <option value="">Select an Assessment</option>
-                <option *ngFor="let assessment of facultyArrAssessments" [ngValue]="assessment">{{ assessment.assessmentName }}
+                <option *ngFor="let assessment of facultyArrAssessments" [ngValue]="assessment">{{
+                  assessment.assessmentName }}
                 </option>
               </select>
             </div>
             <div id="averageScore" class="mt-2 accordion-body"></div>
-            <div>
+            <div class="scatter-chart-container">
               <canvas id="scatterChartFaculty" width="100" height="100"></canvas>
             </div>
 

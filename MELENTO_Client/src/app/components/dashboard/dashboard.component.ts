@@ -59,7 +59,7 @@ export class DashboardComponent {
             this.trainee = data;
             this.fetchAssessmentDetails();
             this.populateDataTrainee();
-            
+
           });
         }
       });
@@ -107,7 +107,7 @@ export class DashboardComponent {
   getfacultyAssessments() {
     if (this.facultyId && this.arrAssessments) {
       this.facultyArrAssessments = [];
-      console.log(this.arrAssessments)
+      // console.log(this.arrAssessments)
       for (let i = 0; i < this.arrAssessments.length; i++) {
         if (Number(this.arrAssessments[i].facultyId) === Number(this.facultyId)) {
           this.facultyArrAssessments.push(this.arrAssessments[i]);
@@ -140,7 +140,7 @@ export class DashboardComponent {
   }
 
   populateDataAdmin() {
-    
+
     this.arrAssessmentScores.forEach((assessmentScore: AssessmentScore) => {
       const key = assessmentScore.assessmentId.toString();
       if (this.arrAssessmentScoreMap[key]) {
@@ -149,7 +149,7 @@ export class DashboardComponent {
         this.arrAssessmentScoreMap[key] = [assessmentScore.score];
       }
     });
-    console.log(this.arrAssessmentScoreMap);
+    // console.log(this.arrAssessmentScoreMap);
   }
   populateDataTrainee(){
     this.traineeAvgScore = this.calcualteTraineeAvgscore();
@@ -197,13 +197,13 @@ export class DashboardComponent {
     if (this.scatterChart) {
       this.scatterChart.destroy();
     }
-    const scatterChartElement = document.getElementById('scatterChartUser') as HTMLCanvasElement; 
+    const scatterChartElement = document.getElementById('scatterChartUser') as HTMLCanvasElement;
     if (!scatterChartElement) {
       console.log('Scatter chart element not found!');
       return;
     }
     // Destroy previous chart instance if exists
-    
+
 
     this.scatterChart = new Chart(scatterChartElement, {
       type: 'scatter',
@@ -252,7 +252,7 @@ export class DashboardComponent {
     if (!this.selectedAssessment) return;
     if(!this.arrAssessmentScoreMap[this.selectedAssessment.id.toString()])return;
     const scores = this.arrAssessmentScoreMap[this.selectedAssessment.id.toString()]; // handle the undefined error
-    console.log(scores);
+    // console.log(scores);
     const averageScore = this.calculateAverageScore(scores);
 
     const scatterChartElement = document.getElementById('scatterChart') as HTMLCanvasElement;
@@ -316,7 +316,7 @@ export class DashboardComponent {
     if (!this.selectedAssessment) return;
     if(!this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()]) return;
     var scores:number[]=[]
-    if(this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()])scores = this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()]; 
+    if(this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()])scores = this.FacultyAssessmentTrack[this.selectedAssessment.id.toString()];
     const scatterChartElement = document.getElementById('scatterChartFaculty') as HTMLCanvasElement;
     if (!scatterChartElement) return;
     const averageScore = this.calculateAverageScore(scores);
@@ -399,9 +399,8 @@ export class DashboardComponent {
     }
     this.selectedTab = tabName;
     if(this.selectedTab=='dashboard' && this.role=='user') {
-      // console.log("Hello");}
       this.populateDataTrainee();}
-    
+
   }
   calcualteTraineeAvgscore():number{
     let sum = 0;

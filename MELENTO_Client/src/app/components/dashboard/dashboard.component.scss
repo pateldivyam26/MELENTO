@@ -1,7 +1,7 @@
 .inactive-card {
     background-color: #d5d6d6;
   }
-  
+
   .dashboard-header {
     display: flex;
     justify-content: space-between;
@@ -9,14 +9,43 @@
     padding: 10px 0;
     font-size: 1.5rem; /* Increase the font size */
   }
-  
+
   hr {
     margin-top: 0;
     margin-bottom: 10px;
   }
-  
 
-  
+.scatter-chart-container {
+  background: linear-gradient(145deg, #e0e0e0, #f0f0f0);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.scatter-chart-container canvas {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#averageScore {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+  .scatter-chart-container {
+    padding: 10px;
+  }
+
+  #averageScore {
+    font-size: 1em;
+  }
+}
+
+
   @media screen and (min-width: 600px) {
     mat-sidenav-container {
       height: 100%;
@@ -34,7 +63,7 @@
       font-size: 1em; /* Default font size */
     }
   }
-  
+
   @media screen and (max-width: 600px) {
     mat-sidenav {
         width:70%;
@@ -44,4 +73,3 @@
       font-size: 0.9em; /* Decrease font size for smaller screens */
     }
   }
-  
