@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Cart } from '../../models/cart';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Trainee, TraineeAssessment } from '../../models/trainee';
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })
-export class CartComponent {
+export class CartComponent implements OnInit{
   cart: Cart = new Cart(0, [], [], 0);
   cartExists: boolean = false;
   trainee: Trainee = new Trainee(0, 0, [new TraineeAssessment(0, 0)]);
@@ -19,6 +19,7 @@ export class CartComponent {
   traineeexists: boolean = false;
   traineeId: number = 0;
   tempId: string = '';
+  handler: any = null;
   constructor(private cartService: CartService, private router: Router, private traineeService: TraineeService) {
     var tId = localStorage.getItem('id');
     if (tId != null) this.tempId = tId.toString();
@@ -44,6 +45,9 @@ export class CartComponent {
         }
       })
     }
+  }
+  ngOnInit() {
+    this.loadStripe();
   }
   checkquantity(i: number): boolean {
     if (this.cart.quantity[i] > 1) {
@@ -114,6 +118,43 @@ export class CartComponent {
       }
     }
     this.traineeService.updateTrainee(this.trainee).subscribe();
+  }
+  pay(amount: number) {
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51PazcJRxHUWJRFCLLq9XpodoBG2F2kldzMwnrn0iPVMjceSXhWA1Fqc2zPOuTFai0jVks5vi7gWqCBDvBXlLhiZP00ZbzMXR9f',
+      locale: 'auto',
+      token: function (token: any) {
+        console.log(token);
+        this.checkout();
+      }
+    });
+
+    handler.open({
+      name: 'Assessment Portal',
+      description: 'Assessment Purchase',
+      amount: amount * 100
+    });
+  }
+
+  loadStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      s.onload = () => {
+        this.handler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51PazcJRxHUWJRFCLLq9XpodoBG2F2kldzMwnrn0iPVMjceSXhWA1Fqc2zPOuTFai0jVks5vi7gWqCBDvBXlLhiZP00ZbzMXR9f',
+          locale: 'auto',
+          token: function (token: any) {
+            console.log(token);
+            this.checkout();
+          }
+        });
+      };
+
+      window.document.body.appendChild(s);
+    }
   }
 }
 
