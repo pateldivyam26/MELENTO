@@ -70,19 +70,19 @@ export class RegisterComponent implements OnInit {
       console.log("Form is not valid");
       return;
     }
-    for(var i=0;i<this.arrUsers.length;i++) {
-      if(this.arrUsers[i].email==frmValue.email) {
-        this.uniqueEmail=false;
-        console.log("Email already exists");
-        return;
-      }
-    }
-    this.uniqueEmail=true;
-    if (this.arrUsers.length === 0) {
-      this.tempId = 1;
-    } else {
-      this.tempId = Number(this.arrUsers[this.arrUsers.length - 1].id) + 1;
-    }
+    // for(var i=0;i<this.arrUsers.length;i++) {
+    //   if(this.arrUsers[i].email==frmValue.email) {
+    //     this.uniqueEmail=false;
+    //     console.log("Email already exists");
+    //     return;
+    //   }
+    // }
+    // this.uniqueEmail=true;
+    // if (this.arrUsers.length === 0) {
+    //   this.tempId = 1;
+    // } else {
+    //   this.tempId = Number(this.arrUsers[this.arrUsers.length - 1].id) + 1;
+    // }
 
     const tempUser = new User(
       this.tempId,
@@ -104,7 +104,7 @@ export class RegisterComponent implements OnInit {
         frmValue.pincode
       )
     );
-    console.log(tempUser);
+    // console.log(tempUser);
     this.userService.addUser(tempUser).subscribe(data=>{
       this.showMessage();
       const cart= new Cart(this.tempId,[],[],0)

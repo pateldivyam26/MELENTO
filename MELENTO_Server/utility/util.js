@@ -4,11 +4,10 @@ const { publicEncrypt, privateDecrypt, generateKeyPairSync } = require('crypto')
 const fs = require('fs')
 const path = require('path');
 
-const { publicKey, privateKey } = generateKeyPairSync('rsa', {
-    modulusLength: 4096,
-    publicKeyEncoding: { type: 'spki', format: 'pem' },
-    privateKeyEncoding: { type: 'pkcs8', format: 'pem' }
-});
+const algorithm = 'aes-256-cbc';
+const key = crypto.randomBytes(32);
+// Use a static IV
+const iv = Buffer.alloc(16, 0)
 require('dotenv').config();
 
 function connect(collection_name) {
@@ -56,27 +55,19 @@ function deleteObject(collection, id, deletedObject) {
 
 
 function encrypt(text) {
-    const encrypted = publicEncrypt(
-        {
-            key: publicKey,
-            padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-            oaepHash: "sha256",
-        },
-        Buffer.from(text)
-    );
-    return encrypted.toString('base64');
+    let cipher = crypto.createCipheriv(algorithm, key, iv);
+    let encrypted = cipher.update(text, 'utf8', 'hex');
+    encrypted += cipher.final('hex');
+    return encrypted;
 }
 
 function decrypt(encryptedText) {
-    const decrypted = privateDecrypt(
-        {
-            key: privateKey,
-            padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-            oaepHash: "sha256",
-        },
-        Buffer.from(encryptedText, 'base64')
-    );
-    return decrypted.toString();
+    let decipher = crypto.createDecipheriv(algorithm, key, iv);
+    let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
 }
 
 module.exports = { connect, renameKey, addObject, updateObject, deleteObject, encrypt, decrypt };
+
+//change the encrypt back into decrypt

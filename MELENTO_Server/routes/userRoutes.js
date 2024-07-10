@@ -7,7 +7,7 @@ router.get('', auth_controller.authenticateToken, user_controller.getUser);
 
 router.get('/:id', auth_controller.authenticateToken, user_controller.getUserById);
 
-router.post('', auth_controller.authenticateToken, user_controller.addUser);
+router.post('', auth_controller.verifyRegisterDetails, user_controller.addUser);
 
 router.put('/:id', auth_controller.authenticateToken, user_controller.updateUser);
 
