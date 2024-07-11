@@ -4,6 +4,7 @@ import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 import { TraineeService } from '../../services/trainee.service';
 import { Trainee, TraineeAssessment } from '../../models/trainee';
+import { environment } from '../../utils/environment';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class CartComponent implements OnInit{
   traineeId: number = 0;
   tempId: string = '';
   handler: any = null;
+  paySuccess:boolean = false;
   constructor(private cartService: CartService, private router: Router, private traineeService: TraineeService) {
     var tId = localStorage.getItem('id');
     if (tId != null) this.tempId = tId.toString();
@@ -121,10 +123,12 @@ export class CartComponent implements OnInit{
   }
   pay(amount: number) {
     var handler = (<any>window).StripeCheckout.configure({
-      key: 'pk_test_51PazcJRxHUWJRFCLLq9XpodoBG2F2kldzMwnrn0iPVMjceSXhWA1Fqc2zPOuTFai0jVks5vi7gWqCBDvBXlLhiZP00ZbzMXR9f',
+      key: environment.stripe.publicKey,
       locale: 'auto',
       token: function (token: any) {
-        console.log(token);
+        // console.log(token);
+        this.paySuccess = true;
+        console.log(this.paySuccess)
         this.checkout();
       }
     });
@@ -144,15 +148,16 @@ export class CartComponent implements OnInit{
       s.src = "https://checkout.stripe.com/checkout.js";
       s.onload = () => {
         this.handler = (<any>window).StripeCheckout.configure({
-          key: 'pk_test_51PazcJRxHUWJRFCLLq9XpodoBG2F2kldzMwnrn0iPVMjceSXhWA1Fqc2zPOuTFai0jVks5vi7gWqCBDvBXlLhiZP00ZbzMXR9f',
+          key: environment.stripe.publicKey,
           locale: 'auto',
           token: function (token: any) {
-            console.log(token);
+            // console.log(token);
+            this.paySuccess = true;
+            console.log(this.paySuccess)
             this.checkout();
           }
         });
       };
-
       window.document.body.appendChild(s);
     }
   }
