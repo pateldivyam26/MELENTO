@@ -68,7 +68,12 @@ function decrypt(encryptedText) {
     decrypted += decipher.final('utf8');
     return decrypted;
 }
+function sendDecryptedPassword(obj){
+    // console.log(obj);
+    obj.password=decrypt(obj.password);
+    // console.log(obj);
+}
 
-module.exports = { connect, renameKey, addObject, updateObject, deleteObject, encrypt, decrypt };
+module.exports = { connect, renameKey, addObject, updateObject, deleteObject, encrypt, decrypt,sendDecryptedPassword };
 
 //change the encrypt back into decrypt

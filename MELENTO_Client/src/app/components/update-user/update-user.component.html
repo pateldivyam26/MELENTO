@@ -77,13 +77,10 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" id="password" placeholder="Password" class="form-control"
-                                    formControlName="password">
+                                <i class="fa fa-light fa-eye float-right" id="togglePassword" (click)="togglePassword()"></i>
+                                <input [type]="hidePassword ? 'password' : 'text'" id="password" placeholder="Password" class="form-control" formControlName="password">                 
                                 <div *ngIf="f['password'].errors">
-                                    <div class="text-danger"
-                                        *ngIf="f['password'].errors['required'] && f['password'].touched">*Required
-                                        Password
-                                    </div>
+                                    <div class="text-danger" *ngIf="f['password'].errors['required'] && f['password'].touched">*Required Password</div>
                                 </div>
                             </div>
                         </div>

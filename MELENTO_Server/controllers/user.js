@@ -8,6 +8,7 @@ async function getUser(req, res) {
         const objArr = items;
         objArr.forEach((obj) => {
             util.renameKey(obj, "_id", "id");
+            util.sendDecryptedPassword(obj);
         });
         const updateItems = JSON.stringify(objArr);
         res.send(updateItems);

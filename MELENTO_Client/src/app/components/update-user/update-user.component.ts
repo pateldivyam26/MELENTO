@@ -19,6 +19,7 @@ export class UpdateUserComponent {
   idUpdated: number = 0;
   tempId: number = 0;
   maxDate: string="";
+  hidePassword = true;
   constructor(fb: FormBuilder, private userService: UserService, private facultyService: FacultyService, private _snackBar: MatSnackBar) {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
@@ -129,5 +130,10 @@ export class UpdateUserComponent {
     this.userService.updateUser(this.user).subscribe();
     this.showMessage('User Updated Successfully!!');
   }
+
+
+togglePassword() {
+    this.hidePassword = !this.hidePassword;
+}
   
 }
