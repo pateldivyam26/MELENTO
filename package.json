@@ -1,0 +1,16 @@
+{
+  "name": "melento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": ">= 18"
+  },
+  "scripts": {
+    "start":"cd MELENTO_Server/built && node server.js",
+    "prebuild": "cd MELENTO_Server && npm run build",
+    "build": "cd MELENTO_Client && npm run build"
+  },
+  "author": "",
+  "license": "ISC"
+}
